@@ -31,13 +31,14 @@ function AssociationList() {
           }  
         }
         getData()
-      }, [data, loading])
+      }, [])
 
     return (
     <div className="App">
         <h1>Liste des Associations</h1>
         {loading && <div>A moment please...</div>}
         {error && (<div>{`There is a problem fetching the post data - ${error}`}</div>)}
+        
         <ul>
         {data && data.associations.map(({ _id, name }) => (
             <li>

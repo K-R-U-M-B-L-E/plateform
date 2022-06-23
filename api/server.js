@@ -86,3 +86,15 @@ app.post("/associations/add", (req, res) => {
             res.status(200).send("New association successfully created !")
         })
 })
+
+app.delete("/associations/:id", (req, res) => {
+
+  associations.deleteOne({ id: _id }, (err, result) => { 
+      if (err) {
+              console.error(err)
+              res.status(500).json({ err: err })
+              return
+          }
+          res.status(200).send(result)
+      })
+})

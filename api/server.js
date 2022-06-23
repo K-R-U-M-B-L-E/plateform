@@ -1,5 +1,5 @@
 const express = require("express");
-const PORT = 3000;
+const PORT = 3001;
 const mongo = require("mongodb").MongoClient;
 const mongoose = require("mongoose");
 const url = "mongodb://localhost:27017";
@@ -73,7 +73,7 @@ app.get("/associations/:id", (req, res) => {
       })
 })
 
-app.post("/associations", (req, res) => {
+app.post("/associations/add", (req, res) => {
     const name = req.body.name
     //FIX ME : ASSOCIATION FIELD
 

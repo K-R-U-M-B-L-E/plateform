@@ -60,7 +60,7 @@ app.get("/associations/:name", (req, res) => {
     })
 })
 
-app.get("/associations/:id", (req, res) => {
+app.post("/associations/:id", (req, res) => {
     const id = req.params.id;
     console.log("search by id")
     associations.find({ _id: id }).toArray((err, items) => {

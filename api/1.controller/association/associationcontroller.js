@@ -1,6 +1,6 @@
 const { response } = require("express");
-const utils = require("../../utils")
-const service = require("../../2.service/association/associationservice")
+const utils = require("../../utils/utilsAssociation");
+const service = require("../../2.service/association/associationservice");
 
 //GET ALL ASSOCIATIONS
 //Check : - if an error occured => return 500
@@ -37,12 +37,14 @@ async function addSingle(req, res)
 //UPDATE AN ASSOCIATION BY ID
 //Check : - if an error occured => return 500    
 //        - if an exception on fields occured => return 500  
+//        - if nothing had to be update => return 200
 //        - if the id does not exist => return 404
 async function updateSingle(req, res) 
 {
     var response = await service.updateSingle(req);
     if (response.hasOwnProperty('err')) { res.status(500).json(response); return }
     if (response.hasOwnProperty('exception')) { res.status(500).json(response); return}
+    if (response.hasOwnProperty('status')) { res.status(200).json(response); return}
     if (response.response.modifiedCount === 0 ) {res.status(404).json({ err : "Not found"}); return}
     res.status(200).json(response);
 }

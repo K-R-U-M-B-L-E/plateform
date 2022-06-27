@@ -21,7 +21,7 @@ mongo.connect(
   )
 
 
-//GET ALL AOSSCIATIONS DOCUMENT
+//GET ALL ASSOCIATIONS DOCUMENT
 async function getAll()
 {
     return new Promise(function(resolve, reject) {

@@ -22,6 +22,13 @@ async function addSingle(req, res)
     res.status(200).json(response);
 }
 
+async function updateSingle(req, res) 
+{
+    var response = await service.updateSingle(req);
+    if (response.hasOwnProperty('err')) { res.status(500).json(err); }
+    res.status(200).json(response);
+}
+
 async function deleteSingle(req, res) 
 {
     var response = await service.deleteSingle(req);
@@ -29,4 +36,4 @@ async function deleteSingle(req, res)
     res.status(200).json(response);
 }
 
-module.exports = { getAll, getSingle, addSingle, deleteSingle };
+module.exports = { getAll, getSingle, addSingle, deleteSingle, updateSingle };

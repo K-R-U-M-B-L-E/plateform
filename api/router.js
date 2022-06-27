@@ -39,7 +39,7 @@ mongo.connect(
 app.get('/associations', (req, res) => { Associationcontroller.getAll(req, res) })
 app.get('/associations/:id', (req, res) => { Associationcontroller.getSingle(req, res) })
 app.post("/associations/", (req, res) => { Associationcontroller.addSingle(req,res) })
-//app.patch("/associations/:id", (req, res) => { Associationcontroller.updateSingle(req,res) })
+app.patch("/associations/:id", (req, res) => { Associationcontroller.updateSingle(req,res) })
 app.delete("/associations/:id", (req, res) => { Associationcontroller.deleteSingle(req,res)})
 
 

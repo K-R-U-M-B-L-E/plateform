@@ -18,10 +18,16 @@ async function addSingle(req)
     return response
 }
 
+async function updateSingle(req)
+{
+    var response = await repository.updateSingle(req);
+    return response
+}
+
 async function deleteSingle(req)
 {
     var response = await repository.deleteSingle(req);
     return response
 }
 
-module.exports = {getAll, getSingle, addSingle, deleteSingle};
+module.exports = {getAll, getSingle, addSingle, deleteSingle, updateSingle};

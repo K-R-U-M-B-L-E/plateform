@@ -63,6 +63,23 @@ async function addSingle(req)
     })
 }
 
+async function updateSingle(req)
+{
+  return new Promise(function(resolve, reject) {
+    const id = req.params.id
+    var newvalues = { $set: req.body };
+    
+    associations.updateOne({ _id: ObjectId(`${id}`)}, newvalues , (err, result) => { 
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+          }
+        resolve({ response : result})
+      })
+    })
+}
+
+
 async function deleteSingle(req)
 {
   const id = req.params.id;
@@ -77,4 +94,4 @@ async function deleteSingle(req)
   })
 }
 
-module.exports = {getAll, getSingle, addSingle, deleteSingle};
+module.exports = {getAll, getSingle, addSingle, deleteSingle, updateSingle};

@@ -16,8 +16,6 @@ function AssociationList(props) {
     useEffect(() => {
         const getData = async () => {
           try {
-
-
             const response = await fetch(
               `${props.query}`
             );
@@ -31,6 +29,7 @@ function AssociationList(props) {
                 setData(actualData);
                 console.log(data);
                 setError(null);
+
           } catch(err) {
                 setError(err.message);
                 setData(null);

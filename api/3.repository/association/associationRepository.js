@@ -3,6 +3,7 @@ const url = "mongodb://localhost:27017";
 var ObjectId = require('mongodb').ObjectId; 
 let db
 
+//CONNECT TO MONGO DB INSTANCE
 mongo.connect(
     url,
     {
@@ -20,6 +21,7 @@ mongo.connect(
   )
 
 
+//GET ALL AOSSCIATIONS DOCUMENT
 async function getAll()
 {
     return new Promise(function(resolve, reject) {
@@ -33,10 +35,12 @@ async function getAll()
     })
 }
 
+//GET AN ASSOCIATION DOCUMENT BY ID
 async function getSingle(req)
 {
     return new Promise(function(resolve, reject) {
     const id = req.params.id;
+
     associations.find({ _id: ObjectId(`${id}`) }).toArray((err, items) => {
         if (err) {
           console.error(err)
@@ -47,6 +51,7 @@ async function getSingle(req)
     })
 }
 
+//ADD AN ASSOCIATION DOCUMENT
 async function addSingle(req)
 {
   return new Promise(function(resolve, reject) {
@@ -62,6 +67,8 @@ async function addSingle(req)
     })
 }
 
+
+//UPDATE AN ASSOCIATION DOCUMENT
 async function updateSingle(req)
 {
   return new Promise(function(resolve, reject) {
@@ -78,11 +85,12 @@ async function updateSingle(req)
     })
 }
 
-
+//DELETE AN ASSOCIATION DOCUMENT
 async function deleteSingle(req)
 {
   const id = req.params.id;
   return new Promise(function(resolve, reject) {
+
     associations.deleteOne({ _id: ObjectId(`${id}`) }, (err, result) => { 
       if (err) {
         console.error(err)

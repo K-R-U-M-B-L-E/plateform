@@ -3,6 +3,7 @@ const PORT = 3001;
 const mongo = require("mongodb").MongoClient;
 const mongoose = require("mongoose");
 const url = "mongodb://localhost:27017";
+const Associationcontroller = require('./1.controller/association/associationcontroller');
 
 const app = express()
 app.use(express.json())
@@ -33,9 +34,16 @@ mongo.connect(
     }
   )
 
+/////////////////////////////////////////////// ASSOCIATIONS //////////////////////////////////////////////////////
+
+app.get('/associations', (req, res) => { Associationcontroller.getAll(req, res) })
+app.get('/associations/:id', (req, res) => { Associationcontroller.getSingle(req, res) })
+//app.post("/associations/", (req, res) => { Associationcontroller.addSingle(req,res) })
+//app.patch("/associations/:id", (req, res) => { Associationcontroller.updateSingle(req,res) })
+//app.delete("/associations/:id", (req, res) => { Associationcontroller.deleteSingle(req,res)})
 
 
-app.get("/associations", (req, res) => {
+/*app.get("/associations", (req, res) => {
     
   associations.find().toArray((err, items) => {
     if (err) {
@@ -77,7 +85,7 @@ app.post("/associations/add", (req, res) => {
     const name = req.body.name
     //FIX ME : ASSOCIATION FIELD
 
-    associations.insertOne({ name: name /*FIX ME : ASSOCIATION FIELD*/}, (err, result) => { 
+    associations.insertOne({ name: name }, (err, result) => { 
         if (err) {
                 console.error(err)
                 res.status(500).json({ err: err })
@@ -97,4 +105,4 @@ app.delete("/associations/:id", (req, res) => {
           }
           res.status(200).send(result)
       })
-})
+})*/

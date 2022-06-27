@@ -23,13 +23,13 @@ mongo.connect(
 async function getAll()
 {
     return new Promise(function(resolve, reject) {
-        associations.find().toArray((err, items) => {
-            if (err) {
-            console.error(err)
-            reject({ err : err })
-            }
-            resolve({associations : items});
-        })
+      associations.find().toArray((err, items) => {
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+        }
+      resolve({associations : items});
+      })
     })
 }
 
@@ -50,10 +50,9 @@ async function getSingle(req)
 async function addSingle(req)
 {
   return new Promise(function(resolve, reject) {
-    const name = req.body.name
-    //FIX ME : ASSOCIATION FIELD
-
-    associations.insertOne({ name: name /*FIX ME :ASSOCIATION FIELD*/ }, (err, result) => { 
+    const newAssociation = req.body
+    
+    associations.insertOne(newAssociation, (err, result) => { 
         if (err) {
           console.error(err)
           reject({ err : err })

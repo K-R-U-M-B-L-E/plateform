@@ -26,7 +26,7 @@ async function getAll()
         associations.find().toArray((err, items) => {
             if (err) {
             console.error(err)
-            reject({ err: err })
+            reject({ err : err })
             }
             resolve({associations : items});
         })
@@ -40,11 +40,41 @@ async function getSingle(req)
     associations.find({ _id: ObjectId(`${id}`) }).toArray((err, items) => {
         if (err) {
           console.error(err)
-          reject({ err: err })
+          reject({ err : err })
         }
         resolve({  association : items[0] })
       })
     })
 }
 
-module.exports = {getAll, getSingle};
+async function addSingle(req)
+{
+  return new Promise(function(resolve, reject) {
+    const name = req.body.name
+    //FIX ME : ASSOCIATION FIELD
+
+    associations.insertOne({ name: name /*FIX ME :ASSOCIATION FIELD*/ }, (err, result) => { 
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+          }
+        resolve({ response : result})
+      })
+    })
+}
+
+async function deleteSingle(req)
+{
+  const id = req.params.id;
+  return new Promise(function(resolve, reject) {
+    associations.deleteOne({ _id: ObjectId(`${id}`) }, (err, result) => { 
+      if (err) {
+        console.error(err)
+        reject({ err: err })
+      }
+      resolve({ response : result})
+    })
+  })
+}
+
+module.exports = {getAll, getSingle, addSingle, deleteSingle};

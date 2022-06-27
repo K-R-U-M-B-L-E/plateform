@@ -15,4 +15,18 @@ async function getSingle(req, res)
     res.status(200).json(response);
 }
 
-module.exports = { getAll, getSingle };
+async function addSingle(req, res) 
+{
+    var response = await service.addSingle(req);
+    if (response.hasOwnProperty('err')) { res.status(500).json(err); }
+    res.status(200).json(response);
+}
+
+async function deleteSingle(req, res) 
+{
+    var response = await service.deleteSingle(req);
+    if (response.hasOwnProperty('err')) { res.status(500).json(err); }
+    res.status(200).json(response);
+}
+
+module.exports = { getAll, getSingle, addSingle, deleteSingle };

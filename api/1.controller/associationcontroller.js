@@ -1,6 +1,6 @@
 const { response } = require("express");
-const utils = require("../../utils/utilsAssociation");
-const service = require("../../2.service/association/associationservice");
+const utils = require("../utils/utilsAssociation");
+const service = require("../2.service/associationservice");
 
 //GET ALL ASSOCIATIONS
 //Check : - if an error occured => return 500

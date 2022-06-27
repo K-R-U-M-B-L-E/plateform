@@ -1,6 +1,6 @@
-const repository = require("../../3.repository/association/associationRepository");
-const { isAssociationField, isThereMandatoryFields } = require("../../utils/utilsAssociation");
-const { isJsonValid, isJsonEmpty } = require("../../utils/utils");
+const repository = require("../3.repository/associationRepository");
+const { isAssociationField, isThereMandatoryFields } = require("../utils/utilsAssociation");
+const { isJsonValid, isJsonEmpty } = require("../utils/utils");
 const { json } = require("express");
 var ObjectId = require('mongodb').ObjectId; 
 

@@ -2,7 +2,7 @@ const express = require("express");
 const app = express()
 app.use(express.json())
 
-const Associationcontroller = require('./1.controller/association/associationcontroller');
+const Associationcontroller = require('./1.controller/associationcontroller');
 
 const PORT = 3001;
 app.listen(

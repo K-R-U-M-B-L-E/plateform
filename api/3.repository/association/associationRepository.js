@@ -1,5 +1,6 @@
 const mongo = require("mongodb").MongoClient;
 const url = "mongodb://localhost:27017";
+var ObjectId = require('mongodb').ObjectId; 
 let db
 
 mongo.connect(
@@ -36,7 +37,7 @@ async function getSingle(req)
 {
     return new Promise(function(resolve, reject) {
     const id = req.params.id;
-    associations.find({ _id: `ObjectId("${id}")` }).toArray((err, items) => {
+    associations.find({ _id: ObjectId(`${id}`) }).toArray((err, items) => {
         if (err) {
           console.error(err)
           reject({ err: err })

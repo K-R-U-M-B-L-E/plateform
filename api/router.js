@@ -68,10 +68,10 @@ app.get("/associations/:name", (req, res) => {
     })
 })
 
-app.post("/associations/:id", (req, res) => {
+app.get("/associations/:id", (req, res) => {
     const id = req.params.id;
     console.log("search by id")
-    associations.find({ _id: id }).toArray((err, items) => {
+    associations.find({_id: ObjectId(`${id}`) }).toArray((err, items) => {
         if (err) {
           console.error(err)
           res.status(500).json({ err: err })

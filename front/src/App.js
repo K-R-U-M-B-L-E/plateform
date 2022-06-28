@@ -6,6 +6,6 @@ import AssociationList from "./components/AssociationList";
 export default function App() {
     return (
     <div>
-      <AssociationList />
+      <AssociationList query="/associations"/>
     </div>)
 }

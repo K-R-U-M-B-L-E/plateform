@@ -2,7 +2,8 @@ const express = require("express");
 const app = express()
 app.use(express.json())
 
-const Associationcontroller = require('./1.controller/associationcontroller');
+const Associationcontroller = require('./1.controller/associationController');
+const Projectcontroller = require('./1.controller/projectController');
 
 const PORT = 3001;
 app.listen(
@@ -25,6 +26,16 @@ app.get('/associations/:id', (req, res) => { Associationcontroller.getSingle(req
 app.post('/associations', (req, res) => { Associationcontroller.addSingle(req,res) })
 app.patch('/associations/:id', (req, res) => { Associationcontroller.updateSingle(req,res)} )
 app.delete('/associations/:id', (req, res) => { Associationcontroller.deleteSingle(req,res)})
+
+/////////////////////////////////////////////// PROJECTS //////////////////////////////////////////////////////
+
+app.get('/projects', (req, res) => { Projectcontroller.getAll(req, res) })
+app.get('/projects/:id', (req, res) => { Projectcontroller.getSingle(req, res) })
+app.post('/projects', (req, res) => { Projectcontroller.addSingle(req,res) })
+app.patch('/projects/:id', (req, res) => { Projectcontroller.updateSingle(req,res)} )
+app.delete('/projects/:id', (req, res) => { Projectcontroller.deleteSingle(req,res)})
+
+
 
 app.all('*', function(req, res) {
     res.status(400).json({err : "Bad Request"});

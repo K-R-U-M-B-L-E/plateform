@@ -1,10 +1,10 @@
 const { response } = require("express");
-const utils = require("../utils/utilsAssociation");
-const service = require("../2.service/associationService");
+const utils = require("../utils/utilsProject");
+const service = require("../2.service/projectService");
 
 
 
-//GET ALL ASSOCIATIONS
+//GET ALL PROJECTS
 //Check : - if an error occured => return 500
 
 async function getAll(req, res) 
@@ -15,7 +15,7 @@ async function getAll(req, res)
 }
 
 
-//GET AN ASSOCIATION BY ID
+//GET AN PROJECT BY ID
 //Check : - - if the id does not exist => return 404
 //          - if an error occured => return 500
 
@@ -29,7 +29,7 @@ async function getSingle(req, res)
 
 
 
-//ADD AN ASSOCIATION
+//ADD AN PROJECT
 //Check : - if an error occured => return 500
 //        - if an exception on fields occured => return 500
 
@@ -43,7 +43,7 @@ async function addSingle(req, res)
 
 
 
-//UPDATE AN ASSOCIATION BY ID
+//UPDATE AN PROJECT BY ID
 //Check : - if the id does not exist => return 404  
 //        - if an error occured => return 500 
 //        - if an exception on fields occured => return 500  
@@ -61,7 +61,7 @@ async function updateSingle(req, res)
 
 
 
-//DELETE AN ASSOCIATION
+//DELETE AN PROJECT
 //Check : - if the id does not exist => return 404
 //        - if an error occured => return 500   
 

@@ -1,12 +1,12 @@
-const repository = require("../3.repository/associationRepository");
-const { isAssociationField, isThereMandatoryFields } = require("../utils/utilsAssociation");
+const repository = require("../3.repository/projectRepository");
+const { isThereMandatoryFields, isProjectFields } = require("../utils/utilsProject");
 const { isJsonValid, isJsonEmpty } = require("../utils/utils");
 const { json } = require("express");
 var ObjectId = require('mongodb').ObjectId; 
 
 
 
-//GET ALL THE ASSOCIATIONS
+//GET ALL THE PROJECTS
 async function getAll()
 {
     var response = await repository.getAll();
@@ -15,7 +15,7 @@ async function getAll()
 
 
 
-//GET A SINGLE ASSOCIATION BY ID
+//GET A SINGLE PROJECT BY ID
 //Check: - if id is valid => return err
 //       - if body is empty => return not found
 async function getSingle(req)
@@ -23,13 +23,13 @@ async function getSingle(req)
     if (!ObjectId.isValid(req.params.id)) { return ({ err: "ObjectId invalid"}) }
 
     var response = await repository.getSingle(req);
-    if (response.association === undefined || response === null) { return { err: "Not found"}}
+    if (response.project === undefined || response === null) { return { err: "Not found"}}
     else return response
 }
 
 
 
-//ADD A SINGLE ASSOCIATION
+//ADD A SINGLE PROJECT
 //Check : - if mandatory fields are presents => return exception
 //        - if every fields presents is an acceptable fields => return exception
 async function addSingle(req)
@@ -37,7 +37,7 @@ async function addSingle(req)
     var [mandatoryFields, absentField] = isThereMandatoryFields(req.body)
     if (!mandatoryFields) { return { exception : `Mandatory field ${absentField} is missing`}}
 
-    var [fieldsLegitimate, incorrectField] = isAssociationField(req.body)
+    var [fieldsLegitimate, incorrectField] = isProjectFields(req.body)
     if (!fieldsLegitimate) { return { exception : `Wrong field name ${incorrectField}` }}
         
     try {
@@ -54,7 +54,7 @@ async function addSingle(req)
 
 
 
-//UPDATE A SINGLE ASSOCIATION
+//UPDATE A SINGLE PROJECT
 //Check : - if id is valid  => return err 
 //        - if id exists => return not found
 //        - if Json is empty => return without err
@@ -66,7 +66,7 @@ async function updateSingle(req)
     if (getSingle(req) === { err: "Not found"} ) { return ({ err: "Not Found"})}
     if (isJsonEmpty(req.body) ) { return { status : "Nothing to update"}}
 
-    var [fieldsLegitimate, incorrectField] = isAssociationField(req.body)
+    var [fieldsLegitimate, incorrectField] = isProjectFields(req.body)
     if (!fieldsLegitimate) { return { exception : `Wrong field name ${incorrectField}` }}
     
     try {
@@ -85,7 +85,7 @@ async function updateSingle(req)
 
 
 
-//DELETE A SINGLE ASSOCIATION
+//DELETE A SINGLE PROJECT
 //Check: - if id is invalid => return err
 //       - if something had been deleted => return not found
 async function deleteSingle(req)

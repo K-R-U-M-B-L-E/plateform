@@ -81,23 +81,6 @@ async function addSingle(req)
     })
 }
 
-//ADD SEVERAL PROJECT DOCUMENT
-async function addMultiple(req)
-{
-  return new Promise(function(resolve, reject) {
-    const newProjects = req.body
-    
-    projects.insertMany(newProjectS, (err, result) => { 
-        if (err) {
-          console.error(err)
-          reject({ err : err })
-          }
-        resolve({ response : result})
-      })
-    })
-}
-
-
 //UPDATE AN PROJECT DOCUMENT
 async function updateSingle(req)
 {
@@ -165,4 +148,4 @@ async function deleteMultiple(req)
   })
 }
 
-module.exports = {getAll, getSingle, getByAsso, addSingle, addMultiple, updateSingle, updateMultiple, deleteSingle, deleteMultiple };
+module.exports = {getAll, getSingle, getByAsso, addSingle, updateSingle, updateMultiple, deleteSingle, deleteMultiple };

@@ -5,6 +5,7 @@ app.use(express.json())
 const Associationcontroller = require('./1.controller/associationController');
 const Projectcontroller = require('./1.controller/projectController');
 const Universitycontroller = require('./1.controller/universityController');
+const Usercontroller = require('./1.controller/userController');
 
 const PORT = 3001;
 app.listen(
@@ -46,6 +47,14 @@ app.get('/universities/:id', (req, res) => { Universitycontroller.getSingle(req,
 app.post('/universities', (req, res) => { Universitycontroller.addSingle(req,res) })
 app.patch('/universities/:id', (req, res) => { Universitycontroller.updateSingle(req,res)} )
 app.delete('/universities/:id', (req, res) => { Universitycontroller.deleteSingle(req,res)})
+
+/////////////////////////////////////////////// USERS //////////////////////////////////////////////////////
+
+app.get('/users', (req, res) => { Usercontroller.getAll(req, res) })
+app.get('/users/:id', (req, res) => { Usercontroller.getSingle(req, res) })
+app.post('/users', (req, res) => { Usercontroller.addSingle(req,res) })
+app.patch('/users/:id', (req, res) => { Usercontroller.updateSingle(req,res)} )
+app.delete('/users/:id', (req, res) => { Usercontroller.deleteSingle(req,res)})
 
 
 app.all('*', function(req, res) {

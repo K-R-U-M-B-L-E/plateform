@@ -1,12 +1,12 @@
-const universityFields = ["name", "type", "cities"]
-const mandatoryFields = ["name", "type"]
+const userFields = ["firstname", "lastname"]
+const mandatoryFields = ["firstname", "lastname"]
 
 //CHECK IF EVERY FIELDS NAME ARE VALID ONE
-function isUniversityField(universities) {
+function isUserFields(user) {
   
-  for (i in universities) 
+  for (i in user) 
   {
-    if (!universityFields.includes(i))
+    if (!userFields.includes(i))
       return [false, i];
   }
   return [true, ""];
@@ -25,4 +25,4 @@ function isThereMandatoryFields(req)
 }
 
 
-module.exports = {isUniversityField, isThereMandatoryFields}
+module.exports = {isUserFields, isThereMandatoryFields}

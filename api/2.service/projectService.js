@@ -1,4 +1,5 @@
 const repository = require("../3.repository/projectRepository");
+const associationService = require("./associationService");
 const { isThereMandatoryFields, isProjectFields } = require("../utils/utilsProject");
 const { isJsonValid, isJsonEmpty } = require("../utils/utils");
 const { json } = require("express");
@@ -21,10 +22,22 @@ async function getAll()
 async function getSingle(req)
 {
     if (!ObjectId.isValid(req.params.id)) { return ({ err: "ObjectId invalid"}) }
-
+    
     var response = await repository.getSingle(req);
     if (response.project === undefined || response === null) { return { err: "Not found"}}
     else return response
+}
+
+//GET PROJECTS OF AN ASSOCIATION
+//Check: - if id is valid => return err
+//       - if body is empty => return not found
+async function getByAsso(req)
+{
+    var associationResponse = associationService.getSingle(req);
+    if (associationResponse.hasOwnProperty('err')) { return associationResponse}
+
+    var response = await repository.getByAsso(req);
+    return response
 }
 
 
@@ -99,4 +112,4 @@ async function deleteSingle(req)
 
 
 
-module.exports = {getAll, getSingle, addSingle, deleteSingle, updateSingle};
+module.exports = {getAll, getSingle, getByAsso,addSingle, deleteSingle, updateSingle};

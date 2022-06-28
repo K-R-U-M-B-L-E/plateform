@@ -31,6 +31,7 @@ app.delete('/associations/:id', (req, res) => { Associationcontroller.deleteSing
 
 app.get('/projects', (req, res) => { Projectcontroller.getAll(req, res) })
 app.get('/projects/:id', (req, res) => { Projectcontroller.getSingle(req, res) })
+app.get('/projects/association/:id', (req,res) => { Projectcontroller.getByAsso(req,res) })
 app.post('/projects', (req, res) => { Projectcontroller.addSingle(req,res) })
 app.patch('/projects/:id', (req, res) => { Projectcontroller.updateSingle(req,res)} )
 app.delete('/projects/:id', (req, res) => { Projectcontroller.deleteSingle(req,res)})

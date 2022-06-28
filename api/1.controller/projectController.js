@@ -28,6 +28,17 @@ async function getSingle(req, res)
 }
 
 
+//GET PROJECTS BY ASSOCIATION
+//Check : - if an error occured => return 500
+
+async function getByAsso(req, res) 
+{
+    var response = await service.getByAsso(req);
+    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    else res.status(200).json(response);
+}
+
+
 
 //ADD AN PROJECT
 //Check : - if an error occured => return 500
@@ -40,6 +51,7 @@ async function addSingle(req, res)
     else if (response.hasOwnProperty('exception')) { res.status(500).json(response)}
     else res.status(200).json(response);
 }
+
 
 
 
@@ -73,4 +85,4 @@ async function deleteSingle(req, res)
     else res.status(200).json(response);
 }
 
-module.exports = { getAll, getSingle, addSingle, deleteSingle, updateSingle };
+module.exports = { getAll, getSingle, getByAsso, addSingle, deleteSingle, updateSingle };

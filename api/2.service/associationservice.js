@@ -37,14 +37,22 @@ async function addSingle(req)
     //var isJsonValid = isJsonValid(req.body)
     //if (!isJsonValid) { return { err : "JSON : Bad Syntax"}}
 
-    var mandatoryFields = isThereMandatoryFields(req.body)
-    if (!mandatoryFields) { return { exception : "Mandatory field is missing"}}
+    var [mandatoryFields, absentField] = isThereMandatoryFields(req.body)
+    if (!mandatoryFields) { return { exception : `Mandatory field ${absentField} is missing`}}
 
-    var fieldsLegitimate = isAssociationField(req.body)
-    if (!fieldsLegitimate) { return { exception : "Wrong field name" }}
+    var [fieldsLegitimate, incorrectField] = isAssociationField(req.body)
+    if (!fieldsLegitimate) { return { exception : `Wrong field name ${incorrectField}` }}
         
-    var response = await repository.addSingle(req) 
-    return response
+    try {
+        var response = await repository.addSingle(req) 
+        return response
+    }
+    catch(err) {
+
+        console.err(err)
+        return err;
+    }
+    
 }
 
 
@@ -64,12 +72,20 @@ async function updateSingle(req)
     //var jsonValid = isJsonValid(JSON.stringify(req.body))
     //if (!jsonValid) { return { err : "JSON : Bad Syntax"}}
 
-    var fieldsLegitimate = isAssociationField(req.body)
-    if (!fieldsLegitimate) { return { exception : "Wrong field name" }}
+    var [fieldsLegitimate, incorrectField] = isAssociationField(req.body)
+    if (!fieldsLegitimate) { return { exception : `Wrong field name ${incorrectField}` }}
     
-    var response = await repository.updateSingle(req)
-    if (response.response.modifiedCount === 0 ) { return { status : "Nothing to update"}}
-    return response
+    try {
+        var response = await repository.updateSingle(req)
+        if (response.response.modifiedCount === 0 ) { return { status : "Nothing to update"}}
+        return response
+    }
+    catch(err)
+    {
+        console.err(err);
+        return err;
+    }
+    
 }
 
 
@@ -83,7 +99,7 @@ async function deleteSingle(req)
     if (!ObjectId.isValid(req.params.id)) { return ({ err: "ObjectId invalid"}) }
 
     var response = await repository.deleteSingle(req);
-    if (response.response.deletedCount === 0 /*|| acknowledged === false*/ ) {return ({ err : "Not found"})}
+    if (response.response.deletedCount === 0) {return ({ err : "Not found"})}
     return response
 }
 

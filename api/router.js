@@ -18,3 +18,7 @@ app.get('/associations/:id', (req, res) => { Associationcontroller.getSingle(req
 app.post("/associations", (req, res) => { Associationcontroller.addSingle(req,res) })
 app.patch("/associations/:id", (req, res) => { Associationcontroller.updateSingle(req,res)} )
 app.delete("/associations/:id", (req, res) => { Associationcontroller.deleteSingle(req,res)})
+
+app.all('*', function(req, res) {
+    res.status(400).json({err : "Bad Request"});
+})

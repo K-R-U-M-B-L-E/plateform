@@ -7,9 +7,9 @@ function isAssociationField(association) {
   for (i in association) 
   {
     if (!associationFields.includes(i))
-      return false;
+      return [false, i];
   }
-  return true;
+  return [true, ""];
 }
 
 //CHECK IF MADATORY FIELDS ARE PRESENT
@@ -17,11 +17,12 @@ function isThereMandatoryFields(req)
 {
   for (i in mandatoryFields)
   {
-    if (req[mandatoryFields[i]] === null || req[mandatoryFields[i]] === undefined 
-      || req[mandatoryFields[i]] === void 0)
-      return false;
+    var field = req[mandatoryFields[i]]
+    if (field === null || field === undefined || field === void 0)
+      return [false, mandatoryFields[i]];
   }
-  return true;
+  return [true, ""];
 }
+
 
 module.exports = {isAssociationField, isThereMandatoryFields}

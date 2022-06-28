@@ -40,7 +40,6 @@ async function getSingle(req)
 {
     return new Promise(function(resolve, reject) {
     const id = req.params.id;
-
     associations.find({ _id: ObjectId(`${id}`) }).toArray((err, items) => {
         if (err) {
           console.error(err)

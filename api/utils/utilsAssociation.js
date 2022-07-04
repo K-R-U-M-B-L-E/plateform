@@ -25,4 +25,11 @@ function isThereMandatoryFields(req)
 }
 
 
-module.exports = {isAssociationField, isThereMandatoryFields}
+//CHECK IF TWO ASSOCIATION ARE THE SAME
+function compareAssociations(associationA, associationB)
+{
+    return associationA["name"] === associationB["name"] && associationA["university"] === associationB["university"]
+}
+
+
+module.exports = {isAssociationField, isThereMandatoryFields, compareAssociations}

@@ -78,6 +78,21 @@ async function getSingle(req)
     })
 }
 
+//GET AN ASSOCIATION DOCUMENT BY NAME
+async function getByName(req)
+{
+    return new Promise(function(resolve, reject) {
+    const name = req.params.name;
+    associations.find({ name: `${name}` }).toArray((err, items) => {
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+        }
+        resolve({  association : items[0] })
+      })
+    })
+}
+
 //ADD AN ASSOCIATION DOCUMENT
 async function addSingle(req)
 {
@@ -128,4 +143,4 @@ async function deleteSingle(req)
   })
 }
 
-module.exports = {getAll, getVisible, getInvisible, getSingle, addSingle, deleteSingle, updateSingle};
+module.exports = {getAll, getVisible, getInvisible, getSingle, getByName, addSingle, deleteSingle, updateSingle};

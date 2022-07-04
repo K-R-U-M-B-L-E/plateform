@@ -1,5 +1,5 @@
 const repository = require("../3.repository/associationRepository");
-const { isAssociationField, isThereMandatoryFields } = require("../utils/utilsAssociation");
+const { isAssociationField, isThereMandatoryFields, isAlreadyExisting, compareAssociations } = require("../utils/utilsAssociation");
 const { isJsonValid, isJsonEmpty } = require("../utils/utils");
 const { json } = require("express");
 var ObjectId = require('mongodb').ObjectId; 
@@ -42,6 +42,31 @@ async function getSingle(req)
 }
 
 
+//GET A SINGLE ASSOCIATION BY NAME
+//Check: - if id is valid => return err
+//       - if body is empty => return not found
+async function getByName(req)
+{
+    var response = await repository.getByName(req);
+    if (response.association === undefined || response === null) { return { err: "Not found"}}
+    else return response
+}
+
+//CHECK IF AN ASSO SI NOT ALREADY EXISTING BEFORE ADD IT TO THE DB
+async function alreadyExisting(body) {
+
+    const req = {
+        params : {
+            name: body.name
+        }
+    }
+    var isExisting = await repository.getByName(req)
+    if (!(isExisting.association === undefined) && compareAssociations(isExisting.association, body))
+        return true
+        
+    else return false 
+}
+
 
 //ADD A SINGLE ASSOCIATION
 //Check : - if mandatory fields are presents => return exception
@@ -53,7 +78,10 @@ async function addSingle(req)
 
     var [fieldsLegitimate, incorrectField] = isAssociationField(req.body)
     if (!fieldsLegitimate) { return { exception : `Wrong field name ${incorrectField}` }}
-        
+
+    var isAlreadyExisting = await alreadyExisting(req.body)
+    if (isAlreadyExisting) { return { exception: `This association already exists`}}
+    
     try {
         var response = await repository.addSingle(req) 
         return response
@@ -113,4 +141,4 @@ async function deleteSingle(req)
 
 
 
-module.exports = {getAll, getVisible, getInvisible, getSingle, addSingle, deleteSingle, updateSingle};
+module.exports = {getAll, getVisible, getInvisible, getSingle, getByName, addSingle, deleteSingle, updateSingle};

@@ -26,6 +26,7 @@ app.use((error, request, response, next) => {
 app.get('/associations', (req, res) => { Associationcontroller.getAll(req, res) })
 app.get('/associations/visible', (req, res) => { Associationcontroller.getVisible(req, res) })
 app.get('/associations/invisible', (req, res) => { Associationcontroller.getInvisible(req, res) })
+app.get('/associations/name/:name', (req, res) => { Associationcontroller.getByName(req, res) })
 app.get('/associations/:id', (req, res) => { Associationcontroller.getSingle(req, res) })
 app.post('/associations', (req, res) => { Associationcontroller.addSingle(req,res) })
 app.patch('/associations/:id', (req, res) => { Associationcontroller.updateSingle(req,res)} )

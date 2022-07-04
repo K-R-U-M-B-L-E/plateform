@@ -48,6 +48,19 @@ async function getSingle(req, res)
 }
 
 
+//GET AN ASSOCIATION BY NAME
+//Check : - - if the id does not exist => return 404
+//          - if an error occured => return 500
+
+async function getByName(req, res) 
+{
+    var response = await service.getByName(req);
+    if (response.hasOwnProperty('err') && response['err'] === "Not found" ) {res.status(404).json(response) }
+    else if (response.hasOwnProperty('err')) { res.status(500).json(response) }
+    else res.status(200).json(response);
+}
+
+
 
 //ADD AN ASSOCIATION
 //Check : - if an error occured => return 500
@@ -93,4 +106,4 @@ async function deleteSingle(req, res)
     else res.status(200).json(response);
 }
 
-module.exports = { getAll, getVisible, getInvisible, getSingle, addSingle, deleteSingle, updateSingle };
+module.exports = { getAll, getVisible, getInvisible, getSingle, getByName, addSingle, deleteSingle, updateSingle };

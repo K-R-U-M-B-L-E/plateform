@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
+import { useParams } from "react-router-dom";
 
-function AssociationPage(props) {
+function AssociationPage() {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -10,12 +11,14 @@ function AssociationPage(props) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       };
+    
+    const params = useParams();
 
     useEffect(() => {
         const getData = async () => {
             try {
                 const response = await fetch(
-                `/associations/${props.id}`, requestOptions
+                `/associations/${params.id}`, requestOptions
                 );
                 if (!response.ok) {
                     throw new Error(
@@ -35,7 +38,7 @@ function AssociationPage(props) {
             }  
         }
         getData()
-    }, [loading])
+    }, [loading, params.id])
 
 
     return (

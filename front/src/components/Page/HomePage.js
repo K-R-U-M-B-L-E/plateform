@@ -6,7 +6,7 @@ import AssociationPage from "../Page/AssociationPage";
 function HomePage()
 {
     return (
-        <AssociationList query="/associations"/>
+        <AssociationList/>
     )
 }
 

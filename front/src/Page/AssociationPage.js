@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
 import { useParams } from "react-router-dom";
+import ProjectList from "../components/ProjectList";
 
 function AssociationPage() {
 
@@ -50,6 +51,8 @@ function AssociationPage() {
             (<div>
                 <h1>{data.association.name}</h1>
                 <h2>{data.association.university}</h2>
+
+                <ProjectList query="/projects/association/" id={data.association._id} />
             </div>)
             }
         </div>

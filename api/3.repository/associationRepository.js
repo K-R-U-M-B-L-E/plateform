@@ -35,6 +35,34 @@ async function getAll()
     })
 }
 
+//GET ALL VISIBLE ASSOCIATIONS DOCUMENT
+async function getVisible()
+{
+    return new Promise(function(resolve, reject) {
+      associations.find( {visible: true }).toArray((err, items) => {
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+        }
+      resolve({associations : items});
+      })
+    })
+}
+
+//GET ALL INVISIBLE ASSOCIATIONS DOCUMENT
+async function getInvisible()
+{
+    return new Promise(function(resolve, reject) {
+      associations.find( {visible: false }).toArray((err, items) => {
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+        }
+      resolve({associations : items});
+      })
+    })
+}
+
 //GET AN ASSOCIATION DOCUMENT BY ID
 async function getSingle(req)
 {
@@ -100,4 +128,4 @@ async function deleteSingle(req)
   })
 }
 
-module.exports = {getAll, getSingle, addSingle, deleteSingle, updateSingle};
+module.exports = {getAll, getVisible, getInvisible, getSingle, addSingle, deleteSingle, updateSingle};

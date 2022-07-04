@@ -14,6 +14,26 @@ async function getAll(req, res)
     else res.status(200).json(response);
 }
 
+//GET ALL VISIBLE ASSOCIATIONS
+//Check : - if an error occured => return 500
+
+async function getVisible(req, res) 
+{
+    var response = await service.getVisible();
+    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    else res.status(200).json(response);
+}
+
+//GET ALL INVISIBLE ASSOCIATIONS
+//Check : - if an error occured => return 500
+
+async function getInvisible(req, res) 
+{
+    var response = await service.getInvisible();
+    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    else res.status(200).json(response);
+}
+
 
 //GET AN ASSOCIATION BY ID
 //Check : - - if the id does not exist => return 404
@@ -73,4 +93,4 @@ async function deleteSingle(req, res)
     else res.status(200).json(response);
 }
 
-module.exports = { getAll, getSingle, addSingle, deleteSingle, updateSingle };
+module.exports = { getAll, getVisible, getInvisible, getSingle, addSingle, deleteSingle, updateSingle };

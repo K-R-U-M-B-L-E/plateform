@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 const defaultValues = {
     name: "",
     university: "",
+    visible: false
   };
 
   

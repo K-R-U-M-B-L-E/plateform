@@ -4,6 +4,8 @@ app.use(express.json())
 
 const Associationcontroller = require('./1.controller/associationController');
 const Projectcontroller = require('./1.controller/projectController');
+const Universitycontroller = require('./1.controller/universityController');
+const Usercontroller = require('./1.controller/userController');
 
 const PORT = 3001;
 app.listen(
@@ -31,10 +33,28 @@ app.delete('/associations/:id', (req, res) => { Associationcontroller.deleteSing
 
 app.get('/projects', (req, res) => { Projectcontroller.getAll(req, res) })
 app.get('/projects/:id', (req, res) => { Projectcontroller.getSingle(req, res) })
+app.get('/projects/association/:id', (req,res) => { Projectcontroller.getByAsso(req,res) })
 app.post('/projects', (req, res) => { Projectcontroller.addSingle(req,res) })
+app.patch('/projects/', (req, res) => { Projectcontroller.updateMultiple(req,res)} )
 app.patch('/projects/:id', (req, res) => { Projectcontroller.updateSingle(req,res)} )
+app.delete('/projects/', (req, res) => { Projectcontroller.deleteMultiple(req,res)})
 app.delete('/projects/:id', (req, res) => { Projectcontroller.deleteSingle(req,res)})
 
+/////////////////////////////////////////////// UNIVERSITIES //////////////////////////////////////////////////////
+
+app.get('/universities', (req, res) => { Universitycontroller.getAll(req, res) })
+app.get('/universities/:id', (req, res) => { Universitycontroller.getSingle(req, res) })
+app.post('/universities', (req, res) => { Universitycontroller.addSingle(req,res) })
+app.patch('/universities/:id', (req, res) => { Universitycontroller.updateSingle(req,res)} )
+app.delete('/universities/:id', (req, res) => { Universitycontroller.deleteSingle(req,res)})
+
+/////////////////////////////////////////////// USERS //////////////////////////////////////////////////////
+
+app.get('/users', (req, res) => { Usercontroller.getAll(req, res) })
+app.get('/users/:id', (req, res) => { Usercontroller.getSingle(req, res) })
+app.post('/users', (req, res) => { Usercontroller.addSingle(req,res) })
+app.patch('/users/:id', (req, res) => { Usercontroller.updateSingle(req,res)} )
+app.delete('/users/:id', (req, res) => { Usercontroller.deleteSingle(req,res)})
 
 
 app.all('*', function(req, res) {

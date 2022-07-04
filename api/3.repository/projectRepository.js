@@ -50,6 +50,21 @@ async function getSingle(req)
     })
 }
 
+//GET AN PROJECT DOCUMENT BY ASSO ID
+async function getByAsso(req)
+{
+    return new Promise(function(resolve, reject) {
+    const id = req.params.id;
+    projects.find({ association: `${id}`}).toArray((err, items) => {
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+        }
+        resolve({ projects : items })
+      })
+    })
+}
+
 //ADD AN PROJECT DOCUMENT
 async function addSingle(req)
 {
@@ -66,7 +81,6 @@ async function addSingle(req)
     })
 }
 
-
 //UPDATE AN PROJECT DOCUMENT
 async function updateSingle(req)
 {
@@ -75,6 +89,24 @@ async function updateSingle(req)
     var newvalues = { $set: req.body };
     
     projects.updateOne({ _id: ObjectId(`${id}`)}, newvalues , (err, result) => { 
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+          }
+        resolve({ response : result})
+      })
+    })
+}
+
+//UPDATE SEVERAL PROJECT DOCUMENTS
+async function updateMultiple(req)
+{
+  return new Promise(function(resolve, reject) {
+    const id = req.params.id
+    var newvalues = { $set: req.body.updates };
+    var filter = req.body.filter;
+    
+    projects.updateOne(filter, newvalues , (err, result) => { 
         if (err) {
           console.error(err)
           reject({ err : err })
@@ -100,4 +132,20 @@ async function deleteSingle(req)
   })
 }
 
-module.exports = {getAll, getSingle, addSingle, deleteSingle, updateSingle};
+//DELETE SEVERAL PROJECT DOCUMENTS
+async function deleteMultiple(req)
+{
+  var filter = req.body.filter;
+  return new Promise(function(resolve, reject) {
+
+    projects.deleteMany(filter, (err, result) => { 
+      if (err) {
+        console.error(err)
+        reject({ err: err })
+      }
+      resolve({ response : result})
+    })
+  })
+}
+
+module.exports = {getAll, getSingle, getByAsso, addSingle, updateSingle, updateMultiple, deleteSingle, deleteMultiple };

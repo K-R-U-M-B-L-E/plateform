@@ -4,7 +4,7 @@ import AssociationList from "../components/AssociationList";
 function HomePage()
 {
     return (
-        <AssociationList query="associations/visible"/>
+        <AssociationList query="/associations/visible"/>
     )
 }
 

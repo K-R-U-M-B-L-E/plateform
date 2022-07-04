@@ -1,5 +1,5 @@
-const associationFields = ["name", "university", "tag"]
-const mandatoryFields = ["name", "university"]
+const associationFields = ["name", "university", "visible","tag"]
+const mandatoryFields = ["name", "university", "visible"]
 
 //CHECK IF EVERY FIELDS NAME ARE VALID ONE
 function isAssociationField(association) {

@@ -13,6 +13,20 @@ async function getAll()
     return response
 }
 
+//GET ALL THE VISIBLE ASSOCIATIONS
+async function getVisible()
+{
+    var response = await repository.getVisible();
+    return response
+}
+
+//GET ALL THE INVISIBLE ASSOCIATIONS
+async function getInvisible()
+{
+    var response = await repository.getInvisible();
+    return response
+}
+
 
 
 //GET A SINGLE ASSOCIATION BY ID
@@ -99,4 +113,4 @@ async function deleteSingle(req)
 
 
 
-module.exports = {getAll, getSingle, addSingle, deleteSingle, updateSingle};
+module.exports = {getAll, getVisible, getInvisible, getSingle, addSingle, deleteSingle, updateSingle};

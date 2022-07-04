@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import MediaCard from './Card/MediaCard.js';
 
-function AssociationList() {
+function AssociationList(props) {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ function AssociationList() {
         const getData = async () => {
           try {
             const response = await fetch(
-              '/associations'
+              `${props.query}`
             );
             if (!response.ok) {
               throw new Error(
@@ -21,7 +21,6 @@ function AssociationList() {
 
             let actualData = await response.json();
                 setData(actualData);
-                console.log(data);
                 setError(null);
 
           } catch(err) {

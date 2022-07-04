@@ -6,6 +6,7 @@ import AssociationPage from "./Page/AssociationPage";
 import UniversityPage from "./Page/UniversityPage";
 import ProjectPage from "./Page/ProjectPage";
 import UserPage from "./Page/UserPage";
+import AdminPage from "./Page/AdminPage";
 
 export default function App() {
 
@@ -31,6 +32,7 @@ export default function App() {
               <Route path="/project/:id" element={ <ProjectPage/>} />
               <Route path="/university/:id" element={ <UniversityPage/>} />
               <Route path="/userprofil" element={ <UserPage/>} />
+              <Route path="/admin/dashboard" element={ <AdminPage/>} />
 
             </Routes>
           </div>

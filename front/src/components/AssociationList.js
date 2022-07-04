@@ -35,10 +35,11 @@ function AssociationList(props) {
                 setData(null);
           } finally {
                 setLoading(false);
+                return;
           }  
         }
         getData()
-      }, [data,loading])
+      }, [loading])
 
     return (
     <div className="App">

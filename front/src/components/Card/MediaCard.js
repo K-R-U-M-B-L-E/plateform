@@ -7,7 +7,7 @@ import { CardActionArea } from '@mui/material';
 
 function MediaCard(props) {
 
-  const url=("http://localhost:3000/association/" + props.id);
+  const url=("/association/" + props.id);
 
   return (
     <Card sx={{ maxWidth: 345 }}>

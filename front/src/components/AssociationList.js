@@ -1,23 +1,17 @@
-import { chainPropTypes } from "@mui/utils";
-import React, {useState, useEffect, Component} from "react"
+import React, {useState, useEffect} from "react"
 import MediaCard from './Card/MediaCard.js';
 
-function AssociationList(props) {
+function AssociationList() {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    if (props == null)
-    {
-      throw new Error('No URL given to fetch function')
-    }
-
     useEffect(() => {
         const getData = async () => {
           try {
             const response = await fetch(
-              `${props.query}`
+              '/associations'
             );
             if (!response.ok) {
               throw new Error(
@@ -35,10 +29,11 @@ function AssociationList(props) {
                 setData(null);
           } finally {
                 setLoading(false);
+                return;
           }  
         }
         getData()
-      }, [data,loading])
+      }, [loading])
 
     return (
     <div className="App">
@@ -49,7 +44,7 @@ function AssociationList(props) {
         <ul>
         {data && data.associations.map(({ _id, name }) => (
             <li>
-                <MediaCard title={name} description="lorem ipsum" image="https://tse1.mm.bing.net/th?id=OIP.YuzpYI2Ya5mbjWLN_yj60QHaEf&pid=Api" />
+                <MediaCard id={_id} title={name} description="lorem ipsum" image="https://tse1.mm.bing.net/th?id=OIP.YuzpYI2Ya5mbjWLN_yj60QHaEf&pid=Api" />
             </li>
             ))}
         </ul>

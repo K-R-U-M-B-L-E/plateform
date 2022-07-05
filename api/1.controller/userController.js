@@ -86,4 +86,12 @@ async function deleteSingle(req, res)
     else res.status(200).json(response);
 }
 
-module.exports = { getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle };
+async function login(req, res)
+{
+    var response = await service.login(req);
+    if (response.hasOwnProperty('err') && response['err'] === "Not found" ) {res.status(404).json(response) }
+    else if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    else res.status(200).json(response);
+}
+
+module.exports = { getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle, login };

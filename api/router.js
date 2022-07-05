@@ -7,6 +7,8 @@ const Projectcontroller = require('./1.controller/projectController');
 const Universitycontroller = require('./1.controller/universityController');
 const Usercontroller = require('./1.controller/userController');
 
+const auth=require("./middleware/auth");
+
 const PORT = 3001;
 app.listen(
     PORT, 
@@ -25,7 +27,7 @@ app.use((error, request, response, next) => {
 
 app.get('/associations', (req, res) => { Associationcontroller.getAll(req, res) })
 app.get('/associations/visible', (req, res) => { Associationcontroller.getVisible(req, res) })
-app.get('/associations/invisible', (req, res) => { Associationcontroller.getInvisible(req, res) })
+app.get('/associations/invisible', auth, (req, res) => { Associationcontroller.getInvisible(req, res) })
 app.get('/associations/name/:name', (req, res) => { Associationcontroller.getByName(req, res) })
 app.get('/associations/:id', (req, res) => { Associationcontroller.getSingle(req, res) })
 app.post('/associations', (req, res) => { Associationcontroller.addSingle(req,res) })
@@ -55,6 +57,8 @@ app.delete('/universities/:id', (req, res) => { Universitycontroller.deleteSingl
 
 app.get('/users', (req, res) => { Usercontroller.getAll(req, res) })
 app.get('/users/:id', (req, res) => { Usercontroller.getSingle(req, res) })
+app.get('/users/email/:email', (req, res) => { Usercontroller.getByEmail(req, res) })
+app.post('/users/login', (req, res) => { Usercontroller.login(req,res) })
 app.post('/users', (req, res) => { Usercontroller.addSingle(req,res) })
 app.patch('/users/:id', (req, res) => { Usercontroller.updateSingle(req,res)} )
 app.delete('/users/:id', (req, res) => { Usercontroller.deleteSingle(req,res)})

@@ -5,6 +5,7 @@ const { json } = require("express");
 var ObjectId = require('mongodb').ObjectId; 
 
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require("../4.model/user");
 
 
@@ -58,7 +59,7 @@ async function addSingle(req)
     var isAlreadyExisting = await getByEmail({ params : { email: req.body.email } })
     if (isAlreadyExisting.hasOwnProperty('user')) { return { err : `User with this email already exists` }}
 
-    var hash = await bcrypt.hash(req.body.password, 10)
+    var hash = await bcrypt.hash(req.body.password, 5)
     const user = new User({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
@@ -123,5 +124,23 @@ async function deleteSingle(req)
 }
 
 
+async function login(req)
+{
+    var response = await repository.getByEmail({ params : { email: req.body.email } })
+    if (response.hasOwnProperty('err')) { return { err : `Not found` }}
 
-module.exports = {getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle};
+    var similarPassword = bcrypt.compare(req.body.password, response.user.password )
+    if (!similarPassword) { return { exception : `Incorrect Password` }}
+    else { return {
+        userId: response.user._id,
+        token: jwt.sign(
+            { userId: response.user._id },
+            'RANDOM_TOKEN_SECRET', //FIX ME : RANDOMIZE KEY STRING
+            { expiresIn: '24h' }
+        )
+    }}
+}
+
+
+
+module.exports = {getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle, login};

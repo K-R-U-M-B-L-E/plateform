@@ -18,4 +18,11 @@ function isJsonEmpty(str) {
     return i===0
 }
 
-module.exports = { isJsonValid, isJsonEmpty}
+function sleep(seconds)
+{
+    var waitTill = new Date(new Date().getTime() + seconds * 1000);
+    while(waitTill > new Date()){}
+    return;
+}
+
+module.exports = { isJsonValid, isJsonEmpty, sleep}

@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react"
 import MediaCard from './Card/MediaCard.js';
+import associationController from "../infrastructure/controller.js/AssociationController.js";
 
-function AssociationList(props) {
+function AssociationList() {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -10,18 +11,11 @@ function AssociationList(props) {
     useEffect(() => {
         const getData = async () => {
           try {
-            const response = await fetch(
-              `${props.query}`
-            );
-            if (!response.ok) {
-              throw new Error(
-                `This is an HTTP error: The status is ${response.status}`
-              );
-            }
+            const response = await associationController.getAll();
+            console.log(response)
 
-            let actualData = await response.json();
-                setData(actualData);
-                setError(null);
+            setData(response);
+            setError(null);
 
           } catch(err) {
                 setError(err.message);

@@ -7,12 +7,11 @@ import UniversityPage from "./Page/UniversityPage";
 import ProjectPage from "./Page/ProjectPage";
 import UserPage from "./Page/UserPage";
 import AdminPage from "./Page/AdminPage";
+import associationController from "./infrastructure/controller.js/AssociationController";
+import { Button } from "@mui/material";
+import AssociationList from "./components/AssociationList";
 
-export default function App() {
-
-    return (
-      <div>
-        <BrowserRouter>
+/*<BrowserRouter>
           <div className="App">
             <ul>
               <li>
@@ -36,7 +35,13 @@ export default function App() {
 
             </Routes>
           </div>
-      </BrowserRouter>
-    </div>)
+      </BrowserRouter>*/
+
+export default function App() {
+
+    return (
+      <div>
+        <AssociationList />
+      </div>)
 
 }

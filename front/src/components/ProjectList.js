@@ -7,7 +7,6 @@ function ProjectList(props) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const query = props.query + props.id;
-    console.log(query)
 
     useEffect(() => {
         const getData = async () => {

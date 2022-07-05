@@ -1,5 +1,5 @@
-const userFields = ["firstname", "lastname"]
-const mandatoryFields = ["firstname", "lastname"]
+const userFields = ["firstname", "lastname", "email", "password"]
+const mandatoryFields = ["firstname", "lastname", "email", "password"]
 
 //CHECK IF EVERY FIELDS NAME ARE VALID ONE
 function isUserFields(user) {

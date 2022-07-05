@@ -81,9 +81,9 @@ async function addSingle(req)
 
     var isAlreadyExisting = await alreadyExisting(req.body)
     if (isAlreadyExisting) { return { exception: `This association already exists`}}
-    
+
     try {
-        var response = await repository.addSingle(req) 
+        var response = await repository.addSingle(newAssociation) 
         return response
     }
     catch(err) {

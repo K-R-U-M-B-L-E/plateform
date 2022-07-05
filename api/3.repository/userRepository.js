@@ -50,13 +50,28 @@ async function getSingle(req)
     })
 }
 
+
+//GET AN USER DOCUMENT BY EMAIL
+async function getByEmail(req)
+{
+    return new Promise(function(resolve, reject) {
+    const email = req.params.email;
+    users.find({ email: email }).toArray((err, items) => {
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+        }
+        resolve({  user : items[0] })
+      })
+    })
+}
+
 //ADD AN USER DOCUMENT
-async function addSingle(req)
+async function addSingle(user)
 {
   return new Promise(function(resolve, reject) {
-    const newAssociation = req.body
     
-    users.insertOne(newAssociation, (err, result) => { 
+    users.insertOne(user, (err, result) => { 
         if (err) {
           console.error(err)
           reject({ err : err })
@@ -100,4 +115,4 @@ async function deleteSingle(req)
   })
 }
 
-module.exports = {getAll, getSingle, addSingle, deleteSingle, updateSingle};
+module.exports = {getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle};

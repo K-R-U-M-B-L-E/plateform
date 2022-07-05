@@ -28,6 +28,19 @@ async function getSingle(req, res)
 }
 
 
+//GET AN USER BY EMAIL
+//Check :   - if the email does not exist => return 404
+//          - if an error occured => return 500
+
+async function getByEmail(req, res) 
+{
+    var response = await service.getByEmail(req);
+    if (response.hasOwnProperty('err') && response['err'] === "Not found" ) {res.status(404).json(response) }
+    else if (response.hasOwnProperty('err')) { res.status(500).json(response) }
+    else res.status(200).json(response);
+}
+
+
 
 //ADD AN USER
 //Check : - if an error occured => return 500
@@ -73,4 +86,4 @@ async function deleteSingle(req, res)
     else res.status(200).json(response);
 }
 
-module.exports = { getAll, getSingle, addSingle, deleteSingle, updateSingle };
+module.exports = { getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle };

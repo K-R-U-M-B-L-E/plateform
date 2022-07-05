@@ -18,6 +18,21 @@ class ProjectController {
         return response;
     }
 
+    async add(props) {
+        var response = await apiHandler.post({query:'/projects', body: props })
+        return response;
+    }
+
+    async update(props) {
+        var response = await apiHandler.patch({query:'/projects/' + props.id, body: props.body })
+        return response;
+    }
+
+    async delete(props) {
+        var response = await apiHandler.patch({query:'/projects/' + props.id })
+        return response;
+    }
+
 }
 
 const projectController = new ProjectController();

@@ -34,11 +34,15 @@ class APIHandler {
     }
 
     async patch(props) {
-        return Request.request(props);
+        var request = requestBuilder.buildPatchRequest(props);
+        var response = await requestObject.sendRequest(request);
+        return response;  
     }
 
     async delete(props) {
-        return Request.request(props);
+        var request = requestBuilder.buildDeleteRequest(props);
+        var response = await requestObject.sendRequest(request);
+        return response;  
     }
     
 }

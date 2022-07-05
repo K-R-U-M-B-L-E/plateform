@@ -27,6 +27,31 @@ class RequestBuilder {
         return request;
     }
 
+    buildPatchRequest(props)
+    {
+        var request = {
+            query: props.query,
+            options: {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: props.body
+            }
+        }
+        return request;
+    }
+
+    buildDeleteRequest(props)
+    {
+        var request = {
+            query: props.query,
+            options: {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+            }
+        }
+        return request;
+    }
+
 }
 
 const requestBuilder = new RequestBuilder();

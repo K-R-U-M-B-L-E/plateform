@@ -8,7 +8,7 @@ const { sleep } = require("../utils/utils");
 
 async function getAll(req, res) 
 {
-    sleep(3);
+    //sleep(3);
     var response = await service.getAll();
     if (response.hasOwnProperty('err')) { res.status(500).json(response)}
     else res.status(200).json(response);

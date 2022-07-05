@@ -33,6 +33,16 @@ class AssociationController {
         return response;
     }
 
+    async update(props) {
+        var response = await apiHandler.patch({query:'/associations/' + props.id, body: props.body })
+        return response;
+    }
+
+    async delete(props) {
+        var response = await apiHandler.patch({query:'/associations/' + props.id })
+        return response;
+    }
+
 }
 
 const associationController = new AssociationController();

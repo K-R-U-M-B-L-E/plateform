@@ -1,12 +1,14 @@
 const { response } = require("express");
 const utils = require("../utils/utilsAssociation");
 const service = require("../2.service/associationService");
+const { sleep } = require("../utils/utils");
 
 //GET ALL ASSOCIATIONS
 //Check : - if an error occured => return 500
 
 async function getAll(req, res) 
 {
+    sleep(3);
     var response = await service.getAll();
     if (response.hasOwnProperty('err')) { res.status(500).json(response)}
     else res.status(200).json(response);

@@ -1,17 +1,19 @@
 import React from"react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import HomePage from "./Page/HomePage";
+import HomePage from "./routes/HomePage";
 import AssociationForm from "./components/Forms/AssociationForm";
-import AssociationPage from "./Page/AssociationPage";
-import UniversityPage from "./Page/UniversityPage";
-import ProjectPage from "./Page/ProjectPage";
-import UserPage from "./Page/UserPage";
-import AdminPage from "./Page/AdminPage";
-import associationController from "./infrastructure/controller.js/AssociationController";
-import { Button } from "@mui/material";
-import AssociationList from "./components/AssociationList";
+import AssociationPage from "./routes/AssociationPage";
+import UniversityPage from "./routes/UniversityPage";
+import ProjectPage from "./routes/ProjectPage";
+import UserPage from "./routes/UserPage";
+import AdminPage from "./routes/AdminPage";
 
-/*<BrowserRouter>
+
+export default function App() {
+
+    return (
+      <div>
+        <BrowserRouter>
           <div className="App">
             <ul>
               <li>
@@ -35,13 +37,7 @@ import AssociationList from "./components/AssociationList";
 
             </Routes>
           </div>
-      </BrowserRouter>*/
-
-export default function App() {
-
-    return (
-      <div>
-        <AssociationList />
+      </BrowserRouter>
       </div>)
 
 }

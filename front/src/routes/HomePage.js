@@ -1,11 +1,11 @@
 import React from 'react';
 import AssociationList from "../components/AssociationList";
 
-function AdminPage()
+function HomePage()
 {
     return (
-        <AssociationList query="/associations/invisible"/>
+        <AssociationList context="visible"/>
     )
 }
 
-export default AdminPage;
+export default HomePage;

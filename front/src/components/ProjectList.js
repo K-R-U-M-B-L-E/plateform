@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react"
+import projectController from "../infrastructure/controller.js/ProjectController.js";
 import ProjectCard from "./Card/ProjectCard.js";
 
 function ProjectList(props) {
@@ -6,22 +7,13 @@ function ProjectList(props) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const query = props.query + props.id;
 
     useEffect(() => {
         const getData = async () => {
           try {
-            const response = await fetch(
-              `${query}`
-            );
-            if (!response.ok) {
-              throw new Error(
-                `This is an HTTP error: The status is ${response.status}`
-              );
-            }
+                const response = await projectController.getByAsso({ association : props.id })
 
-            let actualData = await response.json();
-                setData(actualData);
+                setData(response);
                 setError(null);
 
           } catch(err) {

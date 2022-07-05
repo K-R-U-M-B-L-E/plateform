@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react"
+import { CircularProgress } from "@mui/material";
 import MediaCard from './Card/MediaCard.js';
 import associationController from "../infrastructure/controller.js/AssociationController.js";
 
-function AssociationList() {
+function AssociationList(props) {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -11,8 +12,13 @@ function AssociationList() {
     useEffect(() => {
         const getData = async () => {
           try {
-            const response = await associationController.getAll();
-            console.log(response)
+            var response;
+            if (props.context === "visible")
+              response = await associationController.getAllVisible();
+            else if (props.context === "invisible")
+              response = await associationController.getAllInvisible();
+            else  
+              response = await associationController.getAll();
 
             setData(response);
             setError(null);
@@ -26,12 +32,12 @@ function AssociationList() {
           }  
         }
         getData()
-      }, [loading])
+      }, [loading, props.context])
 
     return (
     <div className="App">
         <h1>Liste des Associations</h1>
-        {loading && <div>A moment please...</div>}
+        {loading && <div><CircularProgress /></div>}
         {error && (<div>{`There is a problem fetching the post data - ${error}`}</div>)}
 
         <ul>

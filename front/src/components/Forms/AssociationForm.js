@@ -1,24 +1,21 @@
-import React, {useState} from "react"
+import React, {useState} from "react";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+
+import associationController from "../../infrastructure/controller.js/AssociationController.js";
+import MyAlert from "../Alerte.js";
 
 const defaultValues = {
     name: "",
     university: "",
     visible: false
-  };
-
-  
+  };  
 
 function AssociationForm() {
 
     const [formValues, setFormValues] = useState(defaultValues);
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formValues)
-    };
+    const [answerStatus, setAnswerStatus] = useState("");
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
@@ -33,16 +30,11 @@ function AssociationForm() {
     const sendData = async () => {
 
       try {
-        const response = await fetch(`/associations`, requestOptions);
-        if (!response.ok) {
-          throw new Error(`This is an HTTP error: The status is ${response.status}`);
-        }
-        let serverAnswer = await response.json();
-        console.log(serverAnswer)
-
+        const response = await associationController.add(JSON.stringify(formValues))
+        setAnswerStatus(response)
       } 
       catch(err) {
-        console.error(err)
+        setAnswerStatus(err)
       }
     }
   

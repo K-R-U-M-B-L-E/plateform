@@ -1,12 +1,13 @@
 import React from"react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import HomePage from "./Page/HomePage";
+import HomePage from "./routes/HomePage";
 import AssociationForm from "./components/Forms/AssociationForm";
-import AssociationPage from "./Page/AssociationPage";
-import UniversityPage from "./Page/UniversityPage";
-import ProjectPage from "./Page/ProjectPage";
-import UserPage from "./Page/UserPage";
-import AdminPage from "./Page/AdminPage";
+import AssociationPage from "./routes/AssociationPage";
+import UniversityPage from "./routes/UniversityPage";
+import ProjectPage from "./routes/ProjectPage";
+import UserPage from "./routes/UserPage";
+import AdminPage from "./routes/AdminPage";
+
 
 export default function App() {
 
@@ -37,6 +38,6 @@ export default function App() {
             </Routes>
           </div>
       </BrowserRouter>
-    </div>)
+      </div>)
 
 }

@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react"
+import { CircularProgress } from "@mui/material";
 import MediaCard from './Card/MediaCard.js';
+import associationController from "../infrastructure/controller.js/AssociationController.js";
 
 function AssociationList(props) {
 
@@ -10,18 +12,16 @@ function AssociationList(props) {
     useEffect(() => {
         const getData = async () => {
           try {
-            const response = await fetch(
-              `${props.query}`
-            );
-            if (!response.ok) {
-              throw new Error(
-                `This is an HTTP error: The status is ${response.status}`
-              );
-            }
+            var response;
+            if (props.context === "visible")
+              response = await associationController.getAllVisible();
+            else if (props.context === "invisible")
+              response = await associationController.getAllInvisible();
+            else  
+              response = await associationController.getAll();
 
-            let actualData = await response.json();
-                setData(actualData);
-                setError(null);
+            setData(response);
+            setError(null);
 
           } catch(err) {
                 setError(err.message);
@@ -32,12 +32,12 @@ function AssociationList(props) {
           }  
         }
         getData()
-      }, [loading])
+      }, [loading, props.context])
 
     return (
     <div className="App">
         <h1>Liste des Associations</h1>
-        {loading && <div>A moment please...</div>}
+        {loading && <div><CircularProgress /></div>}
         {error && (<div>{`There is a problem fetching the post data - ${error}`}</div>)}
 
         <ul>

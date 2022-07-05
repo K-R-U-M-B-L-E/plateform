@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { useParams } from "react-router-dom";
 import ProjectList from "../components/ProjectList";
+import associationController from "../infrastructure/controller.js/AssociationController";
 
 function AssociationPage() {
 
@@ -8,27 +9,14 @@ function AssociationPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const requestOptions = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      };
-    
+  
     const params = useParams();
 
     useEffect(() => {
         const getData = async () => {
             try {
-                const response = await fetch(
-                `/associations/${params.id}`, requestOptions
-                );
-                if (!response.ok) {
-                    throw new Error(
-                        `This is an HTTP error: The status is ${response.status}`
-                    );
-                }
-
-                let actualData = await response.json();
-                setData(actualData);
+                const response = await associationController.getById( { id: params.id});
+                setData(response);
                 setError(null);
 
             } catch(err) {

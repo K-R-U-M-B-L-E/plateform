@@ -1,17 +1,11 @@
 const mongoose = require("mongoose");
 
-const associationSchema = new mongoose.Schema({
-    roll_no: { 
-        type: Number,
-        required: true
-    },
-    name: { 
-        type: String,
-        required: true
-    },
-    university: { 
-        type: String,
-        required: true
-    },
-    tags: [Number]
+const associationSchema = mongoose.Schema({
+    _id: {type: String, required: false},
+    name: { type: String, required: true },
+    university: { type: String, required: true },
+    visible: {type: String, required: true},
+    tags: { type: String, required: false }
 });
+
+module.exports = mongoose.model('Association', associationSchema);

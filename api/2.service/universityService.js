@@ -46,7 +46,7 @@ async function addSingle(req)
     }
     catch(err) {
 
-        console.err(err)
+        console.error(err)
         return err;
     }
     
@@ -76,7 +76,7 @@ async function updateSingle(req)
     }
     catch(err)
     {
-        console.err(err);
+        console.error(err);
         return err;
     }
     

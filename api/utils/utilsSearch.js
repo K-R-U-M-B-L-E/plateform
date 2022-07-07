@@ -1,4 +1,5 @@
 const { isJsonValid, isJsonEmpty } = require("./utils");
+const { isThisAssociationField } = require("./utilsAssociation")
 
 function pipelineBuilder(body) {
     
@@ -6,8 +7,11 @@ function pipelineBuilder(body) {
     for (operator in body) {
         
         var value = body[operator]
-        pipeline.push(buildOperator(operator, value))
+        if (value != null)
+            pipeline.push(buildOperator(operator, value))
     }
+
+    console.log(pipeline)
     return pipeline
 }
 
@@ -17,7 +21,7 @@ function buildOperator(field, value) {
         case 'match':
             return operatorMatch(value)
         case 'sort':
-            return null
+            return operatorSort(value)
         case 'group':
             return null
         default:
@@ -25,14 +29,21 @@ function buildOperator(field, value) {
     }   
 }
 
+function isEmptyValue(value)
+{
+    return value.length === 0;
+}
+
 function operatorMatch(toMatch) {
 
     fieldsList = {}
     for (filter in toMatch)
     {
+        if (!isThisAssociationField(filter))
+            continue
+        
         var value = toMatch[`${filter}`]
-        console.log(value)
-        if (value.length === 0)
+        if (isEmptyValue(value))
         {
             continue
         }
@@ -46,6 +57,28 @@ function operatorMatch(toMatch) {
 
     operator = {}
     operator["$match"] = fieldsList
+
+    return operator;
+}
+
+function operatorSort(toSort) {
+
+    fieldsList = {}
+    for (field in toSort)
+    {
+        var value = toSort[field]
+        if (!isThisAssociationField(value))
+            continue
+        
+        
+        fieldsList[value] = 1
+    }
+
+    if (isJsonEmpty(fieldsList))
+        return null
+
+    operator = {}
+    operator["$sort"] = fieldsList
 
     return operator;
 }

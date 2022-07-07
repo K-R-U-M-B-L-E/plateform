@@ -1,12 +1,19 @@
 const associationFields = ["name", "university", "visible","tag"]
 const mandatoryFields = ["name", "university", "visible"]
 
+
+function isThisAssociationField(field)
+{
+    return associationFields.includes(field)
+}
+
+
 //CHECK IF EVERY FIELDS NAME ARE VALID ONE
 function isAssociationField(association) {
   
   for (i in association) 
   {
-    if (!associationFields.includes(i))
+    if (!isThisAssociationField(i))
       return [false, i];
   }
   return [true, ""];
@@ -32,4 +39,4 @@ function compareAssociations(associationA, associationB)
 }
 
 
-module.exports = {isAssociationField, isThereMandatoryFields, compareAssociations}
+module.exports = {isAssociationField, isThereMandatoryFields, compareAssociations, isThisAssociationField}

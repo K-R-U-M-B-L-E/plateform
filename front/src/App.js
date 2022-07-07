@@ -8,6 +8,7 @@ import ProjectPage from "./routes/ProjectPage";
 import UserPage from "./routes/UserPage";
 import AdminPage from "./routes/AdminPage";
 import FilterForm from "./components/Forms/FilterForm";
+import SearchBar from "./components/Forms/SearchBar";
 
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
               <Route path="/university/:id" element={ <UniversityPage/>} />
               <Route path="/userprofil" element={ <UserPage/>} />
               <Route path="/search" element={ <FilterForm/>} />
+              <Route path="/textsearch" element={ <SearchBar/>} />
               <Route path="/admin/dashboard" element={ <AdminPage/>} />
 
             </Routes>

@@ -4,6 +4,7 @@ app.use(express.json())
 
 const Associationcontroller = require('./1.controller/associationController');
 const Projectcontroller = require('./1.controller/projectController');
+const Searchcontroller = require('./1.controller/searchController');
 const Universitycontroller = require('./1.controller/universityController');
 const Usercontroller = require('./1.controller/userController');
 
@@ -62,6 +63,13 @@ app.post('/users/login', (req, res) => { Usercontroller.login(req,res) })
 app.post('/users', (req, res) => { Usercontroller.addSingle(req,res) })
 app.patch('/users/:id', (req, res) => { Usercontroller.updateSingle(req,res)} )
 app.delete('/users/:id', (req, res) => { Usercontroller.deleteSingle(req,res)})
+
+
+/////////////////////////////////////////////// SEARCH //////////////////////////////////////////////////////
+
+app.post('/search', (req, res) => { Searchcontroller.search(req,res) })
+
+
 
 
 app.all('*', function(req, res) {

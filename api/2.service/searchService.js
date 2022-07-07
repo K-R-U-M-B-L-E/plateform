@@ -2,22 +2,14 @@ const repository = require("../3.repository/searchRepository");
 //const { isAssociationField, isThereMandatoryFields, isAlreadyExisting, compareAssociations } = require("../utils/utilsAssociation");
 const { isJsonValid, isJsonEmpty } = require("../utils/utils");
 const { json } = require("express");
-//var ObjectId = require('mongodb').ObjectId; 
+const { pipelineBuilder } = require("../utils/utilsSearch");
 
 
 
 //SEARCH IN ASSOCIATION
 async function search(req)
 {
-    var pipeline = [ {
-        $match: {
-            'university': {
-                $in :  req.body.university
-            }
-            
-        }
-            
-    }]
+    var pipeline= pipelineBuilder(req.body)
 
     try {
         var response = await repository.search(pipeline);
@@ -27,7 +19,7 @@ async function search(req)
     {
         console.error(err)
         return (err)
-    }    
+    }
 }
 
 module.exports = {search};

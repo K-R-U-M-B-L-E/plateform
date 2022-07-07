@@ -5,12 +5,25 @@ const service = require("../2.service/searchService");
 //SEARCH ASSOCIATION ON FILTER
 //Check : - if an error occured => return 500
 
-async function search(req, res) 
+async function searchByFilter(req, res) 
 {
     //sleep(3);
-    var response = await service.search(req);
+    var response = await service.searchByFilter(req);
     if (response.hasOwnProperty('err')) { res.status(500).json(response)}
     else res.status(200).json(response);
 }
 
-module.exports = {search};
+
+//SEARCH ASSOCIATION ON TEXT
+//Check : - if an error occured => return 500
+
+async function searchByText(req, res) 
+{
+    var response = await service.searchByText(req);
+    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    else res.status(200).json(response);
+}
+
+
+
+module.exports = {searchByFilter, searchByText};

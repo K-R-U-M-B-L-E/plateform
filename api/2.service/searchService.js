@@ -7,7 +7,7 @@ const { pipelineBuilder } = require("../utils/utilsSearch");
 
 
 //SEARCH IN ASSOCIATION
-async function search(req)
+async function searchByFilter(req)
 {
     var pipeline= pipelineBuilder(req.body)
 
@@ -22,4 +22,26 @@ async function search(req)
     }
 }
 
-module.exports = {search};
+
+//SEARCH IN ASSOCIATION BY TEXT
+async function searchByText(req)
+{
+    var pipeline= 
+        [
+            { $match: { $text: { $search: req.body.research } } },
+            { $sort: { score: { $meta: "textScore" } } }
+        ]
+    
+    try {
+        var response = await repository.search(pipeline);
+        return response
+    }
+    catch (err)
+    {
+        console.error(err)
+        return (err)
+    }
+}
+
+
+module.exports = {searchByFilter, searchByText};

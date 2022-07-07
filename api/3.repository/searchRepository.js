@@ -3,6 +3,7 @@ const url = "mongodb://localhost:27017";
 var ObjectId = require('mongodb').ObjectId; 
 let db
 
+
 //CONNECT TO MONGO DB INSTANCE
 mongo.connect(
     url,

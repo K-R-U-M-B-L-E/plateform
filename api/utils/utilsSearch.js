@@ -48,7 +48,6 @@ function operatorMatch(toMatch) {
             continue
         }
             
-
         logicOperator = {}
         logicOperator["$in"] = value
 
@@ -58,6 +57,8 @@ function operatorMatch(toMatch) {
     operator = {}
     operator["$match"] = fieldsList
 
+    console.log(operator)
+    console.log(operator.$match.visible)
     return operator;
 }
 
@@ -69,7 +70,6 @@ function operatorSort(toSort) {
         var value = toSort[field]
         if (!isThisAssociationField(value))
             continue
-        
         
         fieldsList[value] = 1
     }

@@ -7,6 +7,7 @@ import UniversityPage from "./routes/UniversityPage";
 import ProjectPage from "./routes/ProjectPage";
 import UserPage from "./routes/UserPage";
 import AdminPage from "./routes/AdminPage";
+import FilterForm from "./components/Forms/FilterForm";
 
 
 export default function App() {
@@ -22,6 +23,9 @@ export default function App() {
               <li>
               <NavLink activeClassName="active" to="/associationform">Ajouter une association</NavLink>
               </li>
+              <li>
+              <NavLink activeClassName="active" to="/search">Rechercher</NavLink>
+              </li>
             </ul>
             <hr />
 
@@ -33,6 +37,7 @@ export default function App() {
               <Route path="/project/:id" element={ <ProjectPage/>} />
               <Route path="/university/:id" element={ <UniversityPage/>} />
               <Route path="/userprofil" element={ <UserPage/>} />
+              <Route path="/search" element={ <FilterForm/>} />
               <Route path="/admin/dashboard" element={ <AdminPage/>} />
 
             </Routes>

@@ -2,6 +2,17 @@ const associationFields = ["name", "university", "visible","tag"]
 const mandatoryFields = ["name", "university", "visible"]
 
 
+function getAssociationFields()
+{
+    return associationFields;
+}
+
+function setAssociationFields(field)
+{
+    if(!associationFields.includes(field))
+      associationFields.push(field)
+}
+
 function isThisAssociationField(field)
 {
     return associationFields.includes(field)
@@ -39,4 +50,4 @@ function compareAssociations(associationA, associationB)
 }
 
 
-module.exports = {isAssociationField, isThereMandatoryFields, compareAssociations, isThisAssociationField}
+module.exports = {isAssociationField, isThereMandatoryFields, compareAssociations, isThisAssociationField, getAssociationFields}

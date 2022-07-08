@@ -36,4 +36,18 @@ async function search(pipeline)
     })
 }
 
-module.exports = {search};
+//GET DISTINCT VALUE FOR A FIELD
+async function getFieldValue(props)
+{
+    return new Promise(function(resolve, reject) {
+      associations.distinct(props, (err, items) => {
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+        }
+      resolve(items);
+      })
+    })
+}
+
+module.exports = {search, getFieldValue};

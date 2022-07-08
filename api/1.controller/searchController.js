@@ -25,5 +25,15 @@ async function searchByText(req, res)
 }
 
 
+//SEARCH KEY OF AN ASSOCIATION DOCUMENT
+//Check : - if an error occured => return 500
 
-module.exports = {searchByFilter, searchByText};
+async function searchKey(req, res) 
+{
+    var response = await service.searchKey(req);
+    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    else res.status(200).json(response);
+}
+
+
+module.exports = {searchByFilter, searchByText, searchKey};

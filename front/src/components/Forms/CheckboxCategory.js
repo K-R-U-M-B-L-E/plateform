@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-//import filterController from '../../infrastructure/controller.js/FilterController';
 
 
 function initDefaultChecked(props) {

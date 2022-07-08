@@ -9,7 +9,9 @@ const { pipelineBuilder } = require("../utils/utilsSearch");
 //SEARCH IN ASSOCIATION
 async function searchByFilter(req)
 {
+    console.log("body received", req.body)
     var pipeline= pipelineBuilder(req.body)
+    console.log("pipelinebuild", pipeline)
 
     try {
         var response = await repository.search(pipeline);

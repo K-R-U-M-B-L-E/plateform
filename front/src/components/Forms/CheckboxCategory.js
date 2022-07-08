@@ -17,7 +17,7 @@ function initDefaultChecked(props) {
  * @params {{title: string, list:{name: string, id: number}[]}} props
  */
 const CheckboxCategory = (props) => {
-  const [filters, setFilters] = useState([]);
+  //const [filters, setFilters] = useState([]);
   const [checked, setChecked] = useState(initDefaultChecked(props.list));
 
   // logic to add or remove elements check or unchecked form an array.
@@ -39,7 +39,6 @@ const CheckboxCategory = (props) => {
     checks[id] = !checks[id]
     setChecked(checks);
       
-    console.log(props.title, checked)
     props.propagateCheck(checked, props.title)
     
 };

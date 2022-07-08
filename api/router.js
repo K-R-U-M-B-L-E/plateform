@@ -74,5 +74,5 @@ app.post('/textsearch', (req, res) => { Searchcontroller.searchByText(req,res) }
 
 
 app.all('*', function(req, res) {
-    res.status(400).json({err : "Bad Request"});
+    res.status(400).json({err : "Bad Request dans le router"});
 })

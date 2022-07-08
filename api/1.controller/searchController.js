@@ -7,7 +7,7 @@ const service = require("../2.service/searchService");
 
 async function searchByFilter(req, res) 
 {
-    //sleep(3);
+    console.log("SEARCH CONTROLLER")
     var response = await service.searchByFilter(req);
     if (response.hasOwnProperty('err')) { res.status(500).json(response)}
     else res.status(200).json(response);

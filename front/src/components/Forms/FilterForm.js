@@ -1,5 +1,6 @@
+import { Fab } from '@mui/material';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import filterController from '../../infrastructure/controller.js/FilterController';
 import CheckboxCategory from './CheckboxCategory';
 
@@ -21,9 +22,25 @@ const CITY = [
   { key: 5, label: "CITY", name: "RENNES" }
 ];
 
+
+const JSONCITY = {
+  PARIS: false,
+  LYON: false,
+  MARSEILLE: false,
+  TOULOUSE: false,
+  STRASBOURG: false,
+  RENNES: false
+}
+
+const JSONUNIVERSITY = {
+  EPITA: false,
+  ISEP: false,
+  ESILV: false
+}
+
 const defaultFilter = {
-  university: UNIVERSITY,
-  city: CITY
+  university: JSONUNIVERSITY,
+  city: JSONCITY
 }
 
 const defaultSort = {
@@ -56,15 +73,37 @@ const defaultSort = {
 export default function FilterForm() {
 
   const [filterValues, setFilterValues] = useState(defaultFilter);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const handleCategoryChange = (data, category) => {
+  const handleCategoryChange = (state, category) => {
 
-      const formatCategory = category.toLowerCase();
-      var checked = filterValues
-      checked[formatCategory] = data
-      setFilterValues(checked);
-      console.log("FORM VALUE",checked)
-    };
+    const formatCategory = category.toLowerCase();
+    var checked = filterValues
+    checked[formatCategory] = state
+    setFilterValues(checked);
+    console.log("FORM VALUE", filterValues)
+
+    getData()
+  };
+
+  const getData = async () => {
+      try {
+        var response;
+        response = await filterController.search(JSON.stringify(filterValues));
+        console.log("response",response)
+        setData(response);
+        setError(null);
+
+      } catch(err) {
+            setError(err.message);
+            setData(null);
+      } finally {
+            setLoading(false);
+            return;
+      }  
+  }
   
   return (
     <div>

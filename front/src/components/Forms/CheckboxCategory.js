@@ -3,35 +3,62 @@ import { useState } from 'react';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 //import filterController from '../../infrastructure/controller.js/FilterController';
 
-const defaultChecked = {
-    "label 1": false,
-    "label 2": false
+
+function initDefaultChecked(props) {
+    var defaultChecked = {}
+    props.map((m) => (
+        defaultChecked[m.name] = false
+    ))
+
+    return defaultChecked
+}
+
+/* parses check box data from props.list element
+ * @params {{title: string, list:{name: string, id: number}[]}} props
+ */
+const CheckboxCategory = (props) => {
+  const [filters, setFilters] = useState([]);
+  const [checked, setChecked] = useState(initDefaultChecked(props.list));
+
+  // logic to add or remove elements check or unchecked form an array.
+  /*const handleCheckboxChange = (event) => {
+    const id = event.target.id;
+    setFilters((currentFilter) =>
+      currentFilter.includes(id)
+        ? currentFilter.filter((f) => f !== id)
+        : [...currentFilter, id]
+    );
+
+    console.log(props.title, filters);
+  };*/
+
+  //logic to turn an element as true when checked
+  const handleCheckboxChange = (e) => {
+    const id = e.target.id;
+    var checks = checked
+    checks[id] = !checks[id]
+    setChecked(checks);
+      
+    console.log(props.title, checked)
+    props.propagateCheck(checked, props.title)
+    
 };
 
-function CheckboxCategory(props) {
+  // creates all the checkbox based on the list array.
+  const checkboxGroup = props.list.map((m) => (
+    <span key={m.key}>
+      <FormControlLabel control={<Checkbox id={m.name} onChange={handleCheckboxChange}/>} label={m.name} labelPlacement='end'/>
+    </span>
+  ));
 
-    const [checked, setChecked] = useState(defaultChecked);
-
-    const handleCheck = (e) => {
-        const id = e.target.id
-        var checks = checked
-        checks[id] = !checks[id]
-        setChecked(checks);
-          
-        console.log(checked)
-        props.propagateCheck(checked, props.title)
-        
-    };
-
-    return (
-        <div>
-        <FormGroup>
+  return (
+    <div>
+      <FormGroup >
             <h1>{props.title}</h1>
-            <FormControlLabel control={<Checkbox id="label 1" onChange={handleCheck}/>} label="Label 1" labelPlacement='end'/>
-            <FormControlLabel control={<Checkbox id="label 2" onChange={handleCheck}/>} label="Label 2" labelPlacement='end'/>
-        </FormGroup>
+            {checkboxGroup}
+    </FormGroup>
     </div>
-    )
-}
+  );
+};
 
 export default CheckboxCategory;

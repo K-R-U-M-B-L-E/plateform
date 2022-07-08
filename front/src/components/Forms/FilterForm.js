@@ -1,4 +1,3 @@
-import { Fab } from '@mui/material';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import filterController from '../../infrastructure/controller.js/FilterController';
@@ -7,42 +6,30 @@ import AssociationListStatic from '../AssociationListStatic';
 
 
 //dump list of choice
-const UNIVERSITY = [
-  { key: 0, label: "UNIVERSITY", name: "EPITA" },
-  { key: 1, label: "UNIVERSITY", name: "ISEP" },
-  { key: 2, label: "UNIVERSITY", name: "ESILV" },
-];
+const UNIVERSITY = ["EPITA","IPSA","ISEP"];
 
 
-const CITY = [
-  { key: 0, label: "CITY", name: "PARIS" },
-  { key: 1, label: "CITY", name: "LYON" },
-  { key: 2, label: "CITY", name: "MARSEILLE" },
-  { key: 3, label: "CITY", name: "TOULOUSE" },
-  { key: 4, label: "CITY", name: "STRASBOURG" },
-  { key: 5, label: "CITY", name: "RENNES" }
-];
+const CITY = ["LYON","MARSEILLE","PARIS","RENNES","STRASBOURG","TOULOUSE"];
 
 
-const JSONCITY = {
-  PARIS: false,
-  LYON: false,
-  MARSEILLE: false,
-  TOULOUSE: false,
-  STRASBOURG: false,
-  RENNES: false
+function initDefaultFormValues(props) {
+
+  var defaultFilter = {}
+  var i;
+  for (i in props)
+  {
+      var jsonstate = {}
+      var j;
+      for (j in props[i])
+      {
+          jsonstate[props[i][j]] = false
+      }
+      defaultFilter[i] = jsonstate;
+  } 
+  return defaultFilter
 }
 
-const JSONUNIVERSITY = {
-  EPITA: false,
-  ISEP: false,
-  ESILV: false
-}
 
-const defaultFilter = {
-  university: JSONUNIVERSITY,
-  city: JSONCITY
-}
 
 const defaultSort = {
   sort: []
@@ -69,14 +56,54 @@ const defaultSort = {
       }
     }*/
 
+const testData = {
+  "university": [
+      "EPITA",
+      "IPSA",
+      "ISEP",
+  ],
+  "city": ["LYON","MARSEILLE","PARIS","RENNES","STRASBOURG","TOULOUSE"],
+  "tag": []
+}
+
+const filter = {
+  "keys": ["university","visible","tag"]
+};
 
 
-export default function FilterForm() {
+export default function FilterForm(props) {
 
-  const [filterValues, setFilterValues] = useState(defaultFilter);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [dataEffect, setDataEffect] = useState(null);
+  const [loadingEffect, setLoadingEffect] = useState(true);
+  const [errorEffect, setErrorEffect] = useState(null);
+
+  const [filterValues, setFilterValues] = useState(initDefaultFormValues(dataEffect));
+
+  useEffect(() => {
+    const getFilter = async () => {
+      try {
+        var response;
+        console.log(filter)
+        response = await filterController.searchKey(JSON.stringify(filter))
+        setDataEffect(response);
+        console.log(response)
+        setErrorEffect(null);
+
+      } catch(err) {
+            setErrorEffect(err.message);
+            setDataEffect(null);
+      } finally {
+            setLoadingEffect(false);
+            return;
+      }  
+    }
+    getFilter()
+  }, [loadingEffect])
+
 
   const handleCategoryChange = (state, category) => {
 
@@ -105,12 +132,18 @@ export default function FilterForm() {
             return;
       }  
   }
-  
+ 
   return (
     <div>
       <div>
-        <CheckboxCategory list={UNIVERSITY} title="University" propagateCheck={handleCategoryChange}/>
-        <CheckboxCategory list={CITY} title="City" propagateCheck={handleCategoryChange}/>
+      {
+          Object.keys(testData).map((e, i) => {
+            return (
+            <span key={i}>
+               <CheckboxCategory list={testData[e]} title={e} propagateCheck={handleCategoryChange}/>
+            </span>)
+          })
+      }
       </div>
         {data && data.associations &&
           <div> <AssociationListStatic title="Result" associations={data.associations} /> </div> }

@@ -6,7 +6,7 @@ import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 function initDefaultChecked(props) {
     var defaultChecked = {}
     props.map((m) => (
-        defaultChecked[m.name] = false
+        defaultChecked[m] = false
     ))
 
     return defaultChecked
@@ -44,8 +44,8 @@ const CheckboxCategory = (props) => {
 
   // creates all the checkbox based on the list array.
   const checkboxGroup = props.list.map((m) => (
-    <span key={m.key}>
-      <FormControlLabel control={<Checkbox id={m.name} onChange={handleCheckboxChange}/>} label={m.name} labelPlacement='end'/>
+    <span key={m}>
+      <FormControlLabel control={<Checkbox id={m} onChange={handleCheckboxChange}/>} label={m} labelPlacement='end'/>
     </span>
   ));
 

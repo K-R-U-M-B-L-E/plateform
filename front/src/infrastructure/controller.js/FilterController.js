@@ -14,6 +14,11 @@ class FilterController {
         var response = await apiHandler.post({query:'/textsearch', options: props})
         return response;
     }
+
+    async searchKey(props) {
+        var response = await apiHandler.post({query:'/keysearch', body: props})
+        return response;
+    }
 }
 
 const filterController = new FilterController();

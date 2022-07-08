@@ -3,6 +3,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import filterController from '../../infrastructure/controller.js/FilterController';
 import CheckboxCategory from './CheckboxCategory';
+import AssociationListStatic from '../AssociationListStatic';
 
 
 //dump list of choice
@@ -111,6 +112,8 @@ export default function FilterForm() {
         <CheckboxCategory list={UNIVERSITY} title="University" propagateCheck={handleCategoryChange}/>
         <CheckboxCategory list={CITY} title="City" propagateCheck={handleCategoryChange}/>
       </div>
+        {data && data.associations &&
+          <div> <AssociationListStatic title="Result" associations={data.associations} /> </div> }
     </div>
   );
 }

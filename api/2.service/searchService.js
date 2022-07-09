@@ -3,7 +3,7 @@ const associationRepository = require("../3.repository/associationRepository");
 //const { isAssociationField, isThereMandatoryFields, isAlreadyExisting, compareAssociations } = require("../utils/utilsAssociation");
 const { isJsonValid, isJsonEmpty } = require("../utils/utils");
 const { json } = require("express");
-const { pipelineBuilder } = require("../utils/utilsSearch");
+const { pipelineBuilder, textPipelineBuilder } = require("../utils/utilsSearch");
 const { getAssociationFields, isThisAssociationField } = require("../utils/utilsAssociation");
 
 
@@ -37,11 +37,8 @@ async function searchByText(req)
         researchValue = ""
     else
         researchValue = req.body.research
-    var pipeline= 
-        [
-            { $match: { $text: { $search:  researchValue} } },
-            { $sort: { score: { $meta: "textScore" } } }
-        ]
+
+    var pipeline= textPipelineBuilder(researchValue)
     
     try {
         var response = await repository.search(pipeline);

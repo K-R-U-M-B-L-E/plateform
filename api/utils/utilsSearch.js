@@ -1,6 +1,14 @@
 const { isJsonValid, isJsonEmpty } = require("./utils");
 const { isThisAssociationField } = require("./utilsAssociation")
 
+function textPipelineBuilder(researchValue)
+{
+   return( [
+        { $match: { $text: { $search:  researchValue} } },
+        { $sort: { score: { $meta: "textScore" } } }
+    ])
+}
+
 function pipelineBuilder(body) {
     
     pipeline = [];
@@ -87,4 +95,4 @@ function operatorSort(toSort) {
     return operator;
 }
 
-module.exports={pipelineBuilder}
+module.exports={pipelineBuilder, textPipelineBuilder}

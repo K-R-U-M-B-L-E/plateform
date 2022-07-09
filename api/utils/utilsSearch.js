@@ -7,11 +7,14 @@ function pipelineBuilder(body) {
     for (operator in body) {
         
         var value = body[operator]
-        if (value != null)
-            pipeline.push(buildOperator(operator, value))
+        if (value != null || value !== [])
+        {
+            const operatorPipelineBuild = buildOperator(operator, value)
+            if (operatorPipelineBuild.hasOwnProperty('err')) { return operatorPipelineBuild}
+            else pipeline.push(operatorPipelineBuild)
+        }
+            
     }
-
-    console.log(pipeline)
     return pipeline
 }
 
@@ -19,14 +22,14 @@ function buildOperator(field, value) {
 
     switch(field) {
         case 'match':
-            return operatorMatch(value)
+            return operatorMatch(value)            
         case 'sort':
             return operatorSort(value)
         case 'group':
             return null
         default:
             return null
-    }   
+    }       
 }
 
 function isEmptyValue(value)
@@ -40,7 +43,7 @@ function operatorMatch(toMatch) {
     for (filter in toMatch)
     {
         if (!isThisAssociationField(filter))
-            continue
+           return {'err' : `Wrong field name ${filter} in match operator`}
         
         var value = toMatch[`${filter}`]
         if (isEmptyValue(value))
@@ -65,11 +68,12 @@ function operatorMatch(toMatch) {
 function operatorSort(toSort) {
 
     fieldsList = {}
+    console.log(toSort)
     for (field in toSort)
     {
         var value = toSort[field]
         if (!isThisAssociationField(value))
-            continue
+            return {'err' : `Wrong field name ${value} in sort operator`}
         
         fieldsList[value] = 1
     }

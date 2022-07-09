@@ -7,7 +7,6 @@ const service = require("../2.service/searchService");
 
 async function searchByFilter(req, res) 
 {
-    console.log("SEARCH CONTROLLER")
     var response = await service.searchByFilter(req);
     if (response.hasOwnProperty('err')) { res.status(500).json(response)}
     else res.status(200).json(response);
@@ -32,6 +31,7 @@ async function searchKey(req, res)
 {
     var response = await service.searchKey(req);
     if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    else if (response.hasOwnProperty('exception')) { res.status(500).json(response)}
     else res.status(200).json(response);
 }
 

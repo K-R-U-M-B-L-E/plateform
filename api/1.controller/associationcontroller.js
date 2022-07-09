@@ -1,19 +1,20 @@
 const { response } = require("express");
-const { isNotFound, isExceptionOrError } = require("../utils/utils");
+const { isNotFound, isExceptionOrError, returnStatus } = require("../utils/utils");
 const utils = require("../utils/utilsAssociation");
 const service = require("../2.service/associationService");
 const { sleep } = require("../utils/utils");
+
 
 //GET ALL ASSOCIATIONS
 //Check : - if an error occured => return 500
 
 async function getAll(req, res) 
 {
-    //sleep(3);
     var response = await service.getAll();
-    if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
+
 
 //GET ALL VISIBLE ASSOCIATIONS
 //Check : - if an error occured => return 500
@@ -21,9 +22,10 @@ async function getAll(req, res)
 async function getVisible(req, res) 
 {
     var response = await service.getVisible();
-    if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
+
 
 //GET ALL INVISIBLE ASSOCIATIONS
 //Check : - if an error occured => return 500
@@ -31,8 +33,8 @@ async function getVisible(req, res)
 async function getInvisible(req, res) 
 {
     var response = await service.getInvisible();
-    if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -43,9 +45,8 @@ async function getInvisible(req, res)
 async function getSingle(req, res) 
 {
     var response = await service.getSingle(req);
-    if (isNotFound(response) ) {res.status(404).json(response) }
-    else if (isExceptionOrError(response)) { res.status(500).json(response) }
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -56,9 +57,8 @@ async function getSingle(req, res)
 async function getByName(req, res) 
 {
     var response = await service.getByName(req);
-    if (isNotFound(response) ) {res.status(404).json(response) }
-    else if (isExceptionOrError(response)) { res.status(500).json(response) }
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -70,8 +70,8 @@ async function getByName(req, res)
 async function addSingle(req, res) 
 {
     var response = await service.addSingle(req);
-    if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -85,10 +85,8 @@ async function addSingle(req, res)
 async function updateSingle(req, res) 
 {
     var response = await service.updateSingle(req);
-    if (isNotFound(response) ) {res.status(404).json(response) }
-    else if (isExceptionOrError(response)) { res.status(500).json(response) }
-    else if (response.hasOwnProperty('status')) { res.status(200).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -100,9 +98,8 @@ async function updateSingle(req, res)
 async function deleteSingle(req, res) 
 {
     var response = await service.deleteSingle(req);
-    if (isNotFound(response) ) {res.status(404).json(response) }
-    else if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 module.exports = { getAll, getVisible, getInvisible, getSingle, getByName, addSingle, deleteSingle, updateSingle };

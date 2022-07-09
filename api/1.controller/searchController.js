@@ -1,5 +1,5 @@
 const { response } = require("express");
-const { isNotFound, isExceptionOrError } = require("../utils/utils");
+const { returnStatus } = require("../utils/utils");
 const service = require("../2.service/searchService");
 
 //SEARCH ASSOCIATION ON FILTER
@@ -8,8 +8,8 @@ const service = require("../2.service/searchService");
 async function searchByFilter(req, res) 
 {
     var response = await service.searchByFilter(req);
-    if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -19,8 +19,8 @@ async function searchByFilter(req, res)
 async function searchByText(req, res) 
 {
     var response = await service.searchByText(req);
-    if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -30,8 +30,8 @@ async function searchByText(req, res)
 async function searchKey(req, res) 
 {
     var response = await service.searchKey(req);
-    if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 

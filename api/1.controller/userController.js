@@ -1,7 +1,7 @@
 const { response } = require("express");
 const utils = require("../utils/utilsUser");
 const service = require("../2.service/userService");
-const { isNotFound, isExceptionOrError } = require("../utils/utils");
+const { returnStatus } = require("../utils/utils");
 
 
 
@@ -11,8 +11,8 @@ const { isNotFound, isExceptionOrError } = require("../utils/utils");
 async function getAll(req, res) 
 {
     var response = await service.getAll();
-    if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -23,9 +23,8 @@ async function getAll(req, res)
 async function getSingle(req, res) 
 {
     var response = await service.getSingle(req);
-    if (isNotFound(response)) {res.status(404).json(response) }
-    else if (isExceptionOrError(response)) { res.status(500).json(response) }
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -36,9 +35,8 @@ async function getSingle(req, res)
 async function getByEmail(req, res) 
 {
     var response = await service.getByEmail(req);
-    if (isNotFound(response)) {res.status(404).json(response) }
-    else if (isExceptionOrError(response)) { res.status(500).json(response) }
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -50,8 +48,8 @@ async function getByEmail(req, res)
 async function addSingle(req, res) 
 {
     var response = await service.addSingle(req);
-    if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -65,10 +63,8 @@ async function addSingle(req, res)
 async function updateSingle(req, res) 
 {
     var response = await service.updateSingle(req);
-    if (isNotFound(response)) {res.status(404).json(response) }
-    else if (isExceptionOrError(response)) { res.status(500).json(response) }
-    else if (response.hasOwnProperty('status')) { res.status(200).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -80,17 +76,15 @@ async function updateSingle(req, res)
 async function deleteSingle(req, res) 
 {
     var response = await service.deleteSingle(req);
-    if (isNotFound(response)) {res.status(404).json(response) }
-    else if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 async function login(req, res)
 {
     var response = await service.login(req);
-    if (isNotFound(response)) {res.status(404).json(response) }
-    else if (isExceptionOrError(response)) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 module.exports = { getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle, login };

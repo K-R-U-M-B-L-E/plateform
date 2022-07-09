@@ -35,4 +35,17 @@ function isExceptionOrError(response)
     return (response.hasOwnProperty('err') || response.hasOwnProperty('exception'));
 }
 
-module.exports = { isJsonValid, isJsonEmpty, sleep, isNotFound, isExceptionOrError}
+function returnStatus(response)
+{
+    if(isNotFound(response))
+        //404 - NOT FOUND
+        return 404;
+    else if (isExceptionOrError(response))  
+        //500 - ERR or EXCEPTION
+        return 500;
+    else
+        //200 - OK
+        return 200;
+}
+
+module.exports = { isJsonValid, isJsonEmpty, sleep, returnStatus}

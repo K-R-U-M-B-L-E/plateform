@@ -27,7 +27,9 @@ class APIHandler {
 
     async post(props) {
 
+        console.log("props",props)
         var request = requestBuilder.buildPostRequest(props);
+        console.log("request", request)
         var response = await requestObject.sendRequest(request);
         return response;  
         

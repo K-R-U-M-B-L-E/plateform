@@ -1,12 +1,30 @@
-const associationFields = ["name", "university", "visible","tag"]
+const associationFields = ["name", "university", "visible","tag","city"]
 const mandatoryFields = ["name", "university", "visible"]
+
+
+function getAssociationFields()
+{
+    return associationFields;
+}
+
+function setAssociationFields(field)
+{
+    if(!associationFields.includes(field))
+      associationFields.push(field)
+}
+
+function isThisAssociationField(field)
+{
+    return associationFields.includes(field)
+}
+
 
 //CHECK IF EVERY FIELDS NAME ARE VALID ONE
 function isAssociationField(association) {
   
   for (i in association) 
   {
-    if (!associationFields.includes(i))
+    if (!isThisAssociationField(i))
       return [false, i];
   }
   return [true, ""];
@@ -32,4 +50,4 @@ function compareAssociations(associationA, associationB)
 }
 
 
-module.exports = {isAssociationField, isThereMandatoryFields, compareAssociations}
+module.exports = {isAssociationField, isThereMandatoryFields, compareAssociations, isThisAssociationField, getAssociationFields}

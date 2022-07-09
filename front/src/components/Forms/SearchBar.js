@@ -21,16 +21,15 @@ function SearchBar() {
     const [error, setError] = useState(null);
 
     const handleInputChange = (value) => {
-        setSearchValue({...searchValue,value,});
-        console.log(value)
-        searchData();
+        setSearchValue(value);
+        searchData(value);
     };
 
 
-    const searchData = async () => {
+    const searchData = async (value) => {
             try {
-                console.log("searchData")
-                const response = await filterController.getTxt( { research: searchValue});
+                console.log("searchData",value)
+                const response = await filterController.searchText(value);
                 setData(response);
                 setError(null);
                 console.log(response)
@@ -61,7 +60,7 @@ function SearchBar() {
         </IconButton>
 
         <ul>
-        {data && <AssociationListStatic associations={data} />}
+        {data && <AssociationListStatic associations={data.associations} />}
         </ul>
   </form>
     )

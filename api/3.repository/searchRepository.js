@@ -28,7 +28,7 @@ async function search(pipeline)
     return new Promise(function(resolve, reject) {
       associations.aggregate(pipeline).toArray((err, items) => {
         if (err) {
-          console.err(err)
+          console.error(err)
           reject({ err : err })
         }
       resolve({associations : items});

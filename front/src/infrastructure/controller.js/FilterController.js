@@ -11,7 +11,7 @@ class FilterController {
     }
 
     async searchText(props) {
-        var response = await apiHandler.post({query:'/textsearch', options: props})
+        var response = await apiHandler.post({query:'/textsearch', body: JSON.stringify({research: props})})
         return response;
     }
 

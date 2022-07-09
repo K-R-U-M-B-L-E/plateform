@@ -25,4 +25,14 @@ function sleep(seconds)
     return;
 }
 
-module.exports = { isJsonValid, isJsonEmpty, sleep}
+function isNotFound(response)
+{
+    return response.hasOwnProperty('err') && response['err'] === "Not found";
+}
+
+function isExceptionOrError(response)
+{
+    return (response.hasOwnProperty('err') || response.hasOwnProperty('exception'));
+}
+
+module.exports = { isJsonValid, isJsonEmpty, sleep, isNotFound, isExceptionOrError}

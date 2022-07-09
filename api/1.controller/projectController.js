@@ -1,4 +1,5 @@
 const { response } = require("express");
+const { isNotFound, isExceptionOrError } = require("../utils/utils");
 const utils = require("../utils/utilsProject");
 const service = require("../2.service/projectService");
 
@@ -10,7 +11,7 @@ const service = require("../2.service/projectService");
 async function getAll(req, res) 
 {
     var response = await service.getAll();
-    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    if (isExceptionOrError(response)) { res.status(500).json(response)}
     else res.status(200).json(response);
 }
 
@@ -22,8 +23,8 @@ async function getAll(req, res)
 async function getSingle(req, res) 
 {
     var response = await service.getSingle(req);
-    if (response.hasOwnProperty('err') && response['err'] === "Not found" ) {res.status(404).json(response) }
-    else if (response.hasOwnProperty('err')) { res.status(500).json(response) }
+    if (isNotFound(response) ) {res.status(404).json(response) }
+    else if (isExceptionOrError(response)) { res.status(500).json(response) }
     else res.status(200).json(response);
 }
 
@@ -34,7 +35,7 @@ async function getSingle(req, res)
 async function getByAsso(req, res) 
 {
     var response = await service.getByAsso(req);
-    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    if (isExceptionOrError(response)) { res.status(500).json(response)}
     else res.status(200).json(response);
 }
 
@@ -47,8 +48,7 @@ async function getByAsso(req, res)
 async function addSingle(req, res) 
 {
     var response = await service.addSingle(req);
-    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
-    else if (response.hasOwnProperty('exception')) { res.status(500).json(response)}
+    if (isExceptionOrError(response)) { res.status(500).json(response)}
     else res.status(200).json(response);
 }
 
@@ -63,9 +63,8 @@ async function addSingle(req, res)
 async function updateSingle(req, res) 
 {
     var response = await service.updateSingle(req);
-    if (response.hasOwnProperty('err') && response['err'] === "Not found" ) {res.status(404).json(response) }
-    else if (response.hasOwnProperty('err')) { res.status(500).json(response) }
-    else if (response.hasOwnProperty('exception')) { res.status(500).json(response)}
+    if (isNotFound(response) ) {res.status(404).json(response) }
+    else if (isExceptionOrError(response)) { res.status(500).json(response) }
     else if (response.hasOwnProperty('status')) { res.status(200).json(response)}
     else res.status(200).json(response);
 }
@@ -81,8 +80,8 @@ async function updateSingle(req, res)
 async function updateMultiple(req, res) 
 {
     /*var response = await service.updateSingle(req);
-    if (response.hasOwnProperty('err') && response['err'] === "Not found" ) {res.status(404).json(response) }
-    else if (response.hasOwnProperty('err')) { res.status(500).json(response) }
+    if (isNotFound(response) ) {res.status(404).json(response) }
+    else if (isExceptionOrError(response)) { res.status(500).json(response) }
     else if (response.hasOwnProperty('exception')) { res.status(500).json(response)}
     else if (response.hasOwnProperty('status')) { res.status(200).json(response)}
     else res.status(200).json(response);*/
@@ -98,8 +97,8 @@ async function updateMultiple(req, res)
 async function deleteSingle(req, res) 
 {
     var response = await service.deleteSingle(req);
-    if (response.hasOwnProperty('err') && response['err'] === "Not found" ) {res.status(404).json(response) }
-    else if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    if (isNotFound(response) ) {res.status(404).json(response) }
+    else if (isExceptionOrError(response)) { res.status(500).json(response)}
     else res.status(200).json(response);
 }
 
@@ -111,8 +110,8 @@ async function deleteSingle(req, res)
 async function deleteMultiple(req, res) 
 {
     //var response = await service.deleteSingle(req);
-    //if (response.hasOwnProperty('err') && response['err'] === "Not found" ) {res.status(404).json(response) }
-    //else if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    //if (isNotFound(response) ) {res.status(404).json(response) }
+    //else if (isExceptionOrError(response)) { res.status(500).json(response)}
     //else res.status(200).json(response);
     return;
 }

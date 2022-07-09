@@ -39,7 +39,7 @@ export default function App() {
               <Route path="/university/:id" element={ <UniversityPage/>} />
               <Route path="/userprofil" element={ <UserPage/>} />
               <Route path="/searchfilter" element={ <FilterForm/>} />
-              <Route path="/textsearch" element={ <SearchBar/>} />
+              <Route path="/search" element={ <SearchBar/>} />
               <Route path="/admin/dashboard" element={ <AdminPage/>} />
 
             </Routes>

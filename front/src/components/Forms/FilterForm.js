@@ -5,13 +5,6 @@ import CheckboxCategory from './CheckboxCategory';
 import AssociationListStatic from '../AssociationListStatic';
 
 
-//dump list of choice
-const UNIVERSITY = ["EPITA","IPSA","ISEP"];
-
-
-const CITY = ["LYON","MARSEILLE","PARIS","RENNES","STRASBOURG","TOULOUSE"];
-
-
 function initDefaultFormValues(props) {
 
   var defaultFilter = {}
@@ -35,63 +28,34 @@ const defaultSort = {
   sort: []
 };
 
-/*function FilterForm() {
-
-    const [filterValues, setFilterValues] = useState(defaultFilter);
-    const [answerStatus, setAnswerStatus] = useState("");
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        sendData();
-    };
-
-    const sendData = async () => {
-
-      try {
-        const response = await filterController.add(filterValues)
-        setAnswerStatus(response)
-      } 
-      catch(err) {
-        setAnswerStatus(err)
-      }
-    }*/
-
-const testData = {
-  "university": [
-      "EPITA",
-      "IPSA",
-      "ISEP",
-  ],
-  "city": ["LYON","MARSEILLE","PARIS","RENNES","STRASBOURG","TOULOUSE"],
-  "tag": []
-}
 
 const filter = {
-  "keys": ["university","visible","tag"]
+  "keys": ["university","city","tag"]
 };
 
 
 export default function FilterForm(props) {
 
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   const [dataEffect, setDataEffect] = useState(null);
   const [loadingEffect, setLoadingEffect] = useState(true);
   const [errorEffect, setErrorEffect] = useState(null);
 
-  const [filterValues, setFilterValues] = useState(initDefaultFormValues(dataEffect));
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const [filterValues, setFilterValues] = useState(null);
 
   useEffect(() => {
     const getFilter = async () => {
       try {
         var response;
-        console.log(filter)
         response = await filterController.searchKey(JSON.stringify(filter))
         setDataEffect(response);
         console.log(response)
         setErrorEffect(null);
+
+        setFilterValues(initDefaultFormValues(dataEffect))
 
       } catch(err) {
             setErrorEffect(err.message);
@@ -135,12 +99,13 @@ export default function FilterForm(props) {
  
   return (
     <div>
+      { errorEffect && <h1>{errorEffect}</h1>}
       <div>
-      {
-          Object.keys(testData).map((e, i) => {
+      { dataEffect && filterValues &&
+          Object.keys(dataEffect).map((e, i) => {
             return (
             <span key={i}>
-               <CheckboxCategory list={testData[e]} title={e} propagateCheck={handleCategoryChange}/>
+               <CheckboxCategory list={dataEffect[e]} title={e} propagateCheck={handleCategoryChange}/>
             </span>)
           })
       }

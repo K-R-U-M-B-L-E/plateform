@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 
 import filterController from "../../infrastructure/controller.js/FilterController";
 import MediaCard from "../Card/MediaCard";
+import AssociationListStatic from "../AssociationListStatic";
 
 
 const defaultValue = ""
@@ -21,13 +22,15 @@ function SearchBar() {
 
     const handleInputChange = (value) => {
         setSearchValue({...searchValue,value,});
+        console.log(value)
+        searchData();
     };
 
 
-    useEffect(() => { 
-        const searchData = async () => {
+    const searchData = async () => {
             try {
-                const response = await filterController.getTxt( { research: "epitas"});
+                console.log("searchData")
+                const response = await filterController.getTxt( { research: searchValue});
                 setData(response);
                 setError(null);
                 console.log(response)
@@ -38,10 +41,7 @@ function SearchBar() {
             } finally {
                 setLoading(false);
             }  
-        }
-        searchData()
-    }, [loading, searchValue])
-    
+        };    
   
     return (
         <form>
@@ -53,19 +53,15 @@ function SearchBar() {
             }}
             label="Chercher une association..."
             variant="outlined"
-            placeholder="Search..."
+            placeholder="Rechercher..."
             size="small"
         />
-        <IconButton type="submit" aria-label="search">
+        <IconButton aria-label="search">
             <SearchIcon style={{ fill: "blue" }} />
         </IconButton>
 
         <ul>
-        {data && data.associations.map(({ _id, name }) => (
-            <li>
-                <MediaCard id={_id} title={name} description="lorem ipsum" image="https://tse1.mm.bing.net/th?id=OIP.YuzpYI2Ya5mbjWLN_yj60QHaEf&pid=Api" />
-            </li>
-            ))}
+        {data && <AssociationListStatic associations={data} />}
         </ul>
   </form>
     )

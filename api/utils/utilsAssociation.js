@@ -1,4 +1,4 @@
-const associationFields = ["name", "university", "visible","tag"]
+const associationFields = ["name", "university", "visible","tag","city"]
 const mandatoryFields = ["name", "university", "visible"]
 
 

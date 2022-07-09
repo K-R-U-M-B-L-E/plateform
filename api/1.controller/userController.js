@@ -90,7 +90,7 @@ async function login(req, res)
 {
     var response = await service.login(req);
     if (response.hasOwnProperty('err') && response['err'] === "Not found" ) {res.status(404).json(response) }
-    else if (response.hasOwnProperty('err')) { res.status(500).json(response)}
+    else if (response.hasOwnProperty('err') || response.hasOwnProperty('exception')) { res.status(500).json(response)}
     else res.status(200).json(response);
 }
 

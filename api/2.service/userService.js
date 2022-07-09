@@ -127,10 +127,11 @@ async function deleteSingle(req)
 async function login(req)
 {
     var response = await repository.getByEmail({ params : { email: req.body.email } })
-    if (response.hasOwnProperty('err')) { return { err : `Not found` }}
+    if (response.user === undefined || response === null) { return { err : `No user with this email` }}
 
-    var similarPassword = bcrypt.compare(req.body.password, response.user.password )
+    var similarPassword = await bcrypt.compare(req.body.password, response.user.password)
     if (!similarPassword) { return { exception : `Incorrect Password` }}
+    
     else { return {
         userId: response.user._id,
         token: jwt.sign(

@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import filterController from '../../infrastructure/controller.js/FilterController';
-import CheckboxCategory from './CheckboxCategory';
-import AssociationListStatic from '../AssociationListStatic';
+import searchController from '../../infrastructure/controller.js/SearchController';
+import CheckboxCategory from '../Search Category/CheckboxCategory';
 
 
 function initDefaultFormValues(props) {
@@ -23,12 +22,6 @@ function initDefaultFormValues(props) {
 }
 
 
-
-const defaultSort = {
-  sort: []
-};
-
-
 const filter = {
   "keys": ["university","city","tag"]
 };
@@ -36,37 +29,34 @@ const filter = {
 
 export default function FilterForm(props) {
 
-  const [dataEffect, setDataEffect] = useState(null);
-  const [loadingEffect, setLoadingEffect] = useState(true);
-  const [errorEffect, setErrorEffect] = useState(null);
-
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [filterValues, setFilterValues] = useState(null);
 
+
   useEffect(() => {
     const getFilter = async () => {
       try {
         var response;
-        response = await filterController.searchKey(JSON.stringify(filter))
-        setDataEffect(response);
+        response = await searchController.searchKey(JSON.stringify(filter))
+        setData(response);
         console.log(response)
-        setErrorEffect(null);
+        setError(null);
 
-        setFilterValues(initDefaultFormValues(dataEffect))
+        setFilterValues(initDefaultFormValues(data))
 
       } catch(err) {
-            setErrorEffect(err.message);
-            setDataEffect(null);
+            setError(err.message);
+            setData(null);
       } finally {
-            setLoadingEffect(false);
+            setLoading(false);
             return;
       }  
     }
     getFilter()
-  }, [loadingEffect])
+  }, [loading])
 
 
   const handleCategoryChange = (state, category) => {
@@ -77,41 +67,20 @@ export default function FilterForm(props) {
     setFilterValues(checked);
     console.log("FORM VALUE", filterValues)
 
-    getData()
+    props.search({ filter: filterValues })
   };
 
-  const getData = async () => {
-      try {
-        var response;
-        response = await filterController.search(JSON.stringify(filterValues));
-        console.log("response",response)
-        setData(response);
-        setError(null);
-
-      } catch(err) {
-            setError(err.message);
-            setData(null);
-      } finally {
-            setLoading(false);
-            return;
-      }  
-  }
- 
   return (
     <div>
-      { errorEffect && <h1>{errorEffect}</h1>}
-      <div>
-      { dataEffect && filterValues &&
-          Object.keys(dataEffect).map((e, i) => {
+      { error && <h1>{error}</h1>}
+      { data && filterValues &&
+          Object.keys(data).map((e, i) => {
             return (
             <span key={i}>
-               <CheckboxCategory list={dataEffect[e]} title={e} propagateCheck={handleCategoryChange}/>
+               <CheckboxCategory list={data[e]} title={e} propagateCheck={handleCategoryChange}/>
             </span>)
           })
       }
-      </div>
-        {data && data.associations &&
-          <div> <AssociationListStatic title="Result" associations={data.associations} /> </div> }
     </div>
   );
 }

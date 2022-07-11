@@ -32,10 +32,8 @@ function buildOperator(field, value) {
             return [operatorSort(value)]
         case 'research':
             return OperatorText(value)
-        case 'group':
-            return null
         default:
-            return null
+            return [{err: `Wrong operator name ${field}`}]
     }       
 }
 

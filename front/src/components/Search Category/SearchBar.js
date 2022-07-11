@@ -10,16 +10,18 @@ function SearchBar(props) {
     const [searchValue, setSearchValue] = useState(defaultValue);
 
     const handleInputChange = (value) => {
+
         setSearchValue(value);
-        props.search({ text : searchValue });
+        props.search({ text : value });
+
     };
   
     return (
-        <form>
+        <div>
             <TextField
                 id="search-bar"
                 className="text"
-                onChange={(e) => {
+                onKeyUp={(e) => {
                     handleInputChange(e.target.value);
                 }}
                 label="Chercher une association..."
@@ -30,7 +32,7 @@ function SearchBar(props) {
             <IconButton aria-label="search">
                 <SearchIcon style={{ fill: "blue" }} />
             </IconButton>
-        </form>
+        </div>
     )
 }
 

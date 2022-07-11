@@ -1,6 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import SearchController from '../../infrastructure/controller.js/SearchController';
+import { useState } from 'react';
 import SearchBar from '../Search Category/SearchBar';
 import FilterForm from './FilterForm';
 import AssociationListStatic from '../AssociationListStatic';
@@ -18,8 +17,7 @@ function SearchForm() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const [searchValue, setSearchValue] = useState({text: "",filter: ""})
-    //var value = ["",""];
+    const [searchValue, setSearchValue] = useState({text: "", filter: ""})
 
     const getData = async (props) => {
 
@@ -29,17 +27,13 @@ function SearchForm() {
             var json = searchValue
             json["filter"] = JSON.stringify(props.filter)
             setSearchValue(json)
-            //value[1] = JSON.stringify(props.filter)
         }
         else if (props.text !== undefined)
         {
             var json = searchValue
-            json["text"] = JSON.stringify(props.text)
-            setSearchValue(json)
-            //value[0] = JSON.stringify(props.text)            
+            json["text"] = props.text
+            setSearchValue(json)       
         }
-
-        console.log("value", searchValue)
 
         try {
           var response;

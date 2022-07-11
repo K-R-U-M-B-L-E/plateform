@@ -3,14 +3,14 @@ const associationRepository = require("../3.repository/associationRepository");
 //const { isAssociationField, isThereMandatoryFields, isAlreadyExisting, compareAssociations } = require("../utils/utilsAssociation");
 const { isJsonValid, isJsonEmpty } = require("../utils/utils");
 const { json } = require("express");
-const { pipelineBuilder, textPipelineBuilder } = require("../utils/utilsSearch");
+const { pipelineBuilder } = require("../utils/utilsSearch");
 const { getAssociationFields, isThisAssociationField } = require("../utils/utilsAssociation");
 
 
 
 
 //SEARCH IN ASSOCIATION
-async function searchByFilter(req)
+async function search(req)
 {
     var pipeline= pipelineBuilder(req.body)
     if (pipeline.hasOwnProperty('err')) {return pipeline}
@@ -28,31 +28,7 @@ async function searchByFilter(req)
     }
 }
 
-
-//SEARCH IN ASSOCIATION BY TEXT
-async function searchByText(req)
-{
-    var researchValue = null;
-    if (isJsonEmpty(req.body) || req.body.research === undefined)
-        researchValue = ""
-    else
-        researchValue = req.body.research
-
-    var pipeline= textPipelineBuilder(researchValue)
-    
-    try {
-        var response = await repository.search(pipeline);
-        return response
-    }
-    catch (err)
-    {
-        console.error(err)
-        return (err)
-    }
-}
-
-
-//SEARCH IN ASSOCIATION BY TEXT
+//SEARCH ALL VALUE OF CERTAIN KEY OF ASSOCIATION DOCUMENT
 async function searchKey(req)
 {
     if(req.body === undefined || isJsonEmpty(req.body))
@@ -82,5 +58,21 @@ async function searchKey(req)
     }
 }
 
+async function testsearch(req)
+{
+    
+    try {
 
-module.exports = {searchByFilter, searchByText, searchKey};
+        var response = await repository.search(req.body);
+        return response
+
+    }
+    catch (err)
+    {
+        console.error(err)
+        return (err)
+    }
+}
+
+
+module.exports = {search, searchKey, testsearch};

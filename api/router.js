@@ -67,9 +67,10 @@ app.delete('/users/:id', (req, res) => { Usercontroller.deleteSingle(req,res)})
 
 /////////////////////////////////////////////// SEARCH //////////////////////////////////////////////////////
 
+app.post('/search', (req, res) => { Searchcontroller.search(req,res) })
 app.post('/keysearch', (req, res) => { Searchcontroller.searchKey(req,res) })
-app.post('/search', (req, res) => { Searchcontroller.searchByFilter(req,res) })
-app.post('/textsearch', (req, res) => { Searchcontroller.searchByText(req,res) })
+app.post('/textsearch', (req, res) => { Searchcontroller.search(req,res) })
+app.post('/testsearch', (req, res) => { Searchcontroller.testsearch(req,res) })
 
 
 

@@ -1,14 +1,6 @@
 const { isJsonValid, isJsonEmpty } = require("./utils");
 const { isThisAssociationField } = require("./utilsAssociation")
 
-function textPipelineBuilder(researchValue)
-{
-   return( [
-        { $match: { $text: { $search:  researchValue} } },
-        { $sort: { score: { $meta: "textScore" } } }
-    ])
-}
-
 function pipelineBuilder(body) {
     
     pipeline = [];
@@ -18,11 +10,16 @@ function pipelineBuilder(body) {
         if (value != null || value !== [])
         {
             const operatorPipelineBuild = buildOperator(operator, value)
-            if (operatorPipelineBuild.hasOwnProperty('err')) { return operatorPipelineBuild}
-            else pipeline.push(operatorPipelineBuild)
+            for (i in operatorPipelineBuild)
+            {
+                var request = operatorPipelineBuild[i]
+                if (request.hasOwnProperty('err')) { return request}
+                pipeline.push(request)
+            }
         }
             
     }
+    console.log("pipeline", pipeline)
     return pipeline
 }
 
@@ -30,9 +27,11 @@ function buildOperator(field, value) {
 
     switch(field) {
         case 'match':
-            return operatorMatch(value)            
+            return [operatorMatch(value)]           
         case 'sort':
-            return operatorSort(value)
+            return [operatorSort(value)]
+        case 'research':
+            return OperatorText(value)
         case 'group':
             return null
         default:
@@ -68,15 +67,12 @@ function operatorMatch(toMatch) {
     operator = {}
     operator["$match"] = fieldsList
 
-    console.log(operator)
-    console.log(operator.$match.visible)
     return operator;
 }
 
 function operatorSort(toSort) {
 
     fieldsList = {}
-    console.log(toSort)
     for (field in toSort)
     {
         var value = toSort[field]
@@ -95,4 +91,11 @@ function operatorSort(toSort) {
     return operator;
 }
 
-module.exports={pipelineBuilder, textPipelineBuilder}
+function OperatorText(researchValue)
+{
+   return([
+        { $match: { $text: { $search:  researchValue} } },
+        { $sort: { score: { $meta: "textScore" } } }])
+}
+
+module.exports={pipelineBuilder, OperatorText}

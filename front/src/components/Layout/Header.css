@@ -1,0 +1,72 @@
+.Header {
+  background-color: white;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: row; 
+}
+.Brand {
+  justify-content: center;
+  align-items: center;
+}
+
+.Brand-logo {
+    height: 8vmin;
+    pointer-events: none;
+    margin-left: 3vmin;
+  }
+
+.Brand-title {
+    font-size: 8vmin;
+    font-weight: bold;
+
+    color: #1B69E4;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+
+  font-size: 3.5vmin;
+
+  margin-left: auto;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.header-link-text {
+  margin-right: 3vmin;
+}
+
+
+.button-abonner-header {
+  font-weight: 500;
+  font-size: 2.5vmin;
+  border-radius: 6px;
+  border-color: #232221;
+  border-width: 10px;
+  color: #232221;
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  line-height: 3vmin;
+  opacity: 1;
+  padding: 8px 18px;
+  user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+
+  vertical-align: center;
+  }
+
+.button-abonner-header:hover {
+  transform: scale(1.05);
+}
+
+.profil-pic
+{
+  justify-content: right;
+  align-items: right;
+  
+  margin-left: auto;
+}

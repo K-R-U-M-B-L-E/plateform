@@ -1,4 +1,6 @@
 import css from './AssociationPage.css'
+import Header from './Layout/Header';
+import Footer from './Layout/Footer'
 
 const asso = {
     "name": "Gotta Go Hack",
@@ -18,18 +20,21 @@ const asso = {
 function AssociationPageStatic()
 {
     return (
-        <div id="css">
-            <div className="general-presentation">
-                <div className="logo">
-                    <img src="http://www.educol.net/photo-nuages-i28835.html" />
+        <div> <Header />       
+            <div id="css">
+                <div className="general-presentation">
+                    <div className="logo">
+                        <img src="https://longwoodgardens.org/sites/default/files/highlight_images/77065.jpg" alt="" />
+                    </div>
+                    <div className="general-presentation-text">
+                        <div className="title">{asso.name}</div>
+                        <div className="subtile">{asso.university}, {asso.city}</div>
+                        <div className="description">{asso.description}</div>
+                    </div>
+                    
                 </div>
-                <div className="general-presentation-text">
-                    <div className="title">{asso.name}</div>
-                    <div className="subtile">{asso.university},{asso.city}</div>
-                    <div className="description">{asso.description}</div>
-                </div>
-                
-            </div>
+            </div> 
+            <Footer />
         </div>
     )
 }

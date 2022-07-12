@@ -1,15 +1,19 @@
 import React from 'react';
 import { useState } from 'react';
-import SearchBar from '../Search Category/SearchBar';
-import FilterForm from './FilterForm';
+import SearchBar from '../Search component/SearchBar';
+import FilterForm from '../Search component/FilterForm';
 import AssociationListStatic from '../AssociationListStatic';
 import { CircularProgress } from "@mui/material";
 import searchController from '../../infrastructure/controller.js/SearchController';
+import SortMenu from '../Search component/SortMenu';
 
 
-const defaultSort = {
-    sort: []
-  };
+const sortOptions = [
+    "A->Z",
+    "Z->A",
+    "Par Ecole",
+    "Par nombre de partenariat réalisé",
+]
 
 function SearchForm() {
 
@@ -17,11 +21,10 @@ function SearchForm() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const [searchValue, setSearchValue] = useState({text: "", filter: ""})
+    const [searchValue, setSearchValue] = useState({text: "", filter: "", sort: ""})
 
     const getData = async (props) => {
 
-        console.log("props", props)
         if (props.filter !== undefined)
         {
             var json = searchValue
@@ -34,10 +37,17 @@ function SearchForm() {
             json["text"] = props.text
             setSearchValue(json)       
         }
+        else if (props.sort !== undefined)
+        {
+            var json = searchValue
+            json["sort"] = props.sort
+            setSearchValue(json)
+        }
+
 
         try {
           var response;
-          response = await searchController.search({ text: searchValue.text, filter: searchValue.filter});
+          response = await searchController.search({ text: searchValue.text, filter: searchValue.filter, sort: searchValue.sort });
           console.log("response",response)
           setData(response);
           setError(null);
@@ -52,6 +62,7 @@ function SearchForm() {
     }
 
     return (<div>
+        <SortMenu search={getData} sortOptions={sortOptions} />
         <SearchBar search={getData}/>
         <FilterForm search={getData}/>
 

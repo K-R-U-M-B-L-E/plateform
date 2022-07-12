@@ -9,11 +9,12 @@ import UserPage from "./routes/UserPage";
 import AdminPage from "./routes/AdminPage";
 import FilterForm from "./components/Search component/FilterForm";
 import SearchForm from "./components/Forms/SearchForm";
+import AssociationPageStatic from "./components/AssociationPageStatic";
 
 
 export default function App() {
 
-    return (
+    /*return (
       <div>
         <BrowserRouter>
           <div className="App">
@@ -45,5 +46,7 @@ export default function App() {
             </Routes>
           </div>
       </BrowserRouter>
-      </div>)
+      </div>)*/
+
+      return <AssociationPageStatic />
 }

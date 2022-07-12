@@ -53,7 +53,7 @@ async function getByName(req)
 }
 
 //CHECK IF AN ASSO SI NOT ALREADY EXISTING BEFORE ADD IT TO THE DB
-async function alreadyExisting(body) {
+async function alreadyExistingAssociation(body) {
 
     const req = {
         params : {
@@ -79,7 +79,7 @@ async function addSingle(req)
     var [fieldsLegitimate, incorrectField] = isAssociationField(req.body)
     if (!fieldsLegitimate) { return { exception : `Wrong field name ${incorrectField}` }}
 
-    var isAlreadyExisting = await alreadyExisting(req.body)
+    var isAlreadyExisting = await alreadyExistingAssociation(req.body)
     if (isAlreadyExisting) { return { exception: `This association already exists`}}
 
     try {

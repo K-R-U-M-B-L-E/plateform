@@ -3,7 +3,11 @@
 export default function PipelineBuilder(props) {
 
     var pipeline = {}
-    pipeline["match"] = toMatchBuilder(props)
+    if (props.text !== "")
+        pipeline["research"] = props.text
+
+    if (props.filter !== "")
+        pipeline["match"] = toMatchBuilder(props.filter)
 
     return JSON.stringify(pipeline)   
 }

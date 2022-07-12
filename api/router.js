@@ -28,7 +28,7 @@ app.use((error, request, response, next) => {
 
 app.get('/associations', (req, res) => { Associationcontroller.getAll(req, res) })
 app.get('/associations/visible', (req, res) => { Associationcontroller.getVisible(req, res) })
-app.get('/associations/invisible', (req, res) => { Associationcontroller.getInvisible(req, res) })
+app.get('/associations/invisible', auth.authMember, (req, res) => { Associationcontroller.getInvisible(req, res) })
 app.get('/associations/name/:name', (req, res) => { Associationcontroller.getByName(req, res) })
 app.get('/associations/:id', (req, res) => { Associationcontroller.getSingle(req, res) })
 app.post('/associations', (req, res) => { Associationcontroller.addSingle(req,res) })
@@ -67,14 +67,15 @@ app.delete('/users/:id', (req, res) => { Usercontroller.deleteSingle(req,res)})
 
 /////////////////////////////////////////////// SEARCH //////////////////////////////////////////////////////
 
+app.post('/search', (req, res) => { Searchcontroller.search(req,res) })
 app.post('/keysearch', (req, res) => { Searchcontroller.searchKey(req,res) })
-app.post('/search', (req, res) => { Searchcontroller.searchByFilter(req,res) })
-app.post('/textsearch', (req, res) => { Searchcontroller.searchByText(req,res) })
+app.post('/textsearch', (req, res) => { Searchcontroller.search(req,res) })
+app.post('/testsearch', (req, res) => { Searchcontroller.testsearch(req,res) })
 
 
 
 
 
 app.all('*', function(req, res) {
-    res.status(400).json({err : "Bad Request dans le router"});
+    res.status(400).json({err : "Bad Request"});
 })

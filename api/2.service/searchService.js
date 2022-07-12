@@ -10,15 +10,16 @@ const { getAssociationFields, isThisAssociationField } = require("../utils/utils
 
 
 //SEARCH IN ASSOCIATION
-async function searchByFilter(req)
+async function search(req)
 {
-    console.log("body received", req.body)
     var pipeline= pipelineBuilder(req.body)
-    console.log("pipelinebuild", pipeline)
+    if (pipeline.hasOwnProperty('err')) {return pipeline}
 
     try {
+
         var response = await repository.search(pipeline);
         return response
+
     }
     catch (err)
     {
@@ -27,33 +28,16 @@ async function searchByFilter(req)
     }
 }
 
-
-//SEARCH IN ASSOCIATION BY TEXT
-async function searchByText(req)
-{
-    var pipeline= 
-        [
-            { $match: { $text: { $search: req.body.research } } },
-            { $sort: { score: { $meta: "textScore" } } }
-        ]
-    
-    try {
-        var response = await repository.search(pipeline);
-        return response
-    }
-    catch (err)
-    {
-        console.error(err)
-        return (err)
-    }
-}
-
-
-//SEARCH IN ASSOCIATION BY TEXT
+//SEARCH ALL VALUE OF CERTAIN KEY OF ASSOCIATION DOCUMENT
 async function searchKey(req)
 {
+    if(req.body === undefined || isJsonEmpty(req.body))
+        return { 'err': "Empty Body"}
+
     try {
         const keys = req.body.keys
+        if (keys.length === 0)
+            return { 'exception': "No keys pass as arguments"}
         
         var response = {}
         var i;
@@ -61,7 +45,7 @@ async function searchKey(req)
         {
             const key = keys[i]
             if(!isThisAssociationField(key))
-                return ({"err": `Wrong field name ${key}`})
+                return ({"exception": `Wrong field name ${key}`})
             var keyValues = await repository.getFieldValue(key)
             response[key] = keyValues
         }
@@ -74,5 +58,21 @@ async function searchKey(req)
     }
 }
 
+async function testsearch(req)
+{
+    
+    try {
 
-module.exports = {searchByFilter, searchByText, searchKey};
+        var response = await repository.search(req.body);
+        return response
+
+    }
+    catch (err)
+    {
+        console.error(err)
+        return (err)
+    }
+}
+
+
+module.exports = {search, searchKey, testsearch};

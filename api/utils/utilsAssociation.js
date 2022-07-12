@@ -50,4 +50,5 @@ function compareAssociations(associationA, associationB)
 }
 
 
+
 module.exports = {isAssociationField, isThereMandatoryFields, compareAssociations, isThisAssociationField, getAssociationFields}

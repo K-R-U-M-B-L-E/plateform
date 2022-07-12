@@ -1,27 +1,15 @@
 const { response } = require("express");
-//const utils = require("../utils/utilsAssociation");
+const { returnStatus } = require("../utils/utils");
 const service = require("../2.service/searchService");
 
 //SEARCH ASSOCIATION ON FILTER
 //Check : - if an error occured => return 500
 
-async function searchByFilter(req, res) 
+async function search(req, res) 
 {
-    console.log("SEARCH CONTROLLER")
-    var response = await service.searchByFilter(req);
-    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
-    else res.status(200).json(response);
-}
-
-
-//SEARCH ASSOCIATION ON TEXT
-//Check : - if an error occured => return 500
-
-async function searchByText(req, res) 
-{
-    var response = await service.searchByText(req);
-    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var response = await service.search(req);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
@@ -31,9 +19,18 @@ async function searchByText(req, res)
 async function searchKey(req, res) 
 {
     var response = await service.searchKey(req);
-    if (response.hasOwnProperty('err')) { res.status(500).json(response)}
-    else res.status(200).json(response);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
 }
 
 
-module.exports = {searchByFilter, searchByText, searchKey};
+//TEST ENVIRONMENT ONLY
+async function testsearch(req, res) 
+{
+    var response = await service.testsearch(req);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)
+}
+
+
+module.exports = {search, searchKey, testsearch};

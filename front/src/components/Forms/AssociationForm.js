@@ -15,7 +15,8 @@ const defaultValues = {
 function AssociationForm() {
 
     const [formValues, setFormValues] = useState(defaultValues);
-    const [answerStatus, setAnswerStatus] = useState("");
+    const [answerStatus, setAnswerStatus] = useState(null);
+    const [errorStatus, setErrorStatus] = useState(null);
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
@@ -34,41 +35,49 @@ function AssociationForm() {
         setAnswerStatus(response)
       } 
       catch(err) {
-        setAnswerStatus(err)
+        setErrorStatus(err)
       }
     }
   
     return (
-        <form onSubmit={handleSubmit}>
-            <Box
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-                >
-                <div>
-                    <TextField
-                        id="name"
-                        type="text"
-                        label="Nom"
-                        required={true}
-                        onChange={handleInputChange}
-                    />
-                    <TextField
-                         id="university"
-                         type="text"
-                         label="Ecole"
-                         required={true}
-                         onChange={handleInputChange}
-                    />
-                </div>
+        <div>
+            { !answerStatus &&
+            <form onSubmit={handleSubmit}>
+                <Box
+                    sx={{
+                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    >
+                    <div>
+                        <TextField
+                            id="name"
+                            type="text"
+                            label="Nom"
+                            required={true}
+                            onChange={handleInputChange}
+                        />
+                        <TextField
+                            id="university"
+                            type="text"
+                            label="Ecole"
+                            required={true}
+                            onChange={handleInputChange}
+                        />
+                    </div>
 
-                <Button variant="contained" color="primary" type="submit">
-                    Valider
-                </Button>
-            </Box>
-        </form>
+                    <Button variant="contained" color="primary" type="submit">
+                        Valider
+                    </Button>
+                </Box>
+            </form>
+            }
+
+            { errorStatus && <div>Association already existing</div> }
+            { answerStatus && !answerStatus.exception && <div>Association Successfully created</div> }
+            
+        </div>
     );
 }
 

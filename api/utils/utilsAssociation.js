@@ -46,7 +46,9 @@ function isThereMandatoryFields(req)
 //CHECK IF TWO ASSOCIATION ARE THE SAME
 function compareAssociations(associationA, associationB)
 {
-    return associationA["name"] === associationB["name"] && associationA["university"] === associationB["university"]
+    console.log("asso A", associationA, "asso B", associationB)
+    return associationA["name"].toLowerCase() === associationB["name"].toLowerCase() 
+    && associationA["university"].toLowerCase() === associationB["university"].toLowerCase()
 }
 
 

@@ -3,6 +3,7 @@ const { isAssociationField, isThereMandatoryFields, isAlreadyExisting, compareAs
 const { isJsonValid, isJsonEmpty } = require("../utils/utils");
 const { json } = require("express");
 var ObjectId = require('mongodb').ObjectId; 
+const searchRepository = require("../3.repository/searchRepository")
 
 
 
@@ -55,13 +56,14 @@ async function getByName(req)
 //CHECK IF AN ASSO SI NOT ALREADY EXISTING BEFORE ADD IT TO THE DB
 async function alreadyExistingAssociation(body) {
 
-    const req = {
-        params : {
-            name: body.name
-        }
-    }
-    var isExisting = await repository.getByName(req)
-    if (!(isExisting.association === undefined) && compareAssociations(isExisting.association, body))
+    const pipeline = [
+        { $match: { $text: { $search:  body.name} } },
+        { $sort: { score: { $meta: "textScore" } } }]
+
+    var findMatch = await searchRepository.search(pipeline)
+    const isExisting = findMatch.associations.length > 0
+
+    if ((isExisting) && compareAssociations(findMatch.associations[0], body))
         return true
         
     else return false 

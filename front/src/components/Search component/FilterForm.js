@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import searchController from '../../infrastructure/controller.js/SearchController';
-import CheckboxCategory from '../Search Category/CheckboxCategory';
+import CheckboxCategory from './CheckboxCategory';
 
 
 function initDefaultFormValues(props) {

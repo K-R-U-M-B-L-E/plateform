@@ -7,7 +7,7 @@ import UniversityPage from "./routes/UniversityPage";
 import ProjectPage from "./routes/ProjectPage";
 import UserPage from "./routes/UserPage";
 import AdminPage from "./routes/AdminPage";
-import FilterForm from "./components/Forms/FilterForm";
+import FilterForm from "./components/Search component/FilterForm";
 import SearchForm from "./components/Forms/SearchForm";
 
 
@@ -46,5 +46,4 @@ export default function App() {
           </div>
       </BrowserRouter>
       </div>)
-
 }

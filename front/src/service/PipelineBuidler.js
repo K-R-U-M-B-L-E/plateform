@@ -9,6 +9,8 @@ export default function PipelineBuilder(props) {
     if (props.filter !== "")
         pipeline["match"] = toMatchBuilder(props.filter)
 
+    pipeline["sort"] = toSortBuilder(props.sort)
+
     return JSON.stringify(pipeline)   
 }
 
@@ -35,4 +37,19 @@ function toMatchBuilder(props) {
         pipeline[category] = filter
     }
     return pipeline
+}
+
+function toSortBuilder(sortValue) {
+
+    switch(sortValue) {
+        case "0":
+            return [["name",1]]
+        case "1":
+            return [["name", -1]]
+        case "2":
+            return [["university", 1],["name",1]]
+        default:
+            return [["tag", 1]]
+    }
+
 }

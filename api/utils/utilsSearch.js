@@ -73,11 +73,12 @@ function operatorSort(toSort) {
     fieldsList = {}
     for (field in toSort)
     {
-        var value = toSort[field]
+        var value = toSort[field][0]
+        var order = toSort[field][1]
         if (!isThisAssociationField(value))
             return {'err' : `Wrong field name ${value} in sort operator`}
         
-        fieldsList[value] = 1
+        fieldsList[value] = order
     }
 
     if (isJsonEmpty(fieldsList))

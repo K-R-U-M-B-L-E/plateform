@@ -9,6 +9,7 @@ import UserPage from "./routes/UserPage";
 import AdminPage from "./routes/AdminPage";
 import FilterForm from "./components/Search component/FilterForm";
 import SearchForm from "./components/Forms/SearchForm";
+import LoginPage from "./routes/LoginPage";
 
 
 export default function App() {
@@ -32,7 +33,8 @@ export default function App() {
 
             <Routes>
 
-              <Route path="/" element={ <HomePage />} />
+              <Route path="/" element={ <LoginPage />} />
+              <Route path="/home" element={ <HomePage />} />
               <Route path="/associationform" element={ <AssociationForm />} />
               <Route path="/association/:id" element={ <AssociationPage/>} />
               <Route path="/project/:id" element={ <ProjectPage/>} />

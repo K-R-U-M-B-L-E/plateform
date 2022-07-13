@@ -32,6 +32,7 @@ async function getVisible(req, res)
 
 async function getInvisible(req, res) 
 {
+    console.log(req);
     var response = await service.getInvisible();
     var statusCode = returnStatus(response)
     res.status(statusCode).json(response)

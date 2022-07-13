@@ -26,6 +26,12 @@ class UserController {
         var response = await apiHandler.patch({query:'/users/' + props.id })
         return response;
     }
+
+    async login(props) {
+        console.log(props.body)
+        var response = await apiHandler.post({query:'/users/login', body: JSON.stringify(props.body)})
+        return response;
+    }
 }
 
 const userController = new UserController();

@@ -8,6 +8,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require("../4.model/user");
 
+const config = require('../config.json')
+
 
 
 //GET ALL THE USERS
@@ -133,11 +135,9 @@ async function login(req)
     if (!similarPassword) { return { exception : `Incorrect Password` }}
     
     else { return {
-        userId: response.user._id,
-        token: jwt.sign(
-            { userId: response.user._id },
-            'RANDOM_TOKEN_SECRET', //FIX ME : RANDOMIZE KEY STRING
-            { expiresIn: '24h' }
+        response: { status : "Logged In"},
+        token: jwt.sign({ userId: response.user._id },config.secret, { expiresIn: config.tokenLife }),
+        refreshtoken: jwt.sign({ userId: response.user._id },config.refreshTokenSecret,{ expiresIn: config.refreshTokenLife }
         )
     }}
 }

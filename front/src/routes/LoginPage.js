@@ -3,7 +3,7 @@ import controller from "../infrastructure/controller.js/UserController";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
 
@@ -69,6 +69,7 @@ export default function LoginPage()  {
             </form>
 
             { error && <div>{error.message}</div>}
+            { data && <Navigate to="/" />}
         </div>
         );
 }

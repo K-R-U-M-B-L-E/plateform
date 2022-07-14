@@ -13,7 +13,7 @@ import LoginPage from "./routes/LoginPage";
 import { UserContext } from "./UserContext";
 import ProfilPage from "./routes/ProfilPage";
 import { PrivateRoute, ProtectedRoute } from "./PrivateRoute";
-
+import AssociationPageStatic from "./components/AssociationPageStatic";
 
 export default function App() {
 

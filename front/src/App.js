@@ -14,9 +14,10 @@ import { UserContext } from "./UserContext";
 import ProfilPage from "./routes/ProfilPage";
 import { PrivateRoute, ProtectedRoute } from "./PrivateRoute";
 import AssociationPageStatic from "./components/AssociationPageStatic";
+import LoginWithCookie  from "./CookieLogin";
 
 export default function App() {
-
+  
   const [user, setUser] = useState(null);
 
     return (
@@ -42,7 +43,9 @@ export default function App() {
             </ul>
             <hr />
 
+          
           <UserContext.Provider value={{user, setUser}}>
+          <LoginWithCookie />
             <Routes>
                 <Route path="/login" element={ <LoginPage />} />
                 <Route path="/admin/login" element={ <LoginPage />} />

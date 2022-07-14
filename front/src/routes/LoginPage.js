@@ -12,7 +12,7 @@ const defaultState = {
     password: ""
 };
 
-export default function LoginPage()  {
+export default function LoginPage(props)  {
 
     const {user, setUser} = useContext(UserContext);
 

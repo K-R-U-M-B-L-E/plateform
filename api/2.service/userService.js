@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const User = require("../4.model/user");
 
 const config = require('../config.json')
-
+cookieParser = require('cookie-parser');
 
 
 //GET ALL THE USERS
@@ -169,16 +169,33 @@ async function login(req)
     var similarPassword = await bcrypt.compare(req.body.password, response.user.password)
     if (!similarPassword) { return { exception : `Incorrect Password` }}
     
-    else { return {
-        id: response.user._id,
-        status : "Logged In",
-        credential: response.user.credential,
-        token: jwt.sign({ userId: response.user._id },config.secret, { expiresIn: config.tokenLife }),
-        refreshtoken: jwt.sign({ userId: response.user._id },config.refreshTokenSecret,{ expiresIn: config.refreshTokenLife }
-        )
+    else {
+        const token = jwt.sign({ userId: response.user._id },config.secret, { expiresIn: config.tokenLife })
+        repository.updateSingle({params: {id: response.user._id}, body: {token: token}});
+
+        return {
+        response : { 
+            id: response.user._id,
+            status : "Logged In",
+            credential: response.user.credential
+        },
+        token: token
+    }}
+}
+
+async function loginWithToken(req)
+{
+    var response = await repository.getByToken({ params : { token: req.body.token } })
+    if (response.user === undefined || response === null) { return { err : `Invalid token` }}
+    
+    else {
+        return {
+            id: response.user._id,
+            status : "Logged In",
+            credential: response.user.credential
     }}
 }
 
 
 
-module.exports = {getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle, login};
+module.exports = {getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle, login, loginWithToken};

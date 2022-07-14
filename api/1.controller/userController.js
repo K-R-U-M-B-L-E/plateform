@@ -3,6 +3,11 @@ const utils = require("../utils/utilsUser");
 const service = require("../2.service/userService");
 const { returnStatus } = require("../utils/utils");
 
+let options = {
+    maxAge: 1000 * 60 * 300, // would expire after 15 minutes
+    httpOnly: false, // The cookie only accessible by the web server
+    signed: false // Indicates if the cookie should be signed
+}
 
 
 //GET ALL USERS
@@ -84,9 +89,16 @@ async function login(req, res)
 {
     var response = await service.login(req);
     var statusCode = returnStatus(response)
-    res.status(statusCode).json(response)
-    //res.cookie('token', response.token);
-    //res.cookie('refresh token', response.refreshtoken);
+    res.cookie('token',response.token, options)
+    res.status(statusCode).json(response.response)
+    
 }
 
-module.exports = { getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle, login };
+async function loginWithToken(req, res)
+{
+    var response = await service.loginWithToken(req);
+    var statusCode = returnStatus(response)
+    res.status(statusCode).json(response)    
+}
+
+module.exports = { getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle, login, loginWithToken };

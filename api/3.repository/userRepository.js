@@ -66,6 +66,22 @@ async function getByEmail(req)
     })
 }
 
+
+//GET AN USER DOCUMENT BY TOKEN
+async function getByToken(req)
+{
+    return new Promise(function(resolve, reject) {
+    const token = req.params.token;
+    users.find({ token: token }).toArray((err, items) => {
+        if (err) {
+          console.error(err)
+          reject({ err : err })
+        }
+        resolve({  user : items[0] })
+      })
+    })
+}
+
 //ADD AN USER DOCUMENT
 async function addSingle(user)
 {
@@ -115,4 +131,4 @@ async function deleteSingle(req)
   })
 }
 
-module.exports = {getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle};
+module.exports = {getAll, getSingle, getByEmail, getByToken, addSingle, deleteSingle, updateSingle};

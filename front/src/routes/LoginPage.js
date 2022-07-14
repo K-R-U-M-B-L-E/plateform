@@ -1,9 +1,10 @@
-import React, { Component, useState } from "react";
+import React, { Component, useContext, useState } from "react";
 import controller from "../infrastructure/controller.js/UserController";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../UserContext";
 
 
 const defaultState = {
@@ -12,6 +13,8 @@ const defaultState = {
 };
 
 export default function LoginPage()  {
+
+    const {user, setUser} = useContext(UserContext);
 
     const [state, setState] = useState(defaultState)
     const [data, setData] = useState("");
@@ -29,9 +32,8 @@ export default function LoginPage()  {
         var response;
         response= await controller.login({body: state})
         console.log(response)
-
-        //userHasAuthenticated(true);
-        useNavigate.nav("/")
+        setUser(response)
+        
 
         setData(response);
         setError(null);

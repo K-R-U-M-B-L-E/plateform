@@ -135,7 +135,8 @@ async function login(req)
     if (!similarPassword) { return { exception : `Incorrect Password` }}
     
     else { return {
-        response: { status : "Logged In"},
+        id: response.user._id,
+        status : "Logged In",
         token: jwt.sign({ userId: response.user._id },config.secret, { expiresIn: config.tokenLife }),
         refreshtoken: jwt.sign({ userId: response.user._id },config.refreshTokenSecret,{ expiresIn: config.refreshTokenLife }
         )

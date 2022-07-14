@@ -85,6 +85,8 @@ async function login(req, res)
     var response = await service.login(req);
     var statusCode = returnStatus(response)
     res.status(statusCode).json(response)
+    //res.cookie('token', response.token);
+    //res.cookie('refresh token', response.refreshtoken);
 }
 
 module.exports = { getAll, getSingle, getByEmail, addSingle, deleteSingle, updateSingle, login };

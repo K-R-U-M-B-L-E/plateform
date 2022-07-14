@@ -8,6 +8,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require("../4.model/user");
 
+const config = require('../config.json')
+
 
 
 //GET ALL THE USERS
@@ -64,7 +66,8 @@ async function addSingle(req)
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
-            password: hash
+            password: hash,
+            credential: "member"
     });
 
     try {
@@ -76,6 +79,40 @@ async function addSingle(req)
         return err;
     }
        
+}
+
+//ADD A SINGLE USER
+//Check : - if mandatory fields are presents => return exception
+//        - if every fields presents is an acceptable fields => return exception
+//        - if a user with same email alreday exists => return error
+async function addAdmin(req)
+{
+    var [mandatoryFields, absentField] = isThereMandatoryFields(req.body)
+    if (!mandatoryFields) { return { exception : `Mandatory field ${absentField} is missing`}}
+
+    var [fieldsLegitimate, incorrectField] = isUserFields(req.body)
+    if (!fieldsLegitimate) { return { exception : `Wrong field name ${incorrectField}` }}
+
+    var isAlreadyExisting = await getByEmail({ params : { email: req.body.email } })
+    if (isAlreadyExisting.hasOwnProperty('user')) { return { err : `User with this email already exists` }}
+
+    var hash = await bcrypt.hash(req.body.password, 5)
+    const user = new User({
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            email: req.body.email,
+            password: hash,
+            crdential: "admin"
+    });
+
+    try {
+        var response = await repository.addSingle(user) 
+        return response
+    }
+    catch(err) {
+        console.error(err)
+        return err;
+    }       
 }
 
 
@@ -133,11 +170,11 @@ async function login(req)
     if (!similarPassword) { return { exception : `Incorrect Password` }}
     
     else { return {
-        userId: response.user._id,
-        token: jwt.sign(
-            { userId: response.user._id },
-            'RANDOM_TOKEN_SECRET', //FIX ME : RANDOMIZE KEY STRING
-            { expiresIn: '24h' }
+        id: response.user._id,
+        status : "Logged In",
+        credential: response.user.credential,
+        token: jwt.sign({ userId: response.user._id },config.secret, { expiresIn: config.tokenLife }),
+        refreshtoken: jwt.sign({ userId: response.user._id },config.refreshTokenSecret,{ expiresIn: config.refreshTokenLife }
         )
     }}
 }

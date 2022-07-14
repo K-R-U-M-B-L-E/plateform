@@ -14,7 +14,7 @@ import AssociationPageStatic from "./components/AssociationPageStatic";
 
 export default function App() {
 
-    /*return (
+    return (
       <div>
         <BrowserRouter>
           <div className="App">
@@ -46,7 +46,5 @@ export default function App() {
             </Routes>
           </div>
       </BrowserRouter>
-      </div>)*/
-
-      return <AssociationPageStatic />
+      </div>)
 }

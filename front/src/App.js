@@ -1,20 +1,20 @@
 import React, { useState } from"react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import HomePage from "./routes/HomePage";
-import AssociationForm from "./components/Forms/AssociationForm";
-import AssociationPage from "./routes/AssociationPage";
-import UniversityPage from "./routes/UniversityPage";
-import ProjectPage from "./routes/ProjectPage";
-import UserPage from "./routes/UserPage";
-import AdminPage from "./routes/AdminPage";
+import HomePage from "./pages/HomePage";
+import AssociationForm from "./components/form/AssociationForm";
+import AssociationPage from "./pages/AssociationPage";
+import UniversityPage from "./pages/UniversityPage";
+import ProjectPage from "./pages/ProjectPage";
+import UserPage from "./pages/UserPage";
+import AdminPage from "./pages/AdminPage";
 import FilterForm from "./components/Search component/FilterForm";
-import SearchForm from "./components/Forms/SearchForm";
-import LoginPage from "./routes/LoginPage";
-import { UserContext } from "./UserContext";
-import ProfilPage from "./routes/ProfilPage";
-import { PrivateRoute, ProtectedRoute } from "./PrivateRoute";
+import SearchForm from "./components/form/SearchForm";
+import LoginPage from "./pages/LoginPage";
+import { UserContext } from "./context/UserContext";
+import ProfilPage from "./pages/ProfilPage";
+import { PrivateRoute, ProtectedRoute } from "./features/access/PrivateRoute";
 import AssociationPageStatic from "./components/AssociationPageStatic";
-import LoginWithCookie  from "./CookieLogin";
+import LoginWithCookie  from "./utils/CookieLogin";
 
 export default function App() {
   
@@ -45,7 +45,6 @@ export default function App() {
 
           
           <UserContext.Provider value={{user, setUser}}>
-          <LoginWithCookie />
             <Routes>
                 <Route path="/login" element={ <LoginPage />} />
                 <Route path="/admin/login" element={ <LoginPage />} />

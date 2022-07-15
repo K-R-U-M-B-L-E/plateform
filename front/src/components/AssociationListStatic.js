@@ -1,4 +1,4 @@
-import MediaCard from './Card/MediaCard.js';
+import MediaCard from './card/MediaCard.js';
 
 function AssociationListStatic(props) {
 

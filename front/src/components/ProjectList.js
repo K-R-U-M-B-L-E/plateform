@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
-import projectController from "../infrastructure/controller.js/ProjectController.js";
-import ProjectCard from "./Card/ProjectCard.js";
+import projectController from "../services/controllers/ProjectController.js";
+import ProjectCard from "./card/ProjectCard.js";
 
 function ProjectList(props) {
 

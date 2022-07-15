@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-import associationController from "../../infrastructure/controller.js/AssociationController.js";
+import associationController from "../../services/controllers/AssociationController.js";
 import MyAlert from "../Alerte.js";
 
 const defaultValues = {

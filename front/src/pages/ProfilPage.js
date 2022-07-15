@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import userController from "../infrastructure/controller.js/UserController";
-import { UserContext } from "../UserContext";
+import userController from "../services/controllers/UserController";
+import { UserContext } from "../context/UserContext";
 
 
 function ProfilPage() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import requestBuilder from "./requestBuilder"
+import requestBuilder from "../utils/RequestBuilder"
 
 class Request {
 

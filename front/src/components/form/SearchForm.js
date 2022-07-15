@@ -4,7 +4,7 @@ import SearchBar from '../Search component/SearchBar';
 import FilterForm from '../Search component/FilterForm';
 import AssociationListStatic from '../AssociationListStatic';
 import { CircularProgress } from "@mui/material";
-import searchController from '../../infrastructure/controller.js/SearchController';
+import searchController from '../../services/controllers/SearchController';
 import SortMenu from '../Search component/SortMenu';
 
 

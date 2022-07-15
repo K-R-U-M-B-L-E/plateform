@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { CircularProgress } from "@mui/material";
-import MediaCard from './Card/MediaCard.js';
-import associationController from "../infrastructure/controller.js/AssociationController.js";
+import MediaCard from './card/MediaCard.js';
+import associationController from "../services/controllers/AssociationController.js";
 
 function AssociationList(props) {
 

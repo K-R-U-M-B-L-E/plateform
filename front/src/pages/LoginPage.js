@@ -1,10 +1,10 @@
 import React, { Component, useContext, useEffect, useState } from "react";
-import controller from "../infrastructure/controller.js/UserController";
+import controller from "../services/controllers/UserController";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Navigate, useNavigate } from "react-router-dom";
-import { UserContext } from "../UserContext";
+import { UserContext } from "../context/UserContext";
 
 
 const defaultState = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import apiHandler from "../APIHandler"
-import PipelineBuilder from '../../service/PipelineBuidler';
+import PipelineBuilder from '../../utils/PipelineBuidler';
 
 class SearchController {
 

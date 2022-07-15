@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import searchController from '../../infrastructure/controller.js/SearchController';
+import searchController from '../../services/controllers/SearchController';
 import CheckboxCategory from './CheckboxCategory';
 
 

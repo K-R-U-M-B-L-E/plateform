@@ -1,9 +1,9 @@
 import React from "react";
 import "./Footer.css"
 
-import linkedin from '../../ressources/13.png';
-import twitter from '../../ressources/14.png';
-import instagram from '../../ressources/15.png';
+import linkedin from '../assets/social/13.png';
+import twitter from '../assets/social/14.png';
+import instagram from '../assets/social/15.png';
 
 
 function Footer() {

@@ -1,6 +1,6 @@
-import css from './AssociationPage.css'
-import Header from './Layout/Header';
-import Footer from './Layout/Footer'
+import css from './AssociationPage.css';
+import Header from '../layouts/Header';
+import Footer from '../layouts/Footer';
 
 const asso = {
     "name": "Gotta Go Hack",

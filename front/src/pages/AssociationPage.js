@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { useParams } from "react-router-dom";
 import ProjectList from "../components/ProjectList";
-import associationController from "../infrastructure/controller.js/AssociationController";
+import associationController from "../services/controllers/AssociationController";
 
 function AssociationPage() {
 

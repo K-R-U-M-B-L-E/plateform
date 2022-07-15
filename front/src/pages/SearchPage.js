@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import { useParams } from "react-router-dom";
 import AssociationListStatic from "../components/AssociationListStatic";
 import ProjectList from "../components/ProjectList";
-import associationController from "../infrastructure/controller.js/AssociationController";
+import associationController from "../services/controllers/AssociationController";
 
 function SearchPage() {
 

@@ -88,8 +88,9 @@ async function deleteSingle(req, res)
 async function login(req, res)
 {
     var response = await service.login(req);
-    var statusCode = returnStatus(response)
-    res.cookie('token',response.token, options)
+    var statusCode = returnStatus(response);
+    if (statusCode === 200)
+        res.cookie('token',response.token, options)
     res.status(statusCode).json(response.response)
     
 }

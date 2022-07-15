@@ -14,7 +14,6 @@ import { UserContext } from "./context/UserContext";
 import ProfilPage from "./pages/ProfilPage";
 import { PrivateRoute, ProtectedRoute } from "./features/access/PrivateRoute";
 import AssociationPageStatic from "./components/AssociationPageStatic";
-import LoginWithCookie  from "./utils/CookieLogin";
 
 export default function App() {
   

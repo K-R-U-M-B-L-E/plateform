@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { Navigate } from 'react-router-dom';
 import { UserContext } from './UserContext';
 
-export function PrivateRoute({children}) {
+export function PrivateRoute({children, fromPath}) {
 
     const { user, setUser} = useContext(UserContext);
 
-    return user ? children : <Navigate to="/login" />;
+    return user ? children : <Navigate to="/login" from={fromPath}/>;
   };
 
 export function ProtectedRoute({children}) {

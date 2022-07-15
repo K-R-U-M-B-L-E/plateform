@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import controller from "../infrastructure/controller.js/UserController";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -12,7 +12,7 @@ const defaultState = {
     password: ""
 };
 
-export default function LoginPage()  {
+export default function LoginPage(props)  {
 
     const {user, setUser} = useContext(UserContext);
 
@@ -21,7 +21,31 @@ export default function LoginPage()  {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState("");
 
-    const nav = useNavigate();
+    useEffect(() => {
+
+        const loginWithCookie = async () => {
+
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+
+                for (var i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].split("=")
+                    const name = cookie[0];
+                    const value = cookie[1];
+
+                    if(name==="token")
+                    {
+                        var response;
+                        response= await controller.loginByToken({body: {token : value}});
+                        setUser(response);
+                        setData(response);
+                        setError(null);
+                    }
+                }
+            }
+        }
+        loginWithCookie()
+    }, [])
 
     const handleChange = e => {
        state[e.currentTarget.id] = e.currentTarget.value;

@@ -5,6 +5,7 @@ import LightButton from "./ui/LightButton";
 import PlainButton from "./ui/PlainButton";
 import { Typography } from '@mui/material';
 import TextButton from './ui/TextButton';
+import AssociationCard from './card/AssociationCard';
 
 export default function TestUI() {
 
@@ -50,6 +51,8 @@ export default function TestUI() {
         </li>
         
     </ul>
+
+    <AssociationCard image="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg" name="EPIT'AS" university="EPITA" description="Tournois de poker, Evènements inter-écoles" />
 
      </div>)
 

@@ -17,7 +17,8 @@ function MediaCard(props) {
   }
 
   return (
-    <Card sx={{ maxWidth: 345 }} onClick={HandleClick}>
+    <Card sx={{ maxWidth: 345,
+     }} onClick={HandleClick}>
       <CardActionArea >
         <CardMedia
           component="img"

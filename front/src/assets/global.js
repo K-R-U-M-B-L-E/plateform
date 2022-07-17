@@ -32,38 +32,73 @@ const Krumbletheme = createTheme({
       ].join(','),
       categoryTitle: {
         fontSize: 32,
-        color: "black"
+        color: "black",
+        fontFamily: [
+          'Inter',
+          'sans-serif',
+        ].join(',')
       },
       categoryTitleBlue: {
         fontSize: 32,
-        color: "#1B69E4"
+        color: "#1B69E4",
+        fontFamily: [
+          'Inter',
+          'sans-serif',
+        ].join(',')
       },
       cardTitle: {
         fontSize: 20,
-        color: "black"
+        color: "black",
+        fontFamily: [
+          'Inter',
+          'sans-serif',
+        ].join(',')
       },
       cardSubTitle: {
         fontSize: 20,
         color: "black",
-        fontWeight: "bold"
+        fontWeight: "bold",
+        fontFamily: [
+          'Inter',
+          'sans-serif',
+        ].join(',')
+
       },
       body1: {
         fontSize: 16,
-        color: "black"
+        color: "black",
+        lineHeight: "19px",
+        fontFamily: [
+          'Inter',
+          'sans-serif',
+        ].join(',')
       },
       body2: {
         fontSize: 16,
         color: "#1B69E4",
+        lineHeight: "19px",
+        fontFamily: [
+          'Inter',
+          'sans-serif',
+        ].join(',')
       },
       title: {
         fontSize: 24,
         fontWeight: 500,
-        color: "black"
+        color: "black",
+        fontFamily: [
+          'Inter',
+          'sans-serif',
+        ].join(',')
       },
       fieldLabel: {
         fontSize: 18,
         fontWeight: 300,
-        color: "#716F6D"
+        color: "#716F6D",
+        fontFamily: [
+          'Inter',
+          'sans-serif',
+        ].join(',')
       },
     }
   });

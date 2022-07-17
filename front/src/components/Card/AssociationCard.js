@@ -19,7 +19,7 @@ function AssociationCard(props) {
   }
 
   return (
-    <Card onClick={HandleClick} sx={{width: 300, height: 360, border: 0, borderColor: theme.palette.white, background: theme.palette.white.main}}>
+    <Card onClick={HandleClick} sx={{width: 300, height: 360, boxShadow: "none", border: 0, background: theme.palette.white.main}}>
       <CardActionArea>
         <CardMedia sx={{width: 300, height: 280, //background: theme.palette.krumbleGray.dark, 
         border: 1,

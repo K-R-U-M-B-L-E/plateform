@@ -14,13 +14,19 @@ import { UserContext } from "./context/UserContext";
 import ProfilPage from "./pages/ProfilPage";
 import { PrivateRoute, ProtectedRoute } from "./features/access/PrivateRoute";
 import AssociationPageStatic from "./components/AssociationPageStatic";
+import Krumbletheme from "./assets/global";
+import { ThemeProvider } from "@mui/material";
+import TestUI from "./components/testUI";
+import { DisplayResult } from "./components/Result";
+import { CssBaseline } from '@mui/material/';
 
 export default function App() {
   
-  const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);
 
     return (
-      <div>
+      <ThemeProvider theme={Krumbletheme}>         
+        <CssBaseline/>
         <BrowserRouter>
           <div className="App">
             <ul>
@@ -58,5 +64,5 @@ export default function App() {
           </UserContext.Provider>
           </div>
       </BrowserRouter>
-      </div>)
+      </ThemeProvider>)
 }

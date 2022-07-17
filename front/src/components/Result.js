@@ -6,6 +6,7 @@ import { Typography, Container, Box } from "@mui/material";
 import LightButton from "./ui/LightButton";
 
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { useState } from "react";
 
 
 //DUMB DATA
@@ -80,20 +81,37 @@ const associations = [
 
 export function DisplayResult(props) {
 
+    const [seeMoreProjects, setSeeMoreProjects] = useState(false)
+    const [seeMoreAssociations, setSeeMoreAssociations] = useState(false)
+
+    const OnSeeMoreProjects = () =>
+    {
+        console.log("click projects")
+        setSeeMoreProjects(true);
+    }
+
+    const OnSeeMoreAssociations = () =>
+    {
+        console.log("click associations")
+        setSeeMoreAssociations(true)
+    }
+
 
     return (
+    <div>
+    { !seeMoreAssociations && !seeMoreProjects &&
     <Container>
         <Container disableGutters >
             <FillInBox height={50} />
             <Container disableGutters>
                 <Typography variant="categoryTitle">Projets Associatifs</Typography>
                 <Box sx={{display: "flex", justifyContent: 'flex-end'}}>
-                    <LightButton message="Voir plus" endIcon={<ChevronRightIcon />} />
+                    <LightButton message="Voir plus" endIcon={<ChevronRightIcon />} handleClick={OnSeeMoreProjects} />
                 </Box>
             </Container>
 
             <FillInBox height={20} />
-            <ProjectListStatic projects={projects} />
+            <ProjectListStatic projects={props.projectsInlight} />
             <FillInBox height={30} />
         </Container>
 
@@ -104,12 +122,17 @@ export function DisplayResult(props) {
             <Container disableGutters>
                 <Typography variant="categoryTitle">Associations</Typography>
                 <Box sx={{display: "flex", justifyContent: 'flex-end'}}>
-                    <LightButton message="Voir plus" endIcon={<ChevronRightIcon />} />
+                    <LightButton message="Voir plus" endIcon={<ChevronRightIcon />} handleClick={OnSeeMoreAssociations}/>
                 </Box>
             </Container>
 
             <FillInBox height={20} />
-            <AssociationListStatic associations={associations} />
+            <AssociationListStatic associations={props.associationsInlight} />
         </Container>
-    </Container>)
+    </Container> }
+
+    { seeMoreAssociations && <AssociationListStatic associations={props.associations} />}
+    { seeMoreProjects && <ProjectListStatic projects={props.projects} />}
+    </div>
+    )
 }

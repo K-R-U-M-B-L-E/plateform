@@ -6,6 +6,7 @@ import AssociationListStatic from '../AssociationListStatic';
 import { CircularProgress } from "@mui/material";
 import searchController from '../../services/controllers/SearchController';
 import SortMenu from '../Search component/SortMenu';
+import { DisplayResult } from '../Result';
 
 
 const sortOptions = [
@@ -69,7 +70,7 @@ function SearchForm() {
         <div>
             {loading && <div><CircularProgress /></div>}
             {error && (<div>{`There is a problem fetching the post data - ${error}`}</div>)}
-            {data && <AssociationListStatic associations={data.associations} />}
+            {data && <DisplayResult projects={[]} projectsInlight={[]} associations={data.associations} associationsInlight={[data.associations[0],data.associations[1],data.associations[2],data.associations[3]]}  />}
         </div>
         
     </div>)

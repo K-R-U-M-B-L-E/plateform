@@ -26,10 +26,40 @@ const Krumbletheme = createTheme({
     },
 
     typography: {
-      body1_medium: {
-        lineHeight: 1.6,
+      categoryTitle: {
+        fontSize: 32,
+        color: "black"
+      },
+      categoryTitleBlue: {
+        fontSize: 32,
+        color: "#1B69E4"
+      },
+      cardTitle: {
+        fontSize: 20,
+        color: "black"
+      },
+      cardSubTitle: {
+        fontSize: 20,
+        color: "black",
+        fontWeight: "bold"
+      },
+      body1: {
+        fontSize: 16,
+        color: "black"
+      },
+      body2: {
+        fontSize: 16,
+        color: "#1B69E4",
+      },
+      title: {
         fontSize: 24,
         fontWeight: 500,
+        color: "black"
+      },
+      fieldLabel: {
+        fontSize: 18,
+        fontWeight: 300,
+        color: "#716F6D"
       },
     }
   });

@@ -18,7 +18,7 @@ export default function LightButton(props) {
         color: theme.palette.krumbleGray.dark,
         textTransform: 'none',
         }} 
-    variant="outlined" startIcon={props.icon} onClick={props.handleClick} >
+    variant="outlined" startIcon={props.startIcon} endIcon={props.endIcon} onClick={props.handleClick} >
         {props.message}
       </Button>
   );

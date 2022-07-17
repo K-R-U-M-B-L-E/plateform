@@ -1,18 +1,32 @@
+import AssociationCard from './card/AssociationCard.js';
 import MediaCard from './card/MediaCard.js';
+import { Grid, Typography } from "@mui/material";
+import Item from "@mui/material/ListItem"
 
 function AssociationListStatic(props) {
+    
+    var key =0;
+
+    const incrementKey = () => {
+        key += 1;
+    }
 
     return (
     <div className="App">
-        <h1>{props.title}</h1>
+        <Typography variant="categoryTitle">{props.title}</Typography>
 
-        <ul>
-        {props.associations.map(({ _id, name }) => (
-            <li>
-                <MediaCard id={_id} title={name} description="lorem ipsum" image="https://tse1.mm.bing.net/th?id=OIP.YuzpYI2Ya5mbjWLN_yj60QHaEf&pid=Api" />
-            </li>
-            ))}
-        </ul>
+        <Grid container>
+            {props.associations.map((association) => (
+                <Grid item xs={3} sx={{ justifyContent: "center", alignItems:"center" }} key={key}>
+                    <Item sx={{  display: "flex", flexDirection: "column"}}>
+                        <AssociationCard id={association._id} image={association.image} name={association.name} university={association.university} description={association.description} />
+                    </Item>
+                    { incrementKey() }
+                </Grid>
+                
+                ))
+            }
+        </Grid>
         
     </div>);
 }

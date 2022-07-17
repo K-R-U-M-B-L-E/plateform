@@ -7,6 +7,10 @@ const { augmentColor } = palette;
 const Krumbletheme = createTheme({
     
     palette: {
+      background: {
+        default: "#F8F5F0"
+      },
+      
       krumbleBlue: augmentColor({ color: { main: "#1B69E4" }}),
 
       krumbleGray: augmentColor ({
@@ -47,7 +51,7 @@ const Krumbletheme = createTheme({
         ].join(',')
       },
       cardTitle: {
-        fontSize: 20,
+        fontSize: 18,
         color: "black",
         fontFamily: [
           'Inter',
@@ -55,7 +59,7 @@ const Krumbletheme = createTheme({
         ].join(',')
       },
       cardSubTitle: {
-        fontSize: 20,
+        fontSize: 18,
         color: "black",
         fontWeight: "bold",
         fontFamily: [
@@ -65,7 +69,7 @@ const Krumbletheme = createTheme({
 
       },
       body1: {
-        fontSize: 16,
+        fontSize: 14,
         color: "black",
         lineHeight: "19px",
         fontFamily: [
@@ -74,7 +78,7 @@ const Krumbletheme = createTheme({
         ].join(',')
       },
       body2: {
-        fontSize: 16,
+        fontSize: 14,
         color: "#1B69E4",
         lineHeight: "19px",
         fontFamily: [
@@ -83,7 +87,7 @@ const Krumbletheme = createTheme({
         ].join(',')
       },
       title: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: 500,
         color: "black",
         fontFamily: [
@@ -92,7 +96,7 @@ const Krumbletheme = createTheme({
         ].join(',')
       },
       fieldLabel: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 300,
         color: "#716F6D",
         fontFamily: [

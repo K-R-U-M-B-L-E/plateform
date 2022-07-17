@@ -58,11 +58,11 @@ export default function TestUI() {
     <AssociationCard image="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg" name="EPIT'AS" university="EPITA" description="Tournois de poker, Evènements inter-écoles" />
     <hr/>
     <ProjectCard  title="Hackathon" university="EPITA" association="Gotta Go Hack" date="Novembre 2022" description="Gotta Go Hack, l'association pour l'#innovation et l'#entrepreneuriat à EPITA: Ecole d'Ingénieurs en Informatique recherche des entreprises partenaires pour son 4ème #Hackathon, de novembre 2022. " 
-    support={["Budget","Materiel", "Intervenant"]}/>
+    support={["Budget","Matériel", "Intervenants"]}/>
     <ProjectCard  title="Hackathon" university="EPITA" association="Gotta Go Hack" date="Novembre 2022" description="Gotta Go Hack, l'association pour l'#innovation et l'#entrepreneuriat à EPITA: Ecole d'Ingénieurs en Informatique recherche des entreprises partenaires pour son 4ème #Hackathon, de novembre 2022. " 
-    support={["Materiel", "Intervenant"]}/>
+    support={["Matériel", "Intervenants"]}/>
     <ProjectCard  title="Hackathon" university="EPITA" association="Gotta Go Hack" date="Novembre 2022" description="Gotta Go Hack, l'association pour l'#innovation et l'#entrepreneuriat à EPITA: Ecole d'Ingénieurs en Informatique recherche des entreprises partenaires pour son 4ème #Hackathon, de novembre 2022. " 
-    support={[ "Intervenant"]}/>
+    support={[ "Intervenants"]}/>
     <hr />
      </div>)
 

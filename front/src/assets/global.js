@@ -1,21 +1,37 @@
 import { createTheme } from '@mui/material/styles';
+import { blue, pink, red } from "@mui/material/colors";
 const { palette } = createTheme();
 const { augmentColor } = palette;
-const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
+
 
 const Krumbletheme = createTheme({
+    
     palette: {
-      krumbleBlue: createColor('#1B69E4'),
-      darkGray: createColor('#232221'),
-      gray: createColor('#716F6D'),
-      lightGray: createColor('#C0C0C0'),
-      beige: createColor('#CEC6BA'),
-      cream: createColor('#F8F5F0'),
-      white: createColor('#FAFAF9'),
-      green: createColor("#53BF9D"),
-      yellow: createColor("#FFC54D"),
-      red: createColor("#F94C66")
+      krumbleBlue: augmentColor({ color: { main: "#1B69E4" }}),
+
+      krumbleGray: augmentColor ({
+          color: {
+            dark: '#232221',
+            main: '#716F6D',
+            light: '#C0C0C0'
+          }       
+      }),
+
+      popYellow: augmentColor({ color: { main: "#FFC54D" } }),
+      popRed: augmentColor({ color: { main: "#F94C66" } }),
+      popGreen: augmentColor({ color: { main: "#53BF9D" } }),
+
+      cream: augmentColor({ color: { main: "#F8F5F0" }}),
+      white: augmentColor({ color: { main: "#FAFAF9" }}),
     },
+
+    typography: {
+      body1_medium: {
+        lineHeight: 1.6,
+        fontSize: 24,
+        fontWeight: 500,
+      },
+    }
   });
 
 export default Krumbletheme;

@@ -1,17 +1,20 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import theme from "../../assets/global";
+import { useTheme } from '@mui/material/styles';
 
 
 export default function BlueButton(props) {
+
+  const theme = useTheme();
+  
   return (
       <Button style={{
         borderRadius: 10,
         fontSize: "20px",
         fontWeight: "550",
         textTransform: 'none',
-        backgroundColor: "#1B69E4",
-        color: "#FFFFFF",
+        backgroundColor: theme.palette.krumbleBlue.main,
+        color: theme.palette.white.main,
         boxShadow: 'none',
         width: "270px",
         height: "70px"

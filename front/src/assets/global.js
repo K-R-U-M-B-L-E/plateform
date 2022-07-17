@@ -26,6 +26,10 @@ const Krumbletheme = createTheme({
     },
 
     typography: {
+      fontFamily: [
+        'Inter',
+        'sans-serif',
+      ].join(','),
       categoryTitle: {
         fontSize: 32,
         color: "black"

@@ -10,6 +10,8 @@ import ProjectCard from './card/ProjectCard';
 
 export default function TestUI() {
 
+    const support = ["Budget", "Materiel", "Intervenant"]
+
     const onClick = () => {
         console.log("click")
       }
@@ -56,7 +58,11 @@ export default function TestUI() {
     <AssociationCard image="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg" name="EPIT'AS" university="EPITA" description="Tournois de poker, Evènements inter-écoles" />
     <hr/>
     <ProjectCard  title="Hackathon" university="EPITA" association="Gotta Go Hack" date="Novembre 2022" description="Gotta Go Hack, l'association pour l'#innovation et l'#entrepreneuriat à EPITA: Ecole d'Ingénieurs en Informatique recherche des entreprises partenaires pour son 4ème #Hackathon, de novembre 2022. " 
-    support="[financial,people]"/>
+    support={["Budget","Materiel", "Intervenant"]}/>
+    <ProjectCard  title="Hackathon" university="EPITA" association="Gotta Go Hack" date="Novembre 2022" description="Gotta Go Hack, l'association pour l'#innovation et l'#entrepreneuriat à EPITA: Ecole d'Ingénieurs en Informatique recherche des entreprises partenaires pour son 4ème #Hackathon, de novembre 2022. " 
+    support={["Materiel", "Intervenant"]}/>
+    <ProjectCard  title="Hackathon" university="EPITA" association="Gotta Go Hack" date="Novembre 2022" description="Gotta Go Hack, l'association pour l'#innovation et l'#entrepreneuriat à EPITA: Ecole d'Ingénieurs en Informatique recherche des entreprises partenaires pour son 4ème #Hackathon, de novembre 2022. " 
+    support={[ "Intervenant"]}/>
     <hr />
      </div>)
 

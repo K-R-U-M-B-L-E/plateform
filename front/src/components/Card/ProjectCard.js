@@ -7,6 +7,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Divider } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { SupportIcons } from './SupportIcons';
+import MyDivider from '../ui/Divider';
 
 
 function ProjectCard(props) {
@@ -32,7 +34,9 @@ function ProjectCard(props) {
 
         <CardContent>
           <Typography gutterBottom variant="body1">{props.description}</Typography>     
-          <Divider />
+          <MyDivider />         
+          <SupportIcons support={props.support} />
+          
         </CardContent>
       </CardActionArea>
     </Card>

@@ -9,15 +9,16 @@ export default function TextButton(props) {
 
   return (
       <Button style={{
-        fontSize: "18px",
+        fontSize: "14px",
         fontWeight: "400",
         textTransform: 'none',
         textDecoration: "underline",
         color: theme.palette.krumbleGray.dark,
         boxShadow: 'none',
         backgroundColor: 'transparent',
+        textAlign: 'left'
         }} 
-    variant="contained" onClick={props.handleClick} >
+    onClick={props.handleClick} startIcon={props.startIcon} endIcon={props.endIcon} fullWidth={true}>
         {props.message}
       </Button>
   );

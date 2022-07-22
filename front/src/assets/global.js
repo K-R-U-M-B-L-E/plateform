@@ -95,6 +95,15 @@ const Krumbletheme = createTheme({
           'sans-serif',
         ].join(',')
       },
+      subTitle: {
+        fontSize: 22,
+        fontWeight: 200,
+        color: "black",
+        fontFamily: [
+          'Inter',
+          'sans-serif',
+        ].join(',')
+      },
       fieldLabel: {
         fontSize: 16,
         fontWeight: 300,

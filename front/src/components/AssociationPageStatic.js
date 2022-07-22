@@ -1,21 +1,8 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import ButtonBase from '@mui/material/ButtonBase';
 import { useTheme } from '@mui/material/styles';
-import TextButton from './ui/TextButton';
-
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
-
-const Img = styled('img')({
-  margin: 'auto',
-  display: 'block',
-  maxWidth: '100%',
-  maxHeight: '100%',
-});
+import AssociationHeader from './association/associationHeader';
+import { Box, Typography } from '@mui/material';
+import MyDivider from './ui/Divider';
 
 
 const asso = {
@@ -41,46 +28,23 @@ function AssociationPageStatic()
     const theme = useTheme();
     return (
         <div>
-            
-        <Grid container spacing={10} justifyContent="space-between">
-        <Grid item>
-            <Img sx={{ width: 300, height: 300, borderRadius: 5 }} alt="complex" src={asso.image} />
-        </Grid>
-        <Grid item xl sm container justifyContent="space-between" alignItems="left">
-          <Grid item xs container direction="column" spacing={2} justifyContent="space-between">
-            <Grid item>
-              <Typography gutterBottom variant="title" component="div">
-                {asso.name}
-              </Typography>
-              <Typography variant="subTitle" gutterBottom>
-                {asso.university}, {asso.city}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="body1" color="text.secondary">
-                {asso.description}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="body1" color="text.secondary">
-                Une autre phrase écrite en dessous et très interessante.
-              </Typography>
-            </Grid>
-            <Grid item>
-                <Grid container justifyContent="space-between" >
-                    <Grid item>
-                        <TextButton message="Ajouter aux favoris" startIcon={<FavoriteBorderIcon />}/>
-                    </Grid>
-                    <Grid item>
-                    { asso.partnerPropositionAllowed && 
-                        <TextButton message="Contacter pour un partenariat spontané" startIcon={<MailOutlinedIcon />}/>
-                    }
-                    </Grid>
-                </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid> 
+            <AssociationHeader asso={asso} />
+
+            <Box container sx={{ height:200, width: 'auto', borderRadius:7, backgroundColor:theme.palette.white.main}}>
+                <Typography variant="title">{asso.projet.name}</Typography>
+
+                <Typography variant="subtitle" component="div">Evènement</Typography>
+                <Typography variant="body1">{asso.projet.description}</Typography>
+
+                <MyDivider />
+
+                <Typography variant="subtitle" component="div">Pourquoi nous avons besoin de vous ?</Typography>
+                <Typography variant="body1">{asso.projet.help}</Typography>
+                
+
+                <MyDivider />
+
+            </Box>
       </div>        
     )
 }

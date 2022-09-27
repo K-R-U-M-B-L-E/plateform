@@ -1,5 +1,4 @@
-import React from "react";
-import './Header.css';
+import React, { useState } from "react";
 import logo from "../assets/logo.svg";
 
 import AppBar from "@mui/material/AppBar";
@@ -15,6 +14,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import SearchForm from "../components/form/SearchForm";
 
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -23,6 +23,7 @@ function Header() {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [areFilterVisible, setAreFilterVisible] = useState(false);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -31,6 +32,12 @@ function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleOpenFiltersMenu = () => {
+    //setAreFilterVisible(true)
+    console.log("set")
+  };
+
     return (
       <AppBar position="static" color="transparent">
       <Container maxWidth="xl">
@@ -55,6 +62,7 @@ function Header() {
             <div className="Brand-title">Krumble</div>
           </Typography>
 
+          <SearchForm areFilterVisible={areFilterVisible} />
         
           <div className="profil-pic">
             <Box sx={{ flexGrow: 0 }}>
@@ -89,6 +97,7 @@ function Header() {
           </div>
         </Toolbar>
       </Container>
+      <Button onClick={handleOpenFiltersMenu()}>Afficher Filtres</Button>
     </AppBar>);
 }
 

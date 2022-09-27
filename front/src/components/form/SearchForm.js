@@ -7,6 +7,7 @@ import { CircularProgress } from "@mui/material";
 import searchController from '../../services/controllers/SearchController';
 import SortMenu from '../Search component/SortMenu';
 import { DisplayResult } from '../Result';
+import inlightBuilder from '../../utils/inlightBuilder';
 
 
 const sortOptions = [
@@ -16,15 +17,17 @@ const sortOptions = [
     "Par nombre de partenariat réalisé",
 ]
 
-function SearchForm() {
+function SearchForm(props) {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const areFilterVisible = props.areFilterVisible;
+
     const [searchValue, setSearchValue] = useState({text: "", filter: "", sort: ""})
 
-    const getData = async (props) => {
+    const feedSearchValue = (props) => {
 
         if (props.filter !== undefined)
         {
@@ -44,7 +47,11 @@ function SearchForm() {
             json["sort"] = props.sort
             setSearchValue(json)
         }
+    }
 
+    const getData = async (props) => {
+
+        feedSearchValue(props);
 
         try {
           var response;
@@ -65,12 +72,13 @@ function SearchForm() {
     return (<div>
         <SortMenu search={getData} sortOptions={sortOptions} />
         <SearchBar search={getData}/>
-        <FilterForm search={getData}/>
+
+        <FilterForm search={getData}/>     
 
         <div>
             {loading && <div><CircularProgress /></div>}
             {error && (<div>{`There is a problem fetching the post data - ${error}`}</div>)}
-            {data && <DisplayResult projects={[]} projectsInlight={[]} associations={data.associations} associationsInlight={[data.associations[0],data.associations[1],data.associations[2],data.associations[3]]}  />}
+            {data && <DisplayResult projects={[]} projectsInlight={[]} associations={data.associations} associationsInlight={inlightBuilder(data.associations)}  />}
         </div>
         
     </div>)

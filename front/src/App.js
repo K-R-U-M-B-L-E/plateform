@@ -20,6 +20,19 @@ import TestUI from "./components/testUI";
 import { DisplayResult } from "./components/Result";
 import { CssBaseline } from '@mui/material/';
 
+/*<ul>
+              <li>
+              <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+              <NavLink to="/associationform">Ajouter une association</NavLink>
+              </li>
+              <li>
+              <NavLink to="/admin/dashboard">Admin section</NavLink>
+              </li>
+            </ul>
+            <hr />*/
+      
 export default function App() {
   
     const [user, setUser] = useState(null);
@@ -29,7 +42,7 @@ export default function App() {
         <CssBaseline/>
         <BrowserRouter>
           <div className="App">
-            <ul>
+          <ul>
               <li>
               <NavLink to="/">Home</NavLink>
               </li>
@@ -37,23 +50,16 @@ export default function App() {
               <NavLink to="/associationform">Ajouter une association</NavLink>
               </li>
               <li>
-              <NavLink to="/search">Rechercher</NavLink>
-              </li>
-              <li>
-              <NavLink to="/profil">User Profil</NavLink>
-              </li>
-              <li>
               <NavLink to="/admin/dashboard">Admin section</NavLink>
               </li>
             </ul>
             <hr />
-
           
           <UserContext.Provider value={{user, setUser}}>
             <Routes>
                 <Route path="/login" element={ <LoginPage />} />
                 <Route path="/admin/login" element={ <LoginPage />} />
-                <Route path="/" element={<PrivateRoute><HomePage/></PrivateRoute>} />
+                <Route path="/" element={<PrivateRoute><SearchForm /></PrivateRoute>} />
                 <Route path="/associationform" element={ <PrivateRoute><AssociationForm/></PrivateRoute>} />
                 <Route path="/association/:id" element={ <PrivateRoute><AssociationPage/></PrivateRoute>} />
                 <Route path="/university/:id" element={<PrivateRoute><UniversityPage/></PrivateRoute>} />

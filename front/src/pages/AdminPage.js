@@ -1,11 +1,13 @@
-import React from 'react';
-import AssociationList from "../components/AssociationList";
+import Header from '../layouts/Header'
+import Footer from '../layouts/Footer'
 
-function AdminPage()
-{
-    return (
-        <AssociationList context="invisible"/>
-    )
+function AdminPage(props) {
+   return (
+      <div>
+         <Header />
+         <Footer />
+      </div>
+   )
 }
 
-export default AdminPage;
+export default AdminPage

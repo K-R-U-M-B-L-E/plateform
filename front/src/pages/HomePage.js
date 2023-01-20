@@ -1,11 +1,9 @@
-import React from 'react';
-import AssociationList from "../components/AssociationList";
+import Header from '../layouts/Header'
+import Footer from '../layouts/Footer'
 
-function HomePage()
-{
-    return (
-        <AssociationList context="visible"/>
-    )
+// Argument à prendre => liste des asso et projet poussés
+function HomePage(props) {
+   return <h1>Hello there !</h1>
 }
 
-export default HomePage;
+export default HomePage

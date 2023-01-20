@@ -5,8 +5,8 @@ import LightButton from "./ui/LightButton";
 import PlainButton from "./ui/PlainButton";
 import { Typography } from '@mui/material';
 import TextButton from './ui/TextButton';
-import AssociationCard from './card/AssociationCard';
-import ProjectCard from './card/ProjectCard';
+import AssociationCard from './Card/AssociationCard';
+import ProjectCard from './Card/ProjectCard';
 
 export default function TestUI() {
 

@@ -6,7 +6,7 @@ export function PrivateRoute({children, fromPath}) {
 
     const { user, setUser} = useContext(UserContext);
 
-    return user ? children : <Navigate to="/login" from={fromPath}/>;
+    return user ? children : <Navigate to="asso/login" from={fromPath}/>;
   };
 
 export function ProtectedRoute({children}) {

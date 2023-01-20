@@ -1,4 +1,4 @@
-import ProjectCard from './card/ProjectCard';
+import ProjectCard from './Card/ProjectCard';
 import { Grid, Typography } from "@mui/material";
 
 function ProjectListStatic(props) {

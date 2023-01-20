@@ -12,7 +12,7 @@ class UserController {
         return response;
     }
 
-    async add(props) {
+    async signup(props) {
         var response = await apiHandler.post({query:'/users', body: props })
         return response;
     }
@@ -38,6 +38,7 @@ class UserController {
         var response = await apiHandler.post({query:'/users/logged', body: JSON.stringify(props.body)})
         return response;
     }
+
 }
 
 const userController = new UserController();

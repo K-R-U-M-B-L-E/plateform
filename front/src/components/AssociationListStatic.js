@@ -1,5 +1,5 @@
-import AssociationCard from './card/AssociationCard.js';
-import MediaCard from './card/MediaCard.js';
+import AssociationCard from './Card/AssociationCard.js';
+import MediaCard from './Card/MediaCard.js';
 import { Grid, Typography } from "@mui/material";
 import Item from "@mui/material/ListItem"
 

@@ -1,6 +1,5 @@
 import React from "react";
 import './Header.css';
-import logo from "../assets/logo.svg";
 
 import AppBar from "@mui/material/AppBar";
 import Box from '@mui/material/Box';

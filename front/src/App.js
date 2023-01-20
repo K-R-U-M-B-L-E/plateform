@@ -14,6 +14,9 @@ import HomePage from "./pages/HomePage";
 import TestUI from "./components/testUI";
 import { DisplayResult } from "./components/Result";
 
+import associationPage from "./pages/professional/AssociationPresentationPage"
+import ResultPage from "./pages/professional/ResultPage"
+
 
 
 
@@ -40,7 +43,8 @@ export default function App() {
                 <Route path="/asso/login" element={ <LoginAssociation />} />
                 <Route path="/pro/login" element={ <LoginEntreprise />} />
                 <Route path="/asso/signup" element={ <Signup />} />
-                <Route path="/" element={<PrivateRoute><HomePage/></PrivateRoute>} />
+                <Route path="/" element={<PrivateRoute><ResultPage profileImg="https://www.hdnicewallpapers.com/Walls/Big/Rainbow/Rainbow_on_Mountain_HD_Image.jpg"/></PrivateRoute>} />
+                <Route path="/asso/{id}" element={<PrivateRoute><associationPage/></PrivateRoute>} />
             </Routes>
           </UserContext.Provider>
           </div>

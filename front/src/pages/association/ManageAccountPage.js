@@ -1,21 +1,21 @@
-import React from 'react'
-import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
+import Box from '@mui/material/Box'
 import { Divider, Stack } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check'
-import Footer from '../../components/ui/layouts/Footer'
-import HeaderSetup from '../../components/ui/layouts/HeaderSetup'
-import InformationsPerso from '../../components/professional/ManageAccountPage/InformationsPerso'
-import InformationsEntreprise from '../../components/professional/ManageAccountPage/InformationsEntreprise'
-import InformationsCompte from '../../components/professional/ManageAccountPage/InformationsCompte'
-import BlueButton from '../../components/ui/button/BlueButton'
+import React from 'react'
+import BlueButton from '../../components/ui/BlueButton'
+import HeaderSetup from '../../layouts/HeaderSetup'
+import Footer from '../../layouts/Footer'
+import InformationsGenerales from '../../components/association/ManageAccountPage/InformationsGenerales'
+import InformationsCompte from '../../components/association/ManageAccountPage/InformationsCompte'
+import ContactsPrincipauxAsso from '../../components/association/ManageAccountPage/ContactsPrincipauxAsso'
 
-function ManageAccountPageEntreprise(props) {
+function ManageAccountPageAsso(props) {
    const theme = useTheme()
 
    return (
       <div>
-         <HeaderSetup title="Création du profil" page="1/2" />
+         <HeaderSetup title="Modification du profil" page="" />
          <div className="container">
             <Box
                sx={{
@@ -40,9 +40,11 @@ function ManageAccountPageEntreprise(props) {
                      alignItems: 'left',
                   }}
                >
-                  <InformationsPerso />
-                  <InformationsEntreprise />
+                  <InformationsGenerales />
+
                   <InformationsCompte />
+
+                  <ContactsPrincipauxAsso />
 
                   <Box
                      sx={{
@@ -56,9 +58,10 @@ function ManageAccountPageEntreprise(props) {
                </Stack>
             </Box>
          </div>
+
          <Footer />
       </div>
    )
 }
 
-export default ManageAccountPageEntreprise
+export default ManageAccountPageAsso

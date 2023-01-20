@@ -32,7 +32,7 @@ const Krumbletheme = createTheme({
       fontFamily: ['Inter', 'sans-serif'].join(','),
       categoryTitle: {
          fontSize: 32,
-         color: 'black',
+         color: '#232221',
          padding: 0,
          margin: 0,
          fontWeight: '600',
@@ -85,6 +85,18 @@ const Krumbletheme = createTheme({
          fontSize: 16,
          fontWeight: 300,
          color: '#716F6D',
+         fontFamily: ['Inter', 'sans-serif'].join(','),
+      },
+      projectCardTitle: {
+         fontSize: 28,
+         fontWeight: 600,
+         color: '#1B69E4',
+         lineHeight: '26px',
+         fontFamily: ['Inter', 'sans-serif'].join(','),
+      },
+      projectCardSubTitle: {
+         fontSize: 20,
+         color: '#232221',
          fontFamily: ['Inter', 'sans-serif'].join(','),
       },
    },

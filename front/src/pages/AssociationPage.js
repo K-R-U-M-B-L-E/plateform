@@ -33,11 +33,11 @@ function AssociationPage() {
 
    return (
       <div>
-         <h1>{params.id}</h1>
+         
          {loading && <div>A moment please...</div>}
          {error && (<div>{`There is a problem fetching the association data - ${error}`}</div>)}
 
-         {data && data.association && (<AssociationPresentationPage associationModel={data} />)}
+         {data && data.association && (<AssociationPresentationPage association={data.association} projects={null}/>)}
       </div>
    )
 }

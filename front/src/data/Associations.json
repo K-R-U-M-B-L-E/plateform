@@ -38,24 +38,35 @@
    
       "brief": "Hackathon, Innovation, Entrepreneuriat",
       "description": "Description standardisée de l’asso :Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Vitae aliquet nec ullamcorper sit amet risus. Diam vulputate ut pharetra sit. Nam libero justo laoreet sit amet cursus. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Sed enim ut sem viverra aliquet. Massa tincidunt dui ut ornare lectus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit.",
-      "projet": [
-         {
-            "name": "Hackathon",
-            "description": "explication de l’évènement : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Vitae aliquet nec ullamcorper sit amet risus. Diam vulputate ut pharetra sit. Nam libero justo laoreet sit amet cursus. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Sed enim ut sem viverra aliquet. Massa tincidunt dui ut ornare lectus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit.",
-            "help": "description de l’utililsation du budget, du rôle des intervenants, utilisation du matérial : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Vitae aliquet nec ullamcorper sit amet risus. Diam vulputate ut pharetra sit. Nam libero justo laoreet sit amet cursus. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Sed enim ut sem viverra aliquet. Massa tincidunt dui ut ornare lectus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat ",
-            "financial": "5000",
-            "intervenants": ["spe 1", "spe 2", "spé 3"]
-         }
-      ],
-      "social": [
-         { "name": "GitHub", "icon": "GitHubIcon" },
-         { "name": "Twitter", "icon": "TwitterIcon" },
-         { "name": "Facebook", "icon": "FacebookIcon" }
-      ],
-      "contact": {
-         "phone": "00.00.00.00.00",
-         "email": "email@email",
-         "website": "website.fr"
+      "photos": [{
+         "img": "chttps://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
+         "title": "Photos",
+         "order": 0
+      },
+      {
+      "img": "chttps://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
+         "title": "Photos",
+         "order": 1
+      },
+      {
+         "img": "chttps://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
+            "title": "Photos",
+            "order": 2
+      }],
+   "contacts": 
+   {
+      "primaryContact": 
+      {
+         "phoneNumber": "00.00.00.00.00",
+         "firstMail": "email@email",
+         "secondMail": "email@email"
+      },
+      "secondaryContact": {
+         "website": "website.fr",
+         "facebook": "fb",
+         "instagram": "insta"
       }
+   },
+   "helpExplanation": "help helpExplanation"
    }
 ]

@@ -1,6 +1,5 @@
 import MyDivider from "./ui/Divider";
 import AssociationListStatic from "./AssociationListStatic";
-import ProjectListStatic from "./ProjectListStatic";
 import { FillInBox, FillInHorizontalBox } from "./ui/FillInBox";
 import { Typography, Container, Box } from "@mui/material";
 import LightButton from "./ui/LightButton";

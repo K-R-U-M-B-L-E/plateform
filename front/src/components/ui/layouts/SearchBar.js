@@ -61,9 +61,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
    },
 }))
 
-function SearchBar({ profileImg }) {
+
+
+function SearchBar({ profileImg, handleSearch }) {
    const theme = useTheme()
    const borderColor = `1px solid ${theme.palette.krumbleGray.light}`
+
+   const handleChange = e => {
+
+      console.log(e.target.value)
+      handleSearch(e.target.value)
+   };
 
    return (
       <Box sx={{ flexGrow: 1 }}>
@@ -105,6 +113,7 @@ function SearchBar({ profileImg }) {
                   <StyledInputBase
                      placeholder="Search…"
                      inputProps={{ 'aria-label': 'search' }}
+                     onChange={handleChange}
                   />
                   <IconButton
                      aria-label="delete"

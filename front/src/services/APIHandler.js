@@ -1,21 +1,28 @@
 import React from 'react';
 import requestBuilder from "../utils/RequestBuilder"
+import Resource from "./Resource"
 
-class Request {
+//Get formed request
+//Return Resource Wrapper containing success or error
+class APIRequest {
 
-    async sendRequest(props) {
-        const response = await fetch(`${props.query}`, props.options);
+    async sendRequest(request) {
+        const response = await fetch(`${request.query}`, request.options);
         if (!response.ok) {
           throw new Error(`This is an HTTP error: The status is ${response.status}`);            
         }
         let serverAnswer = await response.json();
-        return serverAnswer;
-    
+        const wrappedAnswer = new Resource(response.status==200, serverAnswer);
+        
+        return wrappedAnswer
     }
 }
 
-const requestObject = new Request();
+const requestObject = new APIRequest();
 
+
+//Get Request Object from Front 
+//Return Models
 class APIHandler {
 
     async get(props) {
@@ -27,9 +34,7 @@ class APIHandler {
 
     async post(props) {
 
-        console.log("props",props)
         var request = requestBuilder.buildPostRequest(props);
-        console.log("request", request)
         var response = await requestObject.sendRequest(request);
         return response;  
         

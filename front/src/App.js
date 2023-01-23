@@ -43,7 +43,7 @@ export default function App() {
                 <Route path="/asso/login" element={ <LoginAssociation />} />
                 <Route path="/pro/login" element={ <LoginEntreprise />} />
                 <Route path="/asso/signup" element={ <Signup />} />
-                <Route path="/" element={<PrivateRoute><ResultPage profileImg="https://www.hdnicewallpapers.com/Walls/Big/Rainbow/Rainbow_on_Mountain_HD_Image.jpg"/></PrivateRoute>} />
+                <Route path="/" element={<ResultPage />} />
                 <Route path="/asso/{id}" element={<PrivateRoute><associationPage/></PrivateRoute>} />
             </Routes>
           </UserContext.Provider>

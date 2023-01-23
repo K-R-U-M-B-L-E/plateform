@@ -1,26 +1,61 @@
 [
    {
-      "image": "https://static.vecteezy.com/system/resources/previews/000/580/035/original/vector-butterfly-conceptual-simple-colorful-logo.jpg",
+      "image": "https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
       "name": "EPIT'AS",
       "university": "EPITA",
-      "description": "Tournois de poker, Evènements inter-écoles"
+      "city": "Paris",
+      "partnerPropositionAllowed": true,
+      "visible": true,
+   
+      "brief": "Tournois de poker, Evènements inter-écoles",
+      "description": "Description standardisée de l’asso :Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Vitae aliquet nec ullamcorper sit amet risus. Diam vulputate ut pharetra sit. Nam libero justo laoreet sit amet cursus. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Sed enim ut sem viverra aliquet. Massa tincidunt dui ut ornare lectus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit.",
+      "projet": [
+         {
+            "name": "Tournoi de poker",
+            "description": "explication de l’évènement : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Vitae aliquet nec ullamcorper sit amet risus. Diam vulputate ut pharetra sit. Nam libero justo laoreet sit amet cursus. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Sed enim ut sem viverra aliquet. Massa tincidunt dui ut ornare lectus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit.",
+            "help": "description de l’utililsation du budget, du rôle des intervenants, utilisation du matérial : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Vitae aliquet nec ullamcorper sit amet risus. Diam vulputate ut pharetra sit. Nam libero justo laoreet sit amet cursus. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Sed enim ut sem viverra aliquet. Massa tincidunt dui ut ornare lectus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat ",
+            "financial": "500"
+         }
+      ],
+      "social": [
+         { "name": "GitHub", "icon": "GitHubIcon" },
+         { "name": "Twitter", "icon": "TwitterIcon" },
+         { "name": "Facebook", "icon": "FacebookIcon" }
+      ],
+      "contact": {
+         "phone": "00.00.00.00.00",
+         "email": "email@email",
+         "website": "website.fr"
+      }
    },
    {
-      "image": "https://static.vecteezy.com/system/resources/previews/000/580/035/original/vector-butterfly-conceptual-simple-colorful-logo.jpg",
-      "name": "GarageISEP",
-      "university": "ISEP",
-      "description": "Innovation, Formations sur les dernières technologies, Hackatons"
-   },
-   {
-      "image": "https://static.vecteezy.com/system/resources/previews/000/580/035/original/vector-butterfly-conceptual-simple-colorful-logo.jpg",
-      "name": "STAR",
-      "university": "UTC",
-      "description": "Conception et réalisation aérospatiale, participation au Cspace"
-   },
-   {
-      "image": "https://static.vecteezy.com/system/resources/previews/000/580/035/original/vector-butterfly-conceptual-simple-colorful-logo.jpg",
-      "name": "Convergence",
+      "image": "https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
+      "name": "Gotta Go Hack",
       "university": "EPITA",
-      "description": "Enjeux sociétaux, accompagnement de projets engagés"
+      "city": "Paris",
+      "partnerPropositionAllowed": true,
+      "visible": true,
+   
+      "brief": "Hackathon, Innovation, Entrepreneuriat",
+      "description": "Description standardisée de l’asso :Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Vitae aliquet nec ullamcorper sit amet risus. Diam vulputate ut pharetra sit. Nam libero justo laoreet sit amet cursus. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Sed enim ut sem viverra aliquet. Massa tincidunt dui ut ornare lectus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit.",
+      "projet": [
+         {
+            "name": "Hackathon",
+            "description": "explication de l’évènement : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Vitae aliquet nec ullamcorper sit amet risus. Diam vulputate ut pharetra sit. Nam libero justo laoreet sit amet cursus. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Sed enim ut sem viverra aliquet. Massa tincidunt dui ut ornare lectus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit.",
+            "help": "description de l’utililsation du budget, du rôle des intervenants, utilisation du matérial : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Vitae aliquet nec ullamcorper sit amet risus. Diam vulputate ut pharetra sit. Nam libero justo laoreet sit amet cursus. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Sed enim ut sem viverra aliquet. Massa tincidunt dui ut ornare lectus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat ",
+            "financial": "5000",
+            "intervenants": ["spe 1", "spe 2", "spé 3"]
+         }
+      ],
+      "social": [
+         { "name": "GitHub", "icon": "GitHubIcon" },
+         { "name": "Twitter", "icon": "TwitterIcon" },
+         { "name": "Facebook", "icon": "FacebookIcon" }
+      ],
+      "contact": {
+         "phone": "00.00.00.00.00",
+         "email": "email@email",
+         "website": "website.fr"
+      }
    }
 ]

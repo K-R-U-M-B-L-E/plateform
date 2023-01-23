@@ -4,6 +4,7 @@ import Box from '@mui/material/Box'
 import SearchBar from '../../components/ui/layouts/SearchBar'
 import FiltersBar from '../../components/ui/layouts/FiltersBar'
 import AssociationList from '../../components/professional/AssociationList'
+import searchController from '../../services/controllers/SearchController'
 
 import associationController from "../../services/controllers/AssociationController"
 
@@ -13,13 +14,31 @@ function ResultPage({ profileImg }) {
    const [loading, setLoading] = useState(true)
    const [error, setError] = useState(null)
 
+   const [searchValue, setSearchValue] = useState("")
+
+   const handleInputChange = async (value) => {
+      try {
+
+         const response = await searchController.searchText(value)
+         setData(response.data)
+         setError(null)
+         
+      } catch (err) {
+         setError(err.message)
+         setData(null)
+      } finally {
+         setLoading(false)
+      }
+      
+  };
 
   useEffect(() => {
      const getData = async () => {
         try {
            const response = await associationController.getAllVisible()
-           setData(response)
+           setData(response.data)
            setError(null)
+           console.log(response.data)
         } catch (err) {
            setError(err.message)
            setData(null)
@@ -42,7 +61,7 @@ function ResultPage({ profileImg }) {
                left: '0',
             }}
          >
-            <SearchBar profileImg={profileImg} />
+            <SearchBar profileImg={profileImg} handleSearch={handleInputChange}/>
             <FiltersBar />
          </Box>
          {loading && <div>A moment please...</div>}

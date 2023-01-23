@@ -9,7 +9,7 @@ import Card from '@mui/material/Card'
 
 function AssociationCardUpdate({ association }) {
 
-   const { id, name, university, description, image } = association
+   const { id, name, university, brief, image } = association
    const navigate = useNavigate()
 
    const url = `/association/${id}`
@@ -67,7 +67,7 @@ function AssociationCardUpdate({ association }) {
                   overflow: 'hidden',
                }}
             >
-               {description}
+               {brief}
             </Typography>
          </CardContent>
       </Card>
@@ -79,7 +79,7 @@ AssociationCardUpdate.propTypes = {
          _id: PropTypes.string.isRequired,
          name: PropTypes.string.isRequired,
          university: PropTypes.string.isRequired,
-         description: PropTypes.string,
+         brief: PropTypes.string,
          image: PropTypes.string,
    }).isRequired,
 }

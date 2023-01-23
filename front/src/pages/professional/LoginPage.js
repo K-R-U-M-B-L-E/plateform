@@ -64,7 +64,6 @@ function LoginPage(props) {
         console.log(response)
         setUser(response)
         
-
         setData(response);
         setError(null);
 

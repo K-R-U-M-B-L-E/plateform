@@ -8,7 +8,7 @@ import searchController from '../../services/controllers/SearchController'
 
 import associationController from "../../services/controllers/AssociationController"
 
-function ResultPage({ profileImg }) {
+function ResultPage({ profileImg, handleInputChange }) {
 
    const [data, setData] = useState(null)
    const [loading, setLoading] = useState(true)
@@ -16,21 +16,6 @@ function ResultPage({ profileImg }) {
 
    const [searchValue, setSearchValue] = useState("")
 
-   const handleInputChange = async (value) => {
-      try {
-
-         const response = await searchController.searchText(value)
-         setData(response.data)
-         setError(null)
-         
-      } catch (err) {
-         setError(err.message)
-         setData(null)
-      } finally {
-         setLoading(false)
-      }
-      
-  };
 
   useEffect(() => {
      const getData = async () => {

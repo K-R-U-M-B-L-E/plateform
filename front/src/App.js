@@ -29,15 +29,7 @@ export default function App() {
         <CssBaseline/>
 
         <BrowserRouter>
-          <div className="App">
-            <ul>
-              <li>
-              <NavLink to="/">Home</NavLink>
-              </li>
-            </ul>
-            <hr />
-
-          
+          <div className="App">          
           <UserContext.Provider value={{user, setUser}}>
             <Routes>
                 <Route path="/asso/login" element={ <LoginAssociation />} />

@@ -5,10 +5,10 @@ import TableRestaurantOutlinedIcon from '@mui/icons-material/TableRestaurantOutl
 import PeopleIcon from '@mui/icons-material/People';
 import { useTheme } from '@mui/material/styles';
 
-export function SupportIcons(props) {
+export function SupportIcons(support) {
 
     const theme = useTheme();
-    const xs = 12/props.support.length;
+    const xs = 12/support.length;
 
     var key =0;
 
@@ -18,7 +18,7 @@ export function SupportIcons(props) {
 
     return (
         <Grid container>
-            { props.support.map( (s) => 
+            { support.map( (s) => 
                 <Grid item xs={xs} sx={{ justifyContent: "center", alignItems:"center" }} key={key}>
                     <Item sx={{  display: "flex", flexDirection: "column"}}>
                         { s==="Budget" && <PaidIcon sx={{ color: theme.palette.popYellow.main, fontSize: 36 }} /> }

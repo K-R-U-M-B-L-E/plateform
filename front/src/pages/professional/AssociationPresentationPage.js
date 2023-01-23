@@ -7,9 +7,9 @@ import Project from '../../components/professional/AssociationPresentationPage/c
 import SecondaryInformationsGrid from '../../components/professional/AssociationPresentationPage/SecondaryInformationsGrid'
 import HelpExplanation from '../../components/professional/AssociationPresentationPage/contents/HelpExplanation'
 
-function AssociationPresentationPage({ associationModel }) {
-   const { presentation, photos, projects, contacts, helpExplanation } =
-      associationModel
+function AssociationPresentationPage(association, projects) {
+   const { presentation, description, photos, contacts, helpExplanation } =
+      association
 
    let CarousselComponent = null
    if (photos !== null && photos.length !== 0) {
@@ -47,7 +47,7 @@ function AssociationPresentationPage({ associationModel }) {
    )
 }
 
-AssociationPresentationPage.propTypes = {
+/*AssociationPresentationPage.propTypes = {
    associationModel: PropTypes.shape({
       presentation: PropTypes.shape({
          name: PropTypes.string.isRequired,
@@ -106,5 +106,5 @@ AssociationPresentationPage.propTypes = {
       helpExplanation: PropTypes.string,
    }).isRequired,
 }
-
+*/
 export default AssociationPresentationPage

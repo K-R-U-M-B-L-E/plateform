@@ -14,7 +14,7 @@ import HomePage from "./pages/HomePage";
 import TestUI from "./components/testUI";
 import { DisplayResult } from "./components/Result";
 
-import associationPage from "./pages/professional/AssociationPresentationPage"
+import AssociationPage from "./pages/AssociationPage"
 import ResultPage from "./pages/professional/ResultPage"
 
 
@@ -44,7 +44,7 @@ export default function App() {
                 <Route path="/pro/login" element={ <LoginEntreprise />} />
                 <Route path="/asso/signup" element={ <Signup />} />
                 <Route path="/" element={<ResultPage />} />
-                <Route path="/asso/{id}" element={<PrivateRoute><associationPage/></PrivateRoute>} />
+                <Route path="/association/:id" element={<AssociationPage/>} />
             </Routes>
           </UserContext.Provider>
           </div>

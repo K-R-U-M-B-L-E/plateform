@@ -100,14 +100,18 @@ function SearchBar({ profileImg, handleSearch }) {
                      alignItems: 'center',
                   }}
                >
-                  <img
-                     src={logo}
-                     alt="logo"
-                     style={{ height: '40px', marginRight: '10px' }}
-                  />
-                  <Typography sx={theme.typography.categoryTitleBlue}>
-                     Krumble
-                  </Typography>
+                  <a href="/">
+                     <img
+                        src={logo}
+                        alt="logo"
+                        style={{ height: '40px', marginRight: '10px' }}
+                     />
+                  </a>
+                  <a href="/">
+                     <Typography sx={theme.typography.categoryTitleBlue}>
+                        Krumble
+                     </Typography>
+                  </a>
                </Box>
                <Search>
                   <StyledInputBase

@@ -12,9 +12,9 @@ import LoginEntreprise from "./pages/professional/LoginPage";
 import HomePage from "./pages/HomePage";
 
 import TestUI from "./components/testUI";
-import { DisplayResult } from "./components/Result";
+import { DisplayResult } from "./components/HomePageSelection";
 
-import associationPage from "./pages/professional/AssociationPresentationPage"
+import AssociationPage from "./pages/AssociationPage"
 import ResultPage from "./pages/professional/ResultPage"
 
 
@@ -29,22 +29,14 @@ export default function App() {
         <CssBaseline/>
 
         <BrowserRouter>
-          <div className="App">
-            <ul>
-              <li>
-              <NavLink to="/">Home</NavLink>
-              </li>
-            </ul>
-            <hr />
-
-          
+          <div className="App">          
           <UserContext.Provider value={{user, setUser}}>
             <Routes>
                 <Route path="/asso/login" element={ <LoginAssociation />} />
                 <Route path="/pro/login" element={ <LoginEntreprise />} />
                 <Route path="/asso/signup" element={ <Signup />} />
-                <Route path="/" element={<ResultPage />} />
-                <Route path="/asso/{id}" element={<PrivateRoute><associationPage/></PrivateRoute>} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/association/:id" element={<AssociationPage/>} />
             </Routes>
           </UserContext.Provider>
           </div>

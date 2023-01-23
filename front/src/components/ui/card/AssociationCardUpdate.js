@@ -9,14 +9,14 @@ import Card from '@mui/material/Card'
 
 function AssociationCardUpdate({ association }) {
 
-   const { id, name, university, brief, image } = association
+   const { _id, name, university, brief, image } = association
    const navigate = useNavigate()
 
-   const url = `/association/${id}`
+   const url = `/association/${_id}`
    const theme = useTheme()
 
-   const HandleClick = () => {
-      console.log('handle click')
+   const handleClick = () => {
+      console.log(url)
       navigate(url, { replace: true })
    }
 
@@ -37,7 +37,7 @@ function AssociationCardUpdate({ association }) {
             background: theme.palette.cream.main,
             cursor: 'pointer',
          }}
-         onClick={HandleClick}
+         onClick={handleClick}
       >
          <CardMedia
             sx={{

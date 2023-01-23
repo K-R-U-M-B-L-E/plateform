@@ -1,4 +1,4 @@
-{
+[{
    "image": "https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
    "name": "Gotta Go Hack",
    "university": "EPITA",
@@ -26,4 +26,48 @@
       "email": "email@email",
       "website": "website.fr"
    }
-}
+},
+
+{
+   "presentation": 
+   {
+      "image": "https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
+      "name": "Gotta Go Hack",
+      "university": "EPITA",
+      "city": "Paris",
+      "partnerPropositionAllowed": true,
+      "visible": true,
+      "brief": "Hackathon, Innovation, Entrepreneuriat"
+   },
+   "description": "Description standardisée de l’asso :Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Vitae aliquet nec ullamcorper sit amet risus. Diam vulputate ut pharetra sit. Nam libero justo laoreet sit amet cursus. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Sed enim ut sem viverra aliquet. Massa tincidunt dui ut ornare lectus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit.",
+   "photos": [{
+         "img": "chttps://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
+         "title": "Photos",
+         "order": 0
+      },
+      {
+      "img": "chttps://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
+         "title": "Photos",
+         "order": 1
+      },
+      {
+         "img": "chttps://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
+            "title": "Photos",
+            "order": 2
+      }],
+   "contacts": 
+   {
+      "primaryContact": 
+      {
+         "phoneNumber": "00.00.00.00.00",
+         "firstMail": "email@email",
+         "secondMail": "email@email"
+      },
+      "secondaryContact": {
+         "website": "website.fr",
+         "facebook": "fb",
+         "instagram": "insta"
+      }
+   },
+   "helpExplanation": "help helpExplanation"
+      }]

@@ -4,18 +4,11 @@ import Box from '@mui/material/Box'
 import SearchBar from '../../components/ui/layouts/SearchBar'
 import FiltersBar from '../../components/ui/layouts/FiltersBar'
 import AssociationList from '../../components/professional/AssociationList'
-import searchController from '../../services/controllers/SearchController'
 
-import associationController from "../../services/controllers/AssociationController"
 import { SearchContext } from '../../context/SearchContext'
 
 function ResultPage({ profileImg }) {
 
-   const [data, setData] = useState(null)
-   const [loading, setLoading] = useState(true)
-   const [error, setError] = useState(null)
-
-   const [searchValue, setSearchValue] = useState("")
    const searchContext = useContext(SearchContext);
 
    console.log(searchContext)
@@ -34,12 +27,7 @@ function ResultPage({ profileImg }) {
             <FiltersBar />
          </Box>
          {!searchContext.searchData && <div>A moment please...</div>}
-         {error && (
-           <div>{`There is a problem fetching the association data - ${error}`}</div>
-         )}
-
-        {searchContext.searchData && searchContext.searchData.associations && (
-         <AssociationList associations={searchContext.searchData.associations} />)}
+         {searchContext.searchData && searchContext.searchData.associations && (<AssociationList associations={searchContext.searchData.associations} />)}
       </Box>
    )
 }

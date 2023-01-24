@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import SearchBar from '../../components/ui/layouts/SearchBar'
@@ -7,34 +7,18 @@ import AssociationList from '../../components/professional/AssociationList'
 import searchController from '../../services/controllers/SearchController'
 
 import associationController from "../../services/controllers/AssociationController"
+import { SearchContext } from '../../context/SearchContext'
 
-function ResultPage({ profileImg, handleInputChange }) {
+function ResultPage({ profileImg }) {
 
    const [data, setData] = useState(null)
    const [loading, setLoading] = useState(true)
    const [error, setError] = useState(null)
 
    const [searchValue, setSearchValue] = useState("")
+   const searchContext = useContext(SearchContext);
 
-
-  useEffect(() => {
-     const getData = async () => {
-        try {
-           const response = await associationController.getAllVisible()
-           setData(response.data)
-           setError(null)
-           console.log(response.data)
-        } catch (err) {
-           setError(err.message)
-           setData(null)
-        } finally {
-           setLoading(false)
-        }
-     }
-     getData()
-  }, [loading])
-
-
+   console.log(searchContext)
    return (
       <Box sx={{ width: '100%' }}>
          <Box
@@ -46,22 +30,22 @@ function ResultPage({ profileImg, handleInputChange }) {
                left: '0',
             }}
          >
-            <SearchBar profileImg={profileImg} handleSearch={handleInputChange}/>
+            <SearchBar profileImg={profileImg} />
             <FiltersBar />
          </Box>
-         {loading && <div>A moment please...</div>}
+         {!searchContext.searchData && <div>A moment please...</div>}
          {error && (
            <div>{`There is a problem fetching the association data - ${error}`}</div>
          )}
 
-        {data && data.associations && (
-         <AssociationList associations={data.associations} />)}
+        {searchContext.searchData && searchContext.searchData.associations && (
+         <AssociationList associations={searchContext.searchData.associations} />)}
       </Box>
    )
 }
 
-ResultPage.propTypes = {
+/*ResultPage.propTypes = {
    profileImg: PropTypes.string.isRequired,
-}
+}*/
 
 export default ResultPage

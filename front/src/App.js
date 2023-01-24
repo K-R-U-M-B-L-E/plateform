@@ -42,6 +42,7 @@ export default function App() {
                 <Route path="/asso/signup" element={ <Signup />} />
                 <Route path="/" element={<HomePage />} />
                 <Route path="/association/:id" element={<AssociationPage/>} />
+                <Route path="/result" element={<ResultPage />} />
             </Routes>
 
             </SearchContext.Provider>

@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import { redirect,  useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import PropTypes from 'prop-types'
@@ -15,6 +16,7 @@ import Avatar from '@mui/material/Avatar'
 import logo from '../../../assets/img/logo.svg'
 
 import searchController from '../../../services/controllers/SearchController'
+import { SearchContext } from '../../../context/SearchContext'
 
 const Search = styled('div')(({ theme }) => ({
    position: 'relative',
@@ -66,11 +68,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 function SearchBar({ profileImg }) {
+   let navigate = useNavigate();
    const theme = useTheme()
    const borderColor = `1px solid ${theme.palette.krumbleGray.light}`
+   const searchContext = useContext(SearchContext);
 
    const [search, setSearch] = useState(null);
-   const [searchData, setSearchData] = useState(null);
+   //const [searchData, setSearchData] = useState(null);
    const [error, setError] = useState(null);
    const [loading, setLoading] = useState(true);
 
@@ -78,18 +82,20 @@ function SearchBar({ profileImg }) {
       try {
 
          const response = await searchController.searchText(value)
-         setSearchData(response.data)
+         //setSearchData(response.data)
          setError(null)
 
          console.log("SEARCH BAR", response.data)
          //TODO : FEED SEARCH CONTEXT 
-         //TODO : NAVIGATE TO RESULT PAGE
+         searchContext.setSearchData(response.data)
+         
          
       } catch (err) {
          setError(err.message)
-         setSearchData(null)
+         //setSearchData(null)
       } finally {
          setLoading(false)
+         navigate("/result")
       }
    }
 

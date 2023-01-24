@@ -81,18 +81,17 @@ function SearchBar({ profileImg }) {
    const handleSearch = async (value) => {
       try {
 
+         //FEED LAST RESEARCH WORD
+         searchContext.setSearch(value)
          const response = await searchController.searchText(value)
-         //setSearchData(response.data)
          setError(null)
-
-         console.log("SEARCH BAR", response.data)
-         //TODO : FEED SEARCH CONTEXT 
+         //FEED RESPONSE TO RESEARCH
          searchContext.setSearchData(response.data)
          
          
       } catch (err) {
          setError(err.message)
-         //setSearchData(null)
+         searchContext.setSearchData(null)
       } finally {
          setLoading(false)
          navigate("/result")
@@ -150,6 +149,7 @@ function SearchBar({ profileImg }) {
                <Search>
                   <StyledInputBase
                      type="search"
+                     defaultValue={searchContext.search}
                      placeholder="Search…"
                      inputProps={{ 'aria-label': 'search' }}
                      onChange={handleChange}

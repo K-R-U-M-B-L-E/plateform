@@ -23,7 +23,7 @@ function ResultPage({ profileImg }) {
                left: '0',
             }}
          >
-            <SearchBar profileImg={profileImg} />
+            <SearchBar profileImg={null} />
             <FiltersBar />
          </Box>
          {!searchContext.searchData && <div>A moment please...</div>}

@@ -17,6 +17,7 @@ import { DisplayResult } from "./components/HomePageSelection";
 
 import AssociationPage from "./pages/AssociationPage"
 import ResultPage from "./pages/professional/ResultPage"
+import ChatPage from "./pages/ChatPage";
 
 
 
@@ -43,6 +44,7 @@ export default function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/association/:id" element={<AssociationPage/>} />
                 <Route path="/result" element={<ResultPage />} />
+                <Route path="chat" element={<ChatPage />} />
             </Routes>
 
             </SearchContext.Provider>

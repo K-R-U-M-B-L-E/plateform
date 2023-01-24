@@ -7,9 +7,18 @@ import Project from '../../components/professional/AssociationPresentationPage/c
 import SecondaryInformationsGrid from '../../components/professional/AssociationPresentationPage/SecondaryInformationsGrid'
 import HelpExplanation from '../../components/professional/AssociationPresentationPage/contents/HelpExplanation'
 
-function AssociationPresentationPage(association, projects) {
-   const { presentation, description, photos, contacts, helpExplanation } =
+function AssociationPresentationPage({association, projects}) {
+   const {image, name, university, city, description, photos, contacts, helpExplanation } =
       association
+
+   console.log("asso prez", association)
+   const presentation = {
+      image,
+      name,
+      description,
+      university,
+      city,
+   }
 
    let CarousselComponent = null
    if (photos !== null && photos.length !== 0) {

@@ -41,7 +41,7 @@ function AssociationCard(props) {
             </Typography>
           
           <Typography variant="body1">
-          {props.description}
+          {props.brief}
           </Typography>
         </CardContent>
       </CardActionArea>

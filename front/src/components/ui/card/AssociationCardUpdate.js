@@ -74,14 +74,4 @@ function AssociationCardUpdate({ association }) {
    )
 }
 
-AssociationCardUpdate.propTypes = {
-   association: PropTypes.shape({
-         _id: PropTypes.string.isRequired,
-         name: PropTypes.string.isRequired,
-         university: PropTypes.string.isRequired,
-         brief: PropTypes.string,
-         image: PropTypes.string,
-   }).isRequired,
-}
-
 export default AssociationCardUpdate

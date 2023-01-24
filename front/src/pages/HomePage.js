@@ -47,22 +47,6 @@ function HomePage(profileImg) {
       getSelection()
    },[!loading])
 
-   const handleInputChange = async (value) => {
-      try {
-
-         const response = await searchController.searchText(value)
-         setSearchData(response.data)
-         setError(null)
-         
-      } catch (err) {
-         setError(err.message)
-         setData(null)
-      } finally {
-         setLoading(false)
-      }
-      
-  };
-
    return (<div>
       <Box sx={{ width: '100%' }}>
          <Box
@@ -74,7 +58,7 @@ function HomePage(profileImg) {
                left: '0',
             }}
          >
-            <SearchBar profileImg={profileImg} handleSearch={handleInputChange}/>
+            <SearchBar profileImg={profileImg} />
             <FiltersBar />
          </Box>
 

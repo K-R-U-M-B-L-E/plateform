@@ -1,4 +1,5 @@
-import * as React from 'react'
+import React, {useState, useContext} from 'react'
+import { redirect,  useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import PropTypes from 'prop-types'
@@ -13,6 +14,9 @@ import IconButton from '@mui/material/IconButton'
 
 import Avatar from '@mui/material/Avatar'
 import logo from '../../../assets/img/logo.svg'
+
+import searchController from '../../../services/controllers/SearchController'
+import { SearchContext } from '../../../context/SearchContext'
 
 const Search = styled('div')(({ theme }) => ({
    position: 'relative',
@@ -63,15 +67,44 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
-function SearchBar({ profileImg, handleSearch }) {
+function SearchBar({ profileImg }) {
+   let navigate = useNavigate();
    const theme = useTheme()
    const borderColor = `1px solid ${theme.palette.krumbleGray.light}`
+   const searchContext = useContext(SearchContext);
+
+   const [search, setSearch] = useState(null);
+   //const [searchData, setSearchData] = useState(null);
+   const [error, setError] = useState(null);
+   const [loading, setLoading] = useState(true);
+
+   const handleSearch = async (value) => {
+      try {
+
+         //FEED LAST RESEARCH WORD
+         searchContext.setSearch(value)
+         const response = await searchController.searchText(value)
+         setError(null)
+         //FEED RESPONSE TO RESEARCH
+         searchContext.setSearchData(response.data)
+         
+         
+      } catch (err) {
+         setError(err.message)
+         searchContext.setSearchData(null)
+      } finally {
+         setLoading(false)
+         navigate("/result")
+      }
+   }
+
+   const handleSubmit = () => {
+      handleSearch(search)
+   }
 
    const handleChange = e => {
-
-      console.log(e.target.value)
-      handleSearch(e.target.value)
-   };
+      setSearch(e.target.value)
+   }
 
    return (
       <Box sx={{ flexGrow: 1 }}>
@@ -115,9 +148,12 @@ function SearchBar({ profileImg, handleSearch }) {
                </Box>
                <Search>
                   <StyledInputBase
+                     type="search"
+                     defaultValue={searchContext.search}
                      placeholder="Search…"
                      inputProps={{ 'aria-label': 'search' }}
                      onChange={handleChange}
+                     onKeyPress={(e) => {if (e.key === 'Enter') {handleSubmit()}}}
                   />
                   <IconButton
                      aria-label="delete"
@@ -133,6 +169,7 @@ function SearchBar({ profileImg, handleSearch }) {
                      <SearchIcon
                         fontSize="inherit"
                         sx={{ color: theme.palette.white.main }}
+                        onClick={handleSubmit}
                      />
                   </IconButton>
                </Search>

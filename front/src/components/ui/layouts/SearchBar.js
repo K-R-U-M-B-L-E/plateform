@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, {useState} from 'react'
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import PropTypes from 'prop-types'
@@ -13,6 +13,8 @@ import IconButton from '@mui/material/IconButton'
 
 import Avatar from '@mui/material/Avatar'
 import logo from '../../../assets/img/logo.svg'
+
+import searchController from '../../../services/controllers/SearchController'
 
 const Search = styled('div')(({ theme }) => ({
    position: 'relative',
@@ -63,15 +65,41 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
-function SearchBar({ profileImg, handleSearch }) {
+function SearchBar({ profileImg }) {
    const theme = useTheme()
    const borderColor = `1px solid ${theme.palette.krumbleGray.light}`
 
-   const handleChange = e => {
+   const [search, setSearch] = useState(null);
+   const [searchData, setSearchData] = useState(null);
+   const [error, setError] = useState(null);
+   const [loading, setLoading] = useState(true);
 
-      console.log(e.target.value)
-      handleSearch(e.target.value)
-   };
+   const handleSearch = async (value) => {
+      try {
+
+         const response = await searchController.searchText(value)
+         setSearchData(response.data)
+         setError(null)
+
+         console.log("SEARCH BAR", response.data)
+         //TODO : FEED SEARCH CONTEXT 
+         //TODO : NAVIGATE TO RESULT PAGE
+         
+      } catch (err) {
+         setError(err.message)
+         setSearchData(null)
+      } finally {
+         setLoading(false)
+      }
+   }
+
+   const handleSubmit = () => {
+      handleSearch(search)
+   }
+
+   const handleChange = e => {
+      setSearch(e.target.value)
+   }
 
    return (
       <Box sx={{ flexGrow: 1 }}>
@@ -115,9 +143,11 @@ function SearchBar({ profileImg, handleSearch }) {
                </Box>
                <Search>
                   <StyledInputBase
+                     type="search"
                      placeholder="Search…"
                      inputProps={{ 'aria-label': 'search' }}
                      onChange={handleChange}
+                     onKeyPress={(e) => {if (e.key === 'Enter') {handleSubmit()}}}
                   />
                   <IconButton
                      aria-label="delete"
@@ -133,6 +163,7 @@ function SearchBar({ profileImg, handleSearch }) {
                      <SearchIcon
                         fontSize="inherit"
                         sx={{ color: theme.palette.white.main }}
+                        onClick={handleSubmit}
                      />
                   </IconButton>
                </Search>

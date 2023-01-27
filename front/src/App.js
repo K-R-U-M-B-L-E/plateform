@@ -16,7 +16,7 @@ import TestUI from "./components/testUI";
 import { DisplayResult } from "./components/HomePageSelection";
 
 import AssociationPage from "./pages/AssociationPage"
-import ResultPage from "./pages/professional/ResultPage"
+import ResultPage from "./pages/ResultPage"
 
 
 

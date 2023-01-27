@@ -1,95 +1,135 @@
-import React from "react";
-import './Header.css';
+import * as React from 'react'
+import Avatar from '@mui/material/Avatar'
+import PropTypes from 'prop-types'
+import Toolbar from '@mui/material/Toolbar'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import SearchIcon from '@mui/icons-material/Search'
+import Link from '@mui/material/Link'
+import Box from '@mui/material/Box'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import Tooltip from '@mui/material/Tooltip'
 
-import AppBar from "@mui/material/AppBar";
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import SearchBar from '../components/ui/layouts/SearchBar'
+import TagsBar from '../components/ui/layouts/TagsBar'
 
+import { alpha, AppBar, InputBase, styled, Typography } from '@mui/material'
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import logo from '../assets/img/logo.svg'
+import { useTheme } from '@mui/material/styles'
+
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
 function Header() {
+   const theme = useTheme()
+   const borderColor = `1px solid ${theme.palette.krumbleGray.light}`
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+   const [anchorElNav, setAnchorElNav] = React.useState(null)
+   const [anchorElUser, setAnchorElUser] = React.useState(null)
+   const [areFilterVisible, setAreFilterVisible] = React.useState(false)
 
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+   const handleOpenUserMenu = (event) => {
+      setAnchorElUser(event.currentTarget)
+   }
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-    return (
-      <AppBar position="static" color="transparent">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <IconButton sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
-            <img src="../../logo.svg" alt=""/>
-          </IconButton>
-          <Typography
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'Inter',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <div className="Brand-title">Krumble</div>
-          </Typography>
+   const handleCloseUserMenu = () => {
+      setAnchorElUser(null)
+   }
 
-        
-          <div className="profil-pic">
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-          </div>
-        </Toolbar>
-      </Container>
-    </AppBar>);
+   const handleOpenFiltersMenu = () => {
+      // setAreFilterVisible(true)
+      console.log('set')
+   }
+
+   return (
+      <>
+         <Box sx={{ flexGrow: 1 }}>
+            <AppBar
+               position="static"
+               sx={{
+                  backgroundColor: theme.palette.white.main,
+                  boxShadow: 'none',
+               }}
+            >
+               <Toolbar
+                  sx={{
+                     boxShadow: 'none',
+                     display: 'flex',
+                     justifyContent: 'center',
+                     height: '80px',
+                     borderBottom: borderColor,
+                  }}
+               >
+                  <Box
+                     sx={{
+                        color: 'black',
+                        position: 'absolute',
+                        left: '1%',
+                        display: 'flex',
+                        alignItems: 'center',
+                     }}
+                  >
+                     <a href="/">
+                        <img
+                           src={logo}
+                           alt="logo"
+                           style={{ height: '40px', marginRight: '10px' }}
+                        />
+                     </a>
+                     <a href="/">
+                        <Typography sx={theme.typography.categoryTitleBlue}>
+                           Krumble
+                        </Typography>
+                     </a>
+                  </Box>
+                  <SearchBar profileImg={null}/>
+                  <Box
+                     sx={{
+                        color: 'black',
+                        position: 'absolute',
+                        right: '1%',
+                        display: 'flex',
+                        alignItems: 'center',
+                     }}
+                  >
+                     <IconButton
+                        aria-label="delete"
+                        size="medium"
+                        sx={{
+                           backgroundColor: theme.palette.krumbleBlue.main,
+                           '&:hover': {
+                              backgroundColor: theme.palette.krumbleBlue.main,
+                           },
+                           marginRight: '4px',
+                           overflow: 'hidden',
+                           padding: '0',
+                        }}
+                     >
+                        <Avatar
+                           //FIX ME : PROFILE IMG
+                           src={null}
+                           alt="logo"
+                           sx={{ width: 56, height: 56 }}
+                        />
+                     </IconButton>
+                  </Box>
+               </Toolbar>
+            </AppBar>
+         </Box>
+
+         <TagsBar />
+      </>
+   )
 }
 
-export default Header;
+Header.propTypes = {
+   sections: PropTypes.arrayOf(
+      PropTypes.shape({
+         title: PropTypes.string.isRequired,
+      })
+   ).isRequired,
+   title: PropTypes.string.isRequired,
+}
 
+export default Header

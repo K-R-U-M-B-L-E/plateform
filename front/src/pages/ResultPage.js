@@ -1,11 +1,10 @@
 import React, {useState, useEffect, useContext} from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
-import SearchBar from '../../components/ui/layouts/SearchBar'
-import FiltersBar from '../../components/ui/layouts/FiltersBar'
-import AssociationList from '../../components/professional/AssociationList'
+import Header from '../layouts/Header'
+import AssociationList from '../components/professional/AssociationList'
 
-import { SearchContext } from '../../context/SearchContext'
+import { SearchContext } from '../context/SearchContext'
 
 function ResultPage({ profileImg }) {
 
@@ -23,8 +22,7 @@ function ResultPage({ profileImg }) {
                left: '0',
             }}
          >
-            <SearchBar profileImg={null} />
-            <FiltersBar />
+            <Header />
          </Box>
          {!searchContext.searchData && <div>A moment please...</div>}
          {searchContext.searchData && searchContext.searchData.associations && (<AssociationList associations={searchContext.searchData.associations} />)}

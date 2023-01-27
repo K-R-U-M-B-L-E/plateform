@@ -36,16 +36,6 @@ const Search = styled('div')(({ theme }) => ({
    boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.25)',
 }))
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-   padding: theme.spacing(0, 2),
-   height: '100%',
-   position: 'absolute',
-   pointerEvents: 'none',
-   display: 'flex',
-   alignItems: 'center',
-   justifyContent: 'center',
-}))
-
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
    color: theme.palette.krumbleGray.main,
 
@@ -107,48 +97,10 @@ function SearchBar({ profileImg }) {
    }
 
    return (
-      <Box sx={{ flexGrow: 1 }}>
-         <AppBar
-            position="static"
-            sx={{
-               backgroundColor: theme.palette.white.main,
-               boxShadow: 'none',
-            }}
-         >
-            <Toolbar
-               sx={{
-                  boxShadow: 'none',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  height: '80px',
-                  borderBottom: borderColor,
-               }}
-            >
-               <Box
-                  sx={{
-                     color: 'black',
-                     position: 'absolute',
-                     left: '1%',
-                     display: 'flex',
-                     alignItems: 'center',
-                  }}
-               >
-                  <a href="/">
-                     <img
-                        src={logo}
-                        alt="logo"
-                        style={{ height: '40px', marginRight: '10px' }}
-                     />
-                  </a>
-                  <a href="/">
-                     <Typography sx={theme.typography.categoryTitleBlue}>
-                        Krumble
-                     </Typography>
-                  </a>
-               </Box>
-               <Search>
-                  <StyledInputBase
-                     type="search"
+      <>
+         <Search>
+            <StyledInputBase
+              type="search"
                      defaultValue={searchContext.search}
                      placeholder="Search…"
                      inputProps={{ 'aria-label': 'search' }}
@@ -173,63 +125,13 @@ function SearchBar({ profileImg }) {
                      />
                   </IconButton>
                </Search>
-               <Box
-                  sx={{
-                     color: 'black',
-                     position: 'absolute',
-                     right: '1%',
-                     display: 'flex',
-                     alignItems: 'center',
-                  }}
-               >
-                  <IconButton
-                     aria-label="delete"
-                     size="medium"
-                     sx={{
-                        backgroundColor: theme.palette.krumbleBlue.main,
-                        '&:hover': {
-                           backgroundColor: theme.palette.krumbleBlue.main,
-                        },
-                        marginRight: '4px',
-                        overflow: 'hidden',
-                        padding: '0',
-                     }}
-                  >
-                     <Avatar
-                        src={profileImg}
-                        alt="logo"
-                        sx={{ width: 56, height: 56 }}
-                     />
-                  </IconButton>
-               </Box>
-            </Toolbar>
-         </AppBar>
-      </Box>
-   )
+               </>
+                  )
 }
 
 SearchBar.propTypes = {
    profileImg: PropTypes.string.isRequired,
 }
 
-function FilterButton({ name, img }) {
-   return (
-      <Tooltip title={name} placement="bottom">
-         <Button
-            sx={{
-               textTransform: 'none',
-               display: 'block',
-               width: '130px',
-            }}
-         >
-            <img src={img} alt={name} />
-         </Button>
-      </Tooltip>
-   )
-}
-FilterButton.propTypes = {
-   name: PropTypes.string.isRequired,
-   img: PropTypes.string.isRequired,
-}
 
 export default SearchBar

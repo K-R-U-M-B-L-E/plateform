@@ -1,17 +1,14 @@
 import React, { Component, useContext, useEffect, useState } from 'react'
-import Header from '../layouts/Header'
-import Footer from '../layouts/Footer'
 import associationController from "../services/controllers/AssociationController"
 import projectController from "../services/controllers/ProjectController"
 import searchController from '../services/controllers/SearchController'
 
 import AssociationListStatic from '../components/AssociationListStatic';
 import HomePageSelection from '../components/HomePageSelection';
-import ResultPage from './professional/ResultPage'
+import ResultPage from './ResultPage'
 
 import Box from '@mui/material/Box'
-import SearchBar from '../components/ui/layouts/SearchBar'
-import FiltersBar from '../components/ui/layouts/FiltersBar'
+import Header from '../layouts/Header'
 import AssociationList from '../components/professional/AssociationList'
 
 
@@ -58,8 +55,7 @@ function HomePage(profileImg) {
                left: '0',
             }}
          >
-            <SearchBar profileImg={profileImg} />
-            <FiltersBar />
+            <Header />
          </Box>
 
       {loading && <div>A moment please...</div>}

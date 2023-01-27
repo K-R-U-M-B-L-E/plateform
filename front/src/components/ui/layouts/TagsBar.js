@@ -6,18 +6,18 @@ import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 
-import artsImg from '../../../assets/img/filters/arts.svg'
-import bdeImg from '../../../assets/img/filters/bde.svg'
-import caritatifImg from '../../../assets/img/filters/caritatif.svg'
-import conferencesImg from '../../../assets/img/filters/conferences.svg'
-import divertissementImg from '../../../assets/img/filters/divertissement.svg'
-import educatifImg from '../../../assets/img/filters/educatif.svg'
-import innovationImg from '../../../assets/img/filters/innovation.svg'
-import sportsImg from '../../../assets/img/filters/sports.svg'
-import favorisImg from '../../../assets/img/filters/favoris.svg'
+import artsImg from '../../../assets/img/tags/arts.svg'
+import bdeImg from '../../../assets/img/tags/bde.svg'
+import caritatifImg from '../../../assets/img/tags/caritatif.svg'
+import conferencesImg from '../../../assets/img/tags/conferences.svg'
+import divertissementImg from '../../../assets/img/tags/divertissement.svg'
+import educatifImg from '../../../assets/img/tags/educatif.svg'
+import innovationImg from '../../../assets/img/tags/innovation.svg'
+import sportsImg from '../../../assets/img/tags/sports.svg'
+import favorisImg from '../../../assets/img/tags/favoris.svg'
 
-function FiltersBar() {
-   const filtersList = [
+function TagsBar() {
+   const tagsList = [
       { name: 'Innovation', img: innovationImg },
       { name: 'Conférences', img: conferencesImg },
       { name: 'Sports', img: sportsImg },
@@ -53,7 +53,7 @@ function FiltersBar() {
                borderRight: borderColor,
             }}
          >
-            <FilterButton img={favorisImg} name="favoris" />
+            <TagButton img={favorisImg} name="favoris" />
          </Box>
 
          <Box
@@ -67,9 +67,9 @@ function FiltersBar() {
                width: '90%',
             }}
          >
-            {filtersList.map((filter) => (
+            {tagsList.map((tag) => (
                <>
-                  <FilterButton img={filter.img} name={filter.name} />
+                  <TagButton img={tag.img} name={tag.name} />
                   <Box sx={{ width: '5px' }} />
                </>
             ))}
@@ -78,9 +78,7 @@ function FiltersBar() {
    )
 }
 
-FiltersBar.propTypes = {}
-
-function FilterButton({ name, img }) {
+function TagButton({ name, img }) {
    return (
       <Tooltip title={name} placement="bottom">
          <Button
@@ -95,9 +93,9 @@ function FilterButton({ name, img }) {
       </Tooltip>
    )
 }
-FilterButton.propTypes = {
+TagButton.propTypes = {
    name: PropTypes.string.isRequired,
    img: PropTypes.string.isRequired,
 }
 
-export default FiltersBar
+export default TagsBar

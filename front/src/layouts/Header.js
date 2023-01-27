@@ -1,33 +1,70 @@
-import * as React from 'react'
-import Avatar from '@mui/material/Avatar'
+import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import Toolbar from '@mui/material/Toolbar'
-import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import SearchIcon from '@mui/icons-material/Search'
-import Link from '@mui/material/Link'
-import Box from '@mui/material/Box'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import Tooltip from '@mui/material/Tooltip'
+import { Avatar, alpha, AppBar, Box, IconButton, InputBase, styled, Toolbar, Typography } from '@mui/material'
 
 import SearchBar from '../components/ui/layouts/SearchBar'
 import TagsBar from '../components/ui/layouts/TagsBar'
 
-import { alpha, AppBar, InputBase, styled, Typography } from '@mui/material'
 
 import logo from '../assets/img/logo.svg'
 import { useTheme } from '@mui/material/styles'
+import { SearchContext } from '../context/SearchContext'
+import searchController from '../services/controllers/SearchController'
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
 function Header() {
+   let navigate = useNavigate();
    const theme = useTheme()
+   const searchContext = useContext(SearchContext)
    const borderColor = `1px solid ${theme.palette.krumbleGray.light}`
 
    const [anchorElNav, setAnchorElNav] = React.useState(null)
    const [anchorElUser, setAnchorElUser] = React.useState(null)
    const [areFilterVisible, setAreFilterVisible] = React.useState(false)
+
+   const [error, setError] = useState(null);
+   const [loading, setLoading] = useState(true);
+   const [searchValue, setSearchValue] = useState({text: "", filter: "", sort: ""})
+
+   const handleSearch = async (props) => {
+      try {
+
+         if (props.filter !== undefined)
+        {
+            var json = searchValue
+            json["filter"] = JSON.stringify(props.filter)
+            setSearchValue(json)
+        }
+        else if (props.text !== undefined)
+        {
+            var json = searchValue
+            json["text"] = props.text
+            setSearchValue(json)       
+        }
+        else if (props.sort !== undefined)
+        {
+            var json = searchValue
+            json["sort"] = props.sort
+            setSearchValue(json)
+        }
+
+         var response = await searchController.search({ text: searchValue.text, filter: searchValue.filter, sort: searchValue.sort });
+
+         setError(null)
+         //FEED RESPONSE TO RESEARCH
+         searchContext.setSearchData(response.data)
+         
+         
+      } catch (err) {
+         setError(err.message)
+         searchContext.setSearchData(null)
+      } finally {
+         setLoading(false)
+         navigate("/result")
+      }
+   }
 
    const handleOpenUserMenu = (event) => {
       setAnchorElUser(event.currentTarget)
@@ -83,7 +120,7 @@ function Header() {
                         </Typography>
                      </a>
                   </Box>
-                  <SearchBar profileImg={null}/>
+                  <SearchBar searchCallback={handleSearch}/>
                   <Box
                      sx={{
                         color: 'black',
@@ -121,15 +158,6 @@ function Header() {
          <TagsBar />
       </>
    )
-}
-
-Header.propTypes = {
-   sections: PropTypes.arrayOf(
-      PropTypes.shape({
-         title: PropTypes.string.isRequired,
-      })
-   ).isRequired,
-   title: PropTypes.string.isRequired,
 }
 
 export default Header

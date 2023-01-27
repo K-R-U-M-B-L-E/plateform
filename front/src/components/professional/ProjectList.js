@@ -3,7 +3,6 @@ import ProjectCard from '../ui/card/ProjectCard'
 
 function ProjectListStatic(props) {
    let key = 0
-   console.log(props)
    const incrementKey = () => {
       key += 1
    }

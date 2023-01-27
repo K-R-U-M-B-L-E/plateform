@@ -15,7 +15,6 @@ import IconButton from '@mui/material/IconButton'
 import Avatar from '@mui/material/Avatar'
 import logo from '../../../assets/img/logo.svg'
 
-import searchController from '../../../services/controllers/SearchController'
 import { SearchContext } from '../../../context/SearchContext'
 
 const Search = styled('div')(({ theme }) => ({
@@ -57,43 +56,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
-function SearchBar({ profileImg }) {
-   let navigate = useNavigate();
+function SearchBar({ searchCallback }) {
    const theme = useTheme()
-   const borderColor = `1px solid ${theme.palette.krumbleGray.light}`
    const searchContext = useContext(SearchContext);
 
-   const [search, setSearch] = useState(null);
-   //const [searchData, setSearchData] = useState(null);
-   const [error, setError] = useState(null);
-   const [loading, setLoading] = useState(true);
-
-   const handleSearch = async (value) => {
-      try {
-
-         //FEED LAST RESEARCH WORD
-         searchContext.setSearch(value)
-         const response = await searchController.searchText(value)
-         setError(null)
-         //FEED RESPONSE TO RESEARCH
-         searchContext.setSearchData(response.data)
-         
-         
-      } catch (err) {
-         setError(err.message)
-         searchContext.setSearchData(null)
-      } finally {
-         setLoading(false)
-         navigate("/result")
-      }
-   }
+   var search = null;
+  
 
    const handleSubmit = () => {
-      handleSearch(search)
+      searchContext.setSearchText(search)
+      searchCallback({ text : search})
    }
 
    const handleChange = e => {
-      setSearch(e.target.value)
+      search = e.target.value
    }
 
    return (
@@ -101,7 +77,7 @@ function SearchBar({ profileImg }) {
          <Search>
             <StyledInputBase
               type="search"
-                     defaultValue={searchContext.search}
+                     defaultValue={searchContext.searchText}
                      placeholder="Search…"
                      inputProps={{ 'aria-label': 'search' }}
                      onChange={handleChange}
@@ -129,9 +105,8 @@ function SearchBar({ profileImg }) {
                   )
 }
 
-SearchBar.propTypes = {
+/*SearchBar.propTypes = {
    profileImg: PropTypes.string.isRequired,
-}
-
+}*/
 
 export default SearchBar

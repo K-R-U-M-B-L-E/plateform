@@ -25,7 +25,9 @@ export default function App() {
   
     const [user, setUser] = useState(null);
     const [searchData, setSearchData] = useState(null)
-    const [search, setSearch] = useState(null)
+    const [searchText, setSearchText] = useState("")
+    const [searchFilter, setSearchFilter] = useState(null)
+    const [sort, setSortValue] = useState(null)
 
     return (
       <ThemeProvider theme={Krumbletheme}>         
@@ -34,7 +36,7 @@ export default function App() {
         <BrowserRouter>
           <div className="App">          
           <UserContext.Provider value={{user, setUser}}>
-          <SearchContext.Provider value={{searchData, setSearchData, search, setSearch}}>
+          <SearchContext.Provider value={{searchData, setSearchData, searchText, setSearchText, searchFilter, setSearchFilter, sort, setSortValue}}>
 
             <Routes>
                 <Route path="/asso/login" element={ <LoginAssociation />} />

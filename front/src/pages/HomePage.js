@@ -42,7 +42,7 @@ function HomePage(profileImg) {
          }  
       }
       getSelection()
-   },[!loading])
+   },[loading])
 
    return (<div>
       <Box sx={{ width: '100%' }}>
